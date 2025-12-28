@@ -1,0 +1,15 @@
+# Initialize the folder as a Git repository
+git init -b main
+
+# Stage the single file
+git add index.html
+
+# Commit the change with a descriptive message
+git commit -m "Initial commit: add index.html for website"
+
+# Add your GitHub repository as the remote 'origin'
+# Replace <REMOTE-URL> with your actual GitHub repo link (e.g., https://github.com/user/repo.git)
+git remote add origin <REMOTE-URL>
+
+# Push the file to the main branch
+git push -u origin main
