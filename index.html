@@ -3,60 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timberline Data | Strategic Analytics</title>
+    <title>Timberline Data | Strategic Analytics Consultancy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary-blue: #1a365d; /* Dark Blue from your logo */
-            --accent-green: #2f855a;  /* Binary Green from your logo */
-            --bg-light: #f7fafc;
-            --text-dark: #2d3748;
+            /* Updated Palette: Pacific Northwest Professional */
+            --primary-forest: #2C5F2D; /* Deep Forest Green */
+            --secondary-slate: #97BC62; /* Moss/Slate */
+            --accent-gold: #D4A373; /* Subtle accent for warmth */
+            --text-dark: #1A202C;
+            --bg-light: #F7FAFC;
+            --white: #ffffff;
         }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--text-dark); background: var(--bg-light); margin: 0; padding: 0; }
-        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-        header { text-align: center; margin-bottom: 60px; }
-        .logo { max-width: 400px; height: auto; margin-bottom: 20px; }
-        h1 { font-size: 2.8rem; color: var(--primary-blue); line-height: 1.2; margin-bottom: 1rem; }
-        h2 { color: var(--primary-blue); border-bottom: 2px solid var(--accent-green); display: inline-block; padding-bottom: 5px; margin-top: 40px; }
-        .highlight { color: var(--accent-green); font-weight: 800; }
+
+        body { 
+            font-family: 'Open Sans', sans-serif; 
+            line-height: 1.6; 
+            color: var(--text-dark); 
+            background: var(--bg-light); 
+            margin: 0; 
+            padding: 0; 
+        }
+
+        /* Topographic Pattern Background for Hero */
+        .hero-bg {
+            background-color: var(--white);
+            background-image: radial-gradient(#2C5F2D 0.5px, transparent 0.5px), radial-gradient(#2C5F2D 0.5px, #ffffff 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            opacity: 1;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+        /* HEADER & HERO */
+        header { 
+            text-align: center; 
+            padding: 80px 20px 60px; 
+            background: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,1));
+        }
+
+        .logo { max-width: 350px; height: auto; margin-bottom: 30px; }
+
+        .credibility-badge {
+            display: inline-block;
+            background: #e2e8f0;
+            color: var(--primary-forest);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        h1 { 
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem; 
+            color: var(--primary-forest); 
+            line-height: 1.1; 
+            margin-bottom: 1.5rem; 
+        }
+
+        .highlight { color: var(--secondary-slate); }
+
+        /* TRUST BAR (LOGOS) */
+        .trust-bar {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #edf2f7;
+        }
+        .trust-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #718096;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        .logo-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            opacity: 0.7;
+        }
+        /* Placeholder styling for logos until you add images */
+        .client-logo-placeholder {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #4a5568;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* SERVICES SECTION */
+        .section-title {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-forest);
+            font-size: 2rem;
+            margin-top: 80px;
+            margin-bottom: 40px;
+        }
+
+        .services-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+        }
+
+        .service-card { 
+            background: white; 
+            padding: 35px; 
+            border-radius: 12px; 
+            border-top: 6px solid var(--primary-forest); 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .service-card h3 { 
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 0; 
+            color: var(--primary-forest); 
+            font-size: 1.4rem;
+        }
+
+        .service-card p { color: #4a5568; margin-bottom: 20px; }
+
+        .learn-more {
+            color: var(--primary-forest);
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .learn-more:after { content: " →"; }
+
+        /* CTA SECTION */
+        .cta-section { 
+            text-align: center; 
+            margin: 100px 0; 
+            padding: 60px 40px; 
+            background-color: var(--primary-forest);
+            background-image: linear-gradient(135deg, var(--primary-forest) 0%, #1a3c1b 100%);
+            color: white; 
+            border-radius: 16px; 
+            box-shadow: 0 10px 25px rgba(44, 95, 45, 0.3);
+        }
+
+        .cta-section h3 { font-family: 'Montserrat', sans-serif; font-size: 2rem; margin-bottom: 10px; }
         
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
-        .service-card { background: white; padding: 25px; border-radius: 8px; border-left: 5px solid var(--accent-green); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .service-card h3 { margin-top: 0; color: var(--primary-blue); }
-        .price-tag { font-weight: bold; color: var(--accent-green); font-size: 1.1rem; }
+        .cta-button { 
+            display: inline-block; 
+            background: white; 
+            color: var(--primary-forest); 
+            padding: 18px 40px; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            font-weight: 800; 
+            font-size: 1.1rem; 
+            margin-top: 30px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .cta-button:hover { 
+            transform: scale(1.05); 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
 
-        .cta-section { text-align: center; margin: 60px 0; padding: 40px; background: var(--primary-blue); color: white; border-radius: 12px; }
-        .cta-button { display: inline-block; background: var(--accent-green); color: white; padding: 15px 35px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1.2rem; transition: transform 0.2s; }
-        .cta-button:hover { transform: scale(1.05); }
-
-        .social-proof { font-style: italic; color: #4a5568; text-align: center; margin-bottom: 40px; }
-        footer { margin-top: 80px; padding-top: 20px; border-top: 1px solid #e2e8f0; font-size: 0.85rem; color: #718096; text-align: center; }
+        footer { 
+            margin-top: 80px; 
+            padding: 40px 0; 
+            border-top: 1px solid #e2e8f0; 
+            font-size: 0.85rem; 
+            color: #718096; 
+            text-align: center; 
+        }
+        
+        /* Mobile adjustment */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .logo-grid { gap: 20px; flex-direction: column; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <img src="Gimp Logo.png" alt="Timberline Data Logo" class="logo">
-            <h1>Turning <span class="highlight">Local Data</span> into Operational ROI.</h1>
-            <p class="social-proof">Trusted expertise applied to Portland favorites like <strong>Next Adventure</strong>, <strong>Burn Boot Camp</strong>, and <strong>Bethany Athletic Club</strong>.</p>
-        </header>
 
+    <div class="hero-bg">
+        <div class="container">
+            <header>
+                <div class="credibility-badge">Feature Engineering & Strategy</div>
+                
+                <img src="Gimp Logo.png" alt="Timberline Data Logo" class="logo">
+                
+                <h1>Fortune 100 Architecture.<br>Scaled for <span class="highlight">Portland Business.</span></h1>
+                
+                <div class="trust-bar">
+                    <div class="trust-title">Proven Impact For</div>
+                    <div class="logo-grid">
+                        <span class="client-logo-placeholder">NIKE, Inc.</span>
+                        <span class="client-logo-placeholder">First Tech Fed</span>
+                        <span class="client-logo-placeholder">Next Adventure</span>
+                        <span class="client-logo-placeholder">Burn Boot Camp</span>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </div>
+
+    <div class="container">
         <section>
-            <h2>Core Offerings</h2>
+            <h2 class="section-title">Strategic Capabilities</h2>
             <div class="services-grid">
+                
                 <div class="service-card">
-                    <h3>Predictive Power</h3>
-                    <p>Member churn models and demand forecasting to prevent inventory waste.</p>
-                    <p class="price-tag">Starting at $1,000</p>
+                    <h3>Retention & Demand Engines</h3>
+                    <p>Stop guessing. We implement the same SARIMA forecasting and churn models used by Fortune 500 financials to predict inventory needs and member retention.</p>
+                    <a href="mailto:inquiry@timberlinedata.tech" class="learn-more">Request Case Study</a>
                 </div>
+
                 <div class="service-card">
-                    <h3>Data Clarity</h3>
-                    <p>Automated KPI dashboards that eliminate 5+ hours of manual reporting weekly.</p>
-                    <p class="price-tag">Starting at $1,500</p>
+                    <h3>Automated Executive Intelligence</h3>
+                    <p>Eliminate manual Excel work. We build production-ready Tableau dashboards that align with your strategic OKRs, saving 5+ hours of reporting weekly.</p>
+                    <a href="mailto:inquiry@timberlinedata.tech" class="learn-more">See Dashboard Examples</a>
                 </div>
+
                 <div class="service-card">
-                    <h3>Infrastructure</h3>
-                    <p>Scalable Snowflake and SQL architecture built for long-term growth.</p>
-                    <p class="price-tag">Starting at $6,000</p>
+                    <h3>Scalable Cloud Architecture</h3>
+                    <p>Future-proof your business. We deploy scalable Snowflake and SQL pipelines designed to handle growth without technical debt.</p>
+                    <a href="mailto:inquiry@timberlinedata.tech" class="learn-more">View Tech Stack</a>
                 </div>
             </div>
         </section>
