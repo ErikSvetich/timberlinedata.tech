@@ -191,16 +191,15 @@
     body::before {
         /* 1. Tweak the width for wide screens */
         /* PC screens are already wide, so you might need less (or more) extra width here */
-        width: 75%;
-        height: 75%;
-        
+        width: 100%; 
+   
         /* 2. Tweak the Position */
         /* On PC, "100%" might be too far right. Try 90% or 80%. */
         background-position: 50% 50%; 
         
         /* 3. Tweak the Zoom */
         /* "cover" usually works better on PC than fixed percentages */
-        background-size: 80% 80%; 
+        background-size: cover; 
     }
         
 }
