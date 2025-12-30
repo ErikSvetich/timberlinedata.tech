@@ -170,6 +170,25 @@
 
         .social-proof { font-style: italic; color: #4a5568; text-align: center; margin-bottom: 40px; }
         footer { margin-top: 80px; padding-top: 20px; border-top: 1px solid #e2e8f0; font-size: 0.85rem; color: #718096; text-align: center; }
+
+        /* --- PC / DESKTOP SPECIFIC TWEAKS --- */
+/* These rules only trigger on screens wider than 1024px */
+    @media (min-width: 1024px) {
+    body::before {
+        /* 1. Tweak the width for wide screens */
+        /* PC screens are already wide, so you might need less (or more) extra width here */
+        width: 120%; 
+        
+        /* 2. Tweak the Position */
+        /* On PC, "100%" might be too far right. Try 90% or 80%. */
+        background-position: 90% 25%; 
+        
+        /* 3. Tweak the Zoom */
+        /* "cover" usually works better on PC than fixed percentages */
+        background-size: cover; 
+    }
+        
+}
     </style>
 </head>
 <body>
