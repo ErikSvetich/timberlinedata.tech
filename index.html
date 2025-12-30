@@ -8,13 +8,14 @@
 
     <style>
         :root {
+            /* Brand Palette */
             --primary-blue: #1a365d; 
             --accent-green: #2f855a;  
             --bg-light: #f7fafc;
             --text-dark: #2d3748;
         }
 
-        /* --- UPDATED BACKGROUND STRATEGY --- */
+        /* --- 1. ORGANIC BACKGROUND SETUP (Using your image) --- */
         body { 
             font-family: 'Open Sans', sans-serif;
             line-height: 1.6; 
@@ -22,29 +23,30 @@
             margin: 0; 
             padding: 0;
             background-color: var(--bg-light);
-            position: relative; /* Needed for the overlay */
+            position: relative; 
         }
 
-        /* This pseudo-element handles the background image */
+        /* The Overlay Trick: Tints your black/white map image Green */
         body::before {
             content: "";
-            position: fixed; /* Locks the map in place while scrolling */
+            position: fixed; 
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; /* Puts it behind the text */
+            z-index: -1; 
             
-            /* LINK TO YOUR SAVED IMAGE HERE */
+            /* YOUR IMAGE FILE HERE */
             background-image: url('topo-bg.jpg'); 
             background-size: cover;
             background-position: center;
             
-            /* VISUAL TRICK: Tint the black lines Green */
-            opacity: 0.1; /* Very subtle watermark effect */
-            /* filter: sepia(1) hue-rotate(90deg) saturate(3); /* Turns black/white into Greenish */ */
+            /* FILTER: Turns B&W -> Sepia -> Green -> Saturated */
+            opacity: 0.08; 
+            filter: sepia(1) hue-rotate(90deg) saturate(3); 
         }
-        
+
+        /* --- 2. LAYOUT & TYPOGRAPHY --- */
         .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
         
         header { text-align: center; margin-bottom: 60px; }
@@ -72,7 +74,6 @@
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
         
         .service-card { 
-            /* White background with slight transparency to let map show through faintly */
             background: rgba(255, 255, 255, 0.90); 
             padding: 25px; 
             border-radius: 8px; 
@@ -110,7 +111,7 @@
         .social-proof { font-style: italic; color: #4a5568; text-align: center; margin-bottom: 40px; }
         footer { margin-top: 80px; padding-top: 20px; border-top: 1px solid #e2e8f0; font-size: 0.85rem; color: #718096; text-align: center; }
 
-        /* --- ANIMATION --- */
+        /* --- 3. ANIMATION ENGINE --- */
         #intro-overlay {
             position: fixed;
             top: 0;
@@ -122,32 +123,61 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            animation: fadeOutOverlay 1s ease-in-out 2.5s forwards; 
+            animation: fadeOutOverlay 1s ease-in-out 3.5s forwards; /* Fades out after 3.5s */
             pointer-events: none; 
         }
 
-        .drawing-mountain { width: 150px; height: auto; }
+        /* Container for the logo stack */
+        .logo-stack {
+            position: relative;
+            width: 300px; /* Adjust based on your logo size preference */
+            max-width: 80vw;
+            aspect-ratio: 3086 / 2195; /* Maintains aspect ratio of your SVG */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .drawing-mountain { 
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
         
         .mountain-path {
-            fill: transparent;
-            stroke: var(--accent-green); 
-            stroke-width: 3;
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
+            fill: none;
+            stroke: var(--primary-blue); /* Draws using your Blue */
+            stroke-width: 20; /* Thicker line for large viewBox */
+            stroke-dasharray: 12000; /* Huge number for long path */
+            stroke-dashoffset: 12000;
             stroke-linecap: round;
             stroke-linejoin: round;
-            animation: drawLine 2s ease-out forwards, fillMountain 0.5s ease-out 1.8s forwards;
+            animation: drawLine 2s ease-out forwards;
         }
 
+        .real-logo-reveal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeInLogo 1s ease-out 2s forwards; /* Waits 2s for drawing to finish */
+        }
+
+        /* Keyframes */
         @keyframes drawLine { to { stroke-dashoffset: 0; } }
-        @keyframes fillMountain { to { fill: var(--accent-green); } }
-        @keyframes fadeOutOverlay { 
-            to { opacity: 0; visibility: hidden; } 
-        }
+        @keyframes fadeInLogo { to { opacity: 1; } }
+        @keyframes fadeOutOverlay { to { opacity: 0; visibility: hidden; } }
 
+        /* Content Reveal */
         .main-content {
             opacity: 0;
-            animation: fadeInContent 1s ease-out 2.8s forwards;
+            animation: fadeInContent 1s ease-out 4s forwards;
         }
         @keyframes fadeInContent { to { opacity: 1; } }
 
@@ -156,9 +186,14 @@
 <body>
 
     <div id="intro-overlay">
-        <svg class="drawing-mountain" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-             <path class="mountain-path" d="M20,130 L60,50 L80,80 L110,20 L140,70 L170,30 L200,130 Z" />
-        </svg>
+        <div class="logo-stack">
+            
+            <svg class="drawing-mountain" viewBox="0 0 3086 2195" xmlns="http://www.w3.org/2000/svg">
+                <path class="mountain-path" d="M1.999992,2180.000000 C2.000000,1454.162354 2.000000,728.324707 2.000000,2.000000 C503.391998,2.000000 1004.784119,2.000000 1507.104248,2.723691 C1506.588623,6.443276 1505.291626,9.520637 1503.679443,12.422772 C1481.995850,51.454277 1460.281860,90.468803 1438.549438,129.473129 C1377.569214,238.918045 1316.562988,348.348480 1255.593262,457.799286 C1188.624023,578.020386 1121.690918,698.261658 1054.693970,818.467346 C1053.003662,821.500000 1050.751099,824.219299 1047.994751,828.187622 C1044.030518,823.036133 1040.889038,819.256653 1038.073120,815.248535 C999.953796,760.989319 961.883484,706.695618 923.791321,652.417358 C915.560730,640.689392 907.268433,629.004578 899.050415,617.267822 C895.516968,612.221436 890.802307,608.564392 884.746582,610.860657 C881.122803,612.234741 877.637817,615.800415 875.617310,619.270081 C865.390564,636.831909 855.661926,654.683716 845.763245,672.436523 C769.495605,809.218994 693.248779,946.013123 616.955627,1082.781494 C560.142029,1184.629395 503.243225,1286.429810 446.429901,1388.277832 C386.694763,1495.363525 327.015656,1602.480591 267.312836,1709.584229 C219.939835,1794.568970 172.577820,1879.559814 125.192642,1964.537720 C86.732224,2033.510498 48.276028,2102.485840 9.672624,2171.378418 C7.835954,2174.656250 4.589762,2177.144287 1.999992,2180.000000 z" />
+            </svg>
+
+            <img src="Gimp Logo.png" alt="Logo" class="real-logo-reveal">
+        </div>
     </div>
 
     <div class="main-content">
