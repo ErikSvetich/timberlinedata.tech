@@ -90,15 +90,15 @@
             stroke-linecap: round;
             stroke-linejoin: round;
             
-            /* Drawing duration: 1.8s | Easing: Ease-Out */
-            animation: drawLine 1.8s ease-out forwards;
+            /* TWEAKED FOR SYNC: Added a 0.05s delay so the dot gets a head start */
+            animation: drawLine 1.8s ease-out 0.05s forwards;
         }
 
         /* The Laser/Spark Flair Styling */
         #drawing-flair {
             fill: var(--accent-green);
             filter: drop-shadow(0 0 15px var(--accent-green));
-            /* Animation logic is now handled in the HTML <animate> tags below */
+            /* Animation logic is handled in the HTML <animate> tags below */
         }
 
         /* The Real Logo Reveal */
@@ -110,8 +110,8 @@
             height: auto;
             z-index: 1;
             opacity: 0;
-            /* Starts appearing right as drawing finishes (1.8s) */
-            animation: fadeInLogo 1s ease-out 1.8s forwards; 
+            /* Starts appearing right as drawing finishes (1.8s + 0.05s delay = ~1.85s) */
+            animation: fadeInLogo 1s ease-out 1.85s forwards; 
         }
 
         /* Keyframes */
@@ -217,7 +217,7 @@
          1409.42,331.00 1481.01,209.00 1481.01,209.00
          1481.01,209.00 1515.00,151.00 1515.00,151.00 Z" />
                 
-                <circle id="drawing-flair" r="25">
+                <circle id="drawing-flair" r="35">
                     <animateMotion 
                         dur="1.8s" 
                         fill="freeze" 
