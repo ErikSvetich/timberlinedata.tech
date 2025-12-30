@@ -54,6 +54,8 @@
             background: #ffffff;
             z-index: 9999;
             display: flex;
+            /* CHANGED: Column direction to stack Logo and Text vertically */
+            flex-direction: column; 
             justify-content: center;
             align-items: center;
             
@@ -108,6 +110,19 @@
             animation: fadeInLogo 1s ease-out 1.5s forwards; 
         }
 
+        /* NEW: Intro Company Text Styling */
+        .intro-brand-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800; /* Extra Bold to match screenshot */
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            color: var(--primary-blue);
+            margin-top: 15px;
+            opacity: 0;
+            /* Matches the Logo Reveal timing (1.5s) so they appear together */
+            animation: fadeInLogo 1s ease-out 1.5s forwards; 
+        }
+
         /* Keyframes */
         @keyframes drawLine { to { stroke-dashoffset: 0; } }
         @keyframes fadeInLogo { to { opacity: 1; } }
@@ -122,8 +137,20 @@
 
         .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
         header { text-align: center; margin-bottom: 60px; }
-        .logo { max-width: 400px; height: auto; margin-bottom: 20px; }
+        .logo { max-width: 400px; height: auto; margin-bottom: 10px; } /* Reduced margin */
         
+        /* NEW: Header Brand Text Styling */
+        .header-brand-text {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800; /* Extra Bold */
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            color: var(--primary-blue);
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
         h1 { font-family: 'Montserrat', sans-serif; font-size: 2.8rem; color: var(--primary-blue); line-height: 1.2; margin-bottom: 1rem; }
         h2 { font-family: 'Montserrat', sans-serif; color: var(--primary-blue); border-bottom: 2px solid var(--accent-green); display: inline-block; padding-bottom: 5px; margin-top: 40px; }
         .highlight { color: var(--accent-green); font-weight: 800; }
@@ -216,7 +243,9 @@
              2460.20,1135.00 2894.20,1859.00 2894.20,1859.00
              2894.20,1859.00 3023.20,2074.00 3023.20,2074.00
              3023.20,2074.00 3086.00,2179.00 3086.00,2179.00
-             3086.00,2179.00 3100.00,2210.00 3100.00,2210.00
+             3086.00,2179.00 3086.00,0.00 3086.00,0.00
+             3086.00,0.00 3100.00,0.00 3100.00,0.00
+             3100.00,0.00 3100.00,2210.00 3100.00,2210.00
              3100.00,2210.00 0.00,2210.00 0.00,2210.00
              0.00,2210.00 0.00,2195.00 0.00,2195.00
              0.00,2195.00 7.00,2194.00 7.00,2194.00
@@ -234,8 +263,8 @@
              891.63,607.51 894.76,613.84 899.02,620.00
              899.02,620.00 926.42,659.00 926.42,659.00
              926.42,659.00 1045.00,828.00 1045.00,828.00 Z
-           M 3086.00,2187.00
-           C 3084.15,2189.04 3082.44,2191.25 3079.96,2192.55
+             M 3086.00,2187.00
+             C 3084.15,2189.04 3082.44,2191.25 3079.96,2192.55
              3075.57,2194.84 3061.56,2194.00 3056.00,2194.00
              3056.00,2194.00 2990.00,2194.00 2990.00,2194.00
              2990.00,2194.00 2711.00,2194.00 2711.00,2194.00
@@ -250,12 +279,17 @@
 
             <img src="Gimp Logo.png" alt="Logo" class="real-logo-reveal">
         </div>
+
+        <div class="intro-brand-text">TIMBERLINE DATA</div>
     </div>
 
     <div class="main-content">
         <div class="container">
             <header>
                 <img src="Gimp Logo.png" alt="Timberline Data Logo" class="logo">
+                
+                <span class="header-brand-text">TIMBERLINE DATA</span>
+
                 <h1>Turning <span class="highlight">Local Data</span> into Operational ROI.</h1>
                 <p class="social-proof">Trusted expertise applied to Portland favorites like <strong>Next Adventure</strong>, <strong>Burn Boot Camp</strong>, and <strong>Bethany Athletic Club</strong>.</p>
             </header>
