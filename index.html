@@ -32,13 +32,13 @@
             position: fixed; 
             top: 0;
             left: 0;
-            width: 165%;
-            height: 165%;
+            width: 100%;
+            height: 100%;
             z-index: -1; 
             
             background-image: url('topo-bg.jpg'); 
-            background-size: 100%;
-            background-position: 100% 0%;
+            background-size: cover;
+            background-position: 50% 50%;
             
             opacity: 0.1; 
             /* filter: sepia(1) hue-rotate(90deg) saturate(3);  */
@@ -191,11 +191,11 @@
     body::before {
         /* 1. Tweak the width for wide screens */
         /* PC screens are already wide, so you might need less (or more) extra width here */
-        width: 130%; 
+        width: 100%; 
         
         /* 2. Tweak the Position */
         /* On PC, "100%" might be too far right. Try 90% or 80%. */
-        background-position: 80% 25%; 
+        background-position: 50% 50%; 
         
         /* 3. Tweak the Zoom */
         /* "cover" usually works better on PC than fixed percentages */
