@@ -40,8 +40,8 @@
             background-size: cover;
             background-position: center;
             
-            opacity: 0.08; 
-            filter: sepia(1) hue-rotate(90deg) saturate(3); 
+            opacity: 0.1; 
+            /* filter: sepia(1) hue-rotate(90deg) saturate(3);  */
         }
 
         /* --- 2. ANIMATION ENGINE --- */
@@ -57,7 +57,7 @@
             justify-content: center;
             align-items: center;
             
-            /* TWEAKED TIMING: Overlay lifts at 2.8s to account for slower drawing */
+            /* FIXED TOTAL DURATION: Overlay lifts at 2.8s (Same as before) */
             animation: fadeOutOverlay 0.8s ease-in-out 2.8s forwards; 
             pointer-events: none; 
         }
@@ -83,7 +83,6 @@
         .mountain-path {
             fill: transparent; 
             stroke: var(--primary-blue); 
-            /* TWEAKED THICKNESS: Increased by 50% (30 * 1.5 = 45) */
             stroke-width: 45; 
             
             stroke-dasharray: 15000; 
@@ -91,8 +90,8 @@
             stroke-linecap: round;
             stroke-linejoin: round;
             
-            /* TWEAKED SPEED: Slowed down by 0.5s (1.8s + 0.5s = 2.3s) */
-            animation: drawLine 2.3s ease-out forwards;
+            /* TWEAKED: Slowed down slightly (2.3s -> 2.6s) */
+            animation: drawLine 2.6s ease-out forwards;
         }
 
         /* The Real Logo Reveal */
@@ -104,8 +103,8 @@
             height: auto;
             z-index: 1;
             opacity: 0;
-            /* TWEAKED TIMING: Starts appearing right as drawing finishes (2.3s) */
-            animation: fadeInLogo 1s ease-out 2.3s forwards; 
+            /* TWEAKED: Reveals sooner (at 2.0s) creating an overlap with the drawing */
+            animation: fadeInLogo 1s ease-out 2.0s forwards; 
         }
 
         /* Keyframes */
@@ -116,7 +115,6 @@
         /* --- 3. WEBSITE CONTENT --- */
         .main-content {
             opacity: 0;
-            /* TWEAKED TIMING: Content fades in after overlay lifts */
             animation: fadeInContent 1s ease-out 3.0s forwards;
         }
         @keyframes fadeInContent { to { opacity: 1; } }
@@ -211,8 +209,7 @@
          1288.01,538.00 1409.42,331.00 1409.42,331.00
          1409.42,331.00 1481.01,209.00 1481.01,209.00
          1481.01,209.00 1515.00,151.00 1515.00,151.00 Z" />
-                
-                </svg>
+            </svg>
 
             <img src="Gimp Logo.png" alt="Logo" class="real-logo-reveal">
         </div>
