@@ -40,8 +40,8 @@
             background-size: cover;
             background-position: center;
             
-            opacity: 0.08; 
-            filter: sepia(1) hue-rotate(90deg) saturate(3); 
+            opacity: 0.1; 
+            /* filter: sepia(1) hue-rotate(90deg) saturate(3);  */
         }
 
         /* --- 2. ANIMATION ENGINE --- */
@@ -57,7 +57,7 @@
             justify-content: center;
             align-items: center;
             
-            /* TWEAKED: Overlay starts fading out exactly at 2.5s */
+            /* Overlay lifts at 2.5s */
             animation: fadeOutOverlay 0.8s ease-in-out 2.5s forwards; 
             pointer-events: none; 
         }
@@ -76,10 +76,10 @@
             width: 100%;
             height: 100%;
             z-index: 2;
-            overflow: visible; /* Allows the glow to bleed outside slightly */
+            overflow: visible; 
         }
         
-        /* The Line Animation */
+        /* The Line Animation (CSS) */
         .mountain-path {
             fill: transparent; 
             stroke: var(--primary-blue); 
@@ -90,21 +90,15 @@
             stroke-linecap: round;
             stroke-linejoin: round;
             
-            /* TWEAKED: Drawing finishes in 1.8s */
+            /* Drawing duration: 1.8s | Easing: Ease-Out */
             animation: drawLine 1.8s ease-out forwards;
         }
 
-        /* The Laser/Spark Flair */
+        /* The Laser/Spark Flair Styling */
         #drawing-flair {
             fill: var(--accent-green);
-            /* Adds a glowing effect */
             filter: drop-shadow(0 0 15px var(--accent-green));
-            r: 25; /* Radius of the dot */
-            
-            offset-rotate: auto; /* Aligns the spark to the curve */
-            
-            /* MUST MATCH .mountain-path timing (1.8s) */
-            animation: tracePath 1.8s ease-out forwards;
+            /* Animation logic is now handled in the HTML <animate> tags below */
         }
 
         /* The Real Logo Reveal */
@@ -116,25 +110,18 @@
             height: auto;
             z-index: 1;
             opacity: 0;
-            /* TWEAKED: Starts appearing right as drawing finishes (1.8s) */
+            /* Starts appearing right as drawing finishes (1.8s) */
             animation: fadeInLogo 1s ease-out 1.8s forwards; 
         }
 
         /* Keyframes */
         @keyframes drawLine { to { stroke-dashoffset: 0; } }
-        
-        @keyframes tracePath {
-            from { offset-distance: 0%; opacity: 1; }
-            to { offset-distance: 100%; opacity: 0; } /* Fade out spark at end */
-        }
-        
         @keyframes fadeInLogo { to { opacity: 1; } }
         @keyframes fadeOutOverlay { to { opacity: 0; visibility: hidden; } }
 
         /* --- 3. WEBSITE CONTENT --- */
         .main-content {
             opacity: 0;
-            /* Content fades in slightly after overlay lifts */
             animation: fadeInContent 1s ease-out 2.8s forwards;
         }
         @keyframes fadeInContent { to { opacity: 1; } }
@@ -168,6 +155,7 @@
         <div class="logo-stack">
             
             <svg class="drawing-mountain" viewBox="0 0 3100 2210" xmlns="http://www.w3.org/2000/svg">
+                
                 <path id="anim-path" class="mountain-path" fill="transparent" d="M 1515.00,151.00
        C 1520.92,154.08 1532.07,171.70 1536.57,178.00
          1536.57,178.00 1584.02,246.00 1584.02,246.00
@@ -229,7 +217,23 @@
          1409.42,331.00 1481.01,209.00 1481.01,209.00
          1481.01,209.00 1515.00,151.00 1515.00,151.00 Z" />
                 
-                <circle id="drawing-flair" />
+                <circle id="drawing-flair" r="25">
+                    <animateMotion 
+                        dur="1.8s" 
+                        fill="freeze" 
+                        calcMode="spline" 
+                        keyTimes="0;1" 
+                        keySplines="0 0 0.58 1"> <mpath href="#anim-path"/>
+                    </animateMotion>
+                    
+                    <animate 
+                        attributeName="opacity" 
+                        values="1;1;0" 
+                        keyTimes="0;0.95;1" 
+                        dur="1.8s" 
+                        fill="freeze" />
+                </circle>
+
             </svg>
 
             <img src="Gimp Logo.png" alt="Logo" class="real-logo-reveal">
@@ -277,16 +281,5 @@
             </footer>
         </div>
     </div>
-
-    <script>
-        const pathElement = document.getElementById('anim-path');
-        const flairElement = document.getElementById('drawing-flair');
-        
-        if (pathElement && flairElement) {
-            // This reads the "d" attribute from the path and applies it to the flair
-            const pathData = pathElement.getAttribute('d');
-            flairElement.style.offsetPath = `path('${pathData}')`;
-        }
-    </script>
 </body>
 </html>
