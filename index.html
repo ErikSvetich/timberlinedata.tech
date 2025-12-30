@@ -26,7 +26,7 @@
             position: relative; 
         }
 
-        /* Topographic Map Overlay (Using your topo-bg.jpg) */
+        /* Topographic Map Overlay */
         body::before {
             content: "";
             position: fixed; 
@@ -34,13 +34,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; /* Behind text */
+            z-index: -1; 
             
             background-image: url('topo-bg.jpg'); 
             background-size: cover;
             background-position: center;
             
-            /* FILTER: Tints the black map lines to Green */
             opacity: 0.08; 
             filter: sepia(1) hue-rotate(90deg) saturate(3); 
         }
@@ -57,17 +56,16 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            /* Fade out the white screen after 3.5 seconds */
-            animation: fadeOutOverlay 1s ease-in-out 3.5s forwards; 
+            
+            /* TWEAKED: Overlay starts fading out exactly at 2.5s */
+            animation: fadeOutOverlay 0.8s ease-in-out 2.5s forwards; 
             pointer-events: none; 
         }
 
-        /* Container to stack the Drawing SVG on top of the Real Logo */
         .logo-stack {
             position: relative;
-            width: 400px; /* Size on screen */
+            width: 400px; 
             max-width: 80vw;
-            /* UPDATED: Matches aspect ratio of your NEW SVG (3100x2210) */
             aspect-ratio: 3100 / 2210; 
         }
 
@@ -77,24 +75,39 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 2; /* Sits on top */
+            z-index: 2;
+            overflow: visible; /* Allows the glow to bleed outside slightly */
         }
         
-        /* The Line Animation Style */
+        /* The Line Animation */
         .mountain-path {
-            fill: transparent; /* CRITICAL: Prevents the black block issue */
-            stroke: var(--primary-blue); /* Draws in your Brand Blue */
-            stroke-width: 30; /* Thick enough to be seen on large canvas */
+            fill: transparent; 
+            stroke: var(--primary-blue); 
+            stroke-width: 30; 
             
-            /* Animation Setup */
             stroke-dasharray: 15000; 
             stroke-dashoffset: 15000;
             stroke-linecap: round;
             stroke-linejoin: round;
-            animation: drawLine 2s ease-out forwards;
+            
+            /* TWEAKED: Drawing finishes in 1.8s */
+            animation: drawLine 1.8s ease-out forwards;
         }
 
-        /* The Real Logo Fade In */
+        /* The Laser/Spark Flair */
+        #drawing-flair {
+            fill: var(--accent-green);
+            /* Adds a glowing effect */
+            filter: drop-shadow(0 0 15px var(--accent-green));
+            r: 25; /* Radius of the dot */
+            
+            offset-rotate: auto; /* Aligns the spark to the curve */
+            
+            /* MUST MATCH .mountain-path timing (1.8s) */
+            animation: tracePath 1.8s ease-out forwards;
+        }
+
+        /* The Real Logo Reveal */
         .real-logo-reveal {
             position: absolute;
             top: 0;
@@ -103,86 +116,50 @@
             height: auto;
             z-index: 1;
             opacity: 0;
-            /* Starts fading in after drawing finishes (2s) */
-            animation: fadeInLogo 1s ease-out 2s forwards; 
+            /* TWEAKED: Starts appearing right as drawing finishes (1.8s) */
+            animation: fadeInLogo 1s ease-out 1.8s forwards; 
         }
 
         /* Keyframes */
         @keyframes drawLine { to { stroke-dashoffset: 0; } }
+        
+        @keyframes tracePath {
+            from { offset-distance: 0%; opacity: 1; }
+            to { offset-distance: 100%; opacity: 0; } /* Fade out spark at end */
+        }
+        
         @keyframes fadeInLogo { to { opacity: 1; } }
         @keyframes fadeOutOverlay { to { opacity: 0; visibility: hidden; } }
 
-        /* --- 3. WEBSITE CONTENT STYLES --- */
+        /* --- 3. WEBSITE CONTENT --- */
         .main-content {
             opacity: 0;
-            animation: fadeInContent 1s ease-out 4s forwards;
+            /* Content fades in slightly after overlay lifts */
+            animation: fadeInContent 1s ease-out 2.8s forwards;
         }
         @keyframes fadeInContent { to { opacity: 1; } }
 
         .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-        
         header { text-align: center; margin-bottom: 60px; }
         .logo { max-width: 400px; height: auto; margin-bottom: 20px; }
         
-        h1 { 
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.8rem; 
-            color: var(--primary-blue); 
-            line-height: 1.2; 
-            margin-bottom: 1rem; 
-        }
-        
-        h2 { 
-            font-family: 'Montserrat', sans-serif;
-            color: var(--primary-blue); 
-            border-bottom: 2px solid var(--accent-green); 
-            display: inline-block; 
-            padding-bottom: 5px; 
-            margin-top: 40px; 
-        }
-        
+        h1 { font-family: 'Montserrat', sans-serif; font-size: 2.8rem; color: var(--primary-blue); line-height: 1.2; margin-bottom: 1rem; }
+        h2 { font-family: 'Montserrat', sans-serif; color: var(--primary-blue); border-bottom: 2px solid var(--accent-green); display: inline-block; padding-bottom: 5px; margin-top: 40px; }
         .highlight { color: var(--accent-green); font-weight: 800; }
         
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
-        
-        .service-card { 
-            background: rgba(255, 255, 255, 0.90); /* Slight transparency */
-            padding: 25px; 
-            border-radius: 8px; 
-            border-left: 5px solid var(--accent-green); 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
-            transition: transform 0.3s ease;
-        }
+        .service-card { background: rgba(255, 255, 255, 0.90); padding: 25px; border-radius: 8px; border-left: 5px solid var(--accent-green); box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.3s ease; }
         .service-card:hover { transform: translateY(-5px); }
-
-        .service-card h3 { 
-            font-family: 'Montserrat', sans-serif;
-            margin-top: 0; 
-            color: var(--primary-blue); 
-        }
-        
+        .service-card h3 { font-family: 'Montserrat', sans-serif; margin-top: 0; color: var(--primary-blue); }
         .learn-more { font-weight: bold; color: var(--accent-green); font-size: 1rem; text-decoration: none; }
         .learn-more:after { content: " →"; }
 
         .cta-section { text-align: center; margin: 60px 0; padding: 40px; background: var(--primary-blue); color: white; border-radius: 12px; }
-        
-        .cta-button { 
-            display: inline-block; 
-            background: var(--accent-green); 
-            color: white; 
-            padding: 15px 35px; 
-            text-decoration: none; 
-            border-radius: 5px; 
-            font-weight: bold; 
-            font-size: 1.2rem; 
-            transition: transform 0.2s; 
-            font-family: 'Montserrat', sans-serif;
-        }
+        .cta-button { display: inline-block; background: var(--accent-green); color: white; padding: 15px 35px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1.2rem; transition: transform 0.2s; font-family: 'Montserrat', sans-serif; }
         .cta-button:hover { transform: scale(1.05); }
 
         .social-proof { font-style: italic; color: #4a5568; text-align: center; margin-bottom: 40px; }
         footer { margin-top: 80px; padding-top: 20px; border-top: 1px solid #e2e8f0; font-size: 0.85rem; color: #718096; text-align: center; }
-
     </style>
 </head>
 <body>
@@ -191,7 +168,7 @@
         <div class="logo-stack">
             
             <svg class="drawing-mountain" viewBox="0 0 3100 2210" xmlns="http://www.w3.org/2000/svg">
-                <path class="mountain-path" fill="transparent" d="M 1515.00,151.00
+                <path id="anim-path" class="mountain-path" fill="transparent" d="M 1515.00,151.00
        C 1520.92,154.08 1532.07,171.70 1536.57,178.00
          1536.57,178.00 1584.02,246.00 1584.02,246.00
          1584.02,246.00 1746.66,479.00 1746.66,479.00
@@ -251,7 +228,10 @@
          1288.01,538.00 1409.42,331.00 1409.42,331.00
          1409.42,331.00 1481.01,209.00 1481.01,209.00
          1481.01,209.00 1515.00,151.00 1515.00,151.00 Z" />
+                
+                <circle id="drawing-flair" />
             </svg>
+
             <img src="Gimp Logo.png" alt="Logo" class="real-logo-reveal">
         </div>
     </div>
@@ -297,5 +277,16 @@
             </footer>
         </div>
     </div>
+
+    <script>
+        const pathElement = document.getElementById('anim-path');
+        const flairElement = document.getElementById('drawing-flair');
+        
+        if (pathElement && flairElement) {
+            // This reads the "d" attribute from the path and applies it to the flair
+            const pathData = pathElement.getAttribute('d');
+            flairElement.style.offsetPath = `path('${pathData}')`;
+        }
+    </script>
 </body>
 </html>
