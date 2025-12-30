@@ -148,14 +148,11 @@
         }
         
         .mountain-path {
-            fill: none;
-            stroke: var(--primary-blue); /* Draws using your Blue */
-            stroke-width: 20; /* Thicker line for large viewBox */
-            stroke-dasharray: 12000; /* Huge number for long path */
-            stroke-dashoffset: 12000;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            animation: drawLine 2s ease-out forwards;
+            stroke: var(--primary-blue);
+            stroke-width: 20; /* Needs to be thick because the canvas is 3000px wide */
+            stroke-dasharray: 15000; /* Increased to 15,000 to be safe */
+            stroke-dashoffset: 15000;
+            /* ... rest of your animation code ... */
         }
 
         .real-logo-reveal {
