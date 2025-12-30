@@ -82,13 +82,11 @@
         
         /* The Line Animation Style */
         .mountain-path {
-            fill: transparent; /* CRITICAL: Prevents the black block issue */
-            stroke: var(--primary-blue); /* Draws in your Brand Blue */
-            stroke-width: 30; /* Thick enough to be seen on large canvas */
-            
-            /* Animation Setup */
-            stroke-dasharray: 15000; 
-            stroke-dashoffset: 15000;
+            fill: transparent;
+            stroke: var(--primary-blue);
+            stroke-width: 40; /* Increased to 40 so it matches the weight of your logo */
+            stroke-dasharray: 10000;
+            stroke-dashoffset: 10000;
             stroke-linecap: round;
             stroke-linejoin: round;
             animation: drawLine 2s ease-out forwards;
@@ -188,14 +186,16 @@
 <body>
 
     <div id="intro-overlay">
-        <div class="logo-stack">
-            
-            <svg class="drawing-mountain" viewBox="0 0 3086 2195" xmlns="http://www.w3.org/2000/svg">
-                <path class="mountain-path" fill="transparent" d="M1.999992,2180.000000 C2.000000,1454.162354 2.000000,728.324707 2.000000,2.000000 C503.391998,2.000000 1004.784119,2.000000 1507.104248,2.723691 C1506.588623,6.443276 1505.291626,9.520637 1503.679443,12.422772 C1481.995850,51.454277 1460.281860,90.468803 1438.549438,129.473129 C1377.569214,238.918045 1316.562988,348.348480 1255.593262,457.799286 C1188.624023,578.020386 1121.690918,698.261658 1054.693970,818.467346 C1053.003662,821.500000 1050.751099,824.219299 1047.994751,828.187622 C1044.030518,823.036133 1040.889038,819.256653 1038.073120,815.248535 C999.953796,760.989319 961.883484,706.695618 923.791321,652.417358 C915.560730,640.689392 907.268433,629.004578 899.050415,617.267822 C895.516968,612.221436 890.802307,608.564392 884.746582,610.860657 C881.122803,612.234741 877.637817,615.800415 875.617310,619.270081 C865.390564,636.831909 855.661926,654.683716 845.763245,672.436523 C769.495605,809.218994 693.248779,946.013123 616.955627,1082.781494 C560.142029,1184.629395 503.243225,1286.429810 446.429901,1388.277832 C386.694763,1495.363525 327.015656,1602.480591 267.312836,1709.584229 C219.939835,1794.568970 172.577820,1879.559814 125.192642,1964.537720 C86.732224,2033.510498 48.276028,2102.485840 9.672624,2171.378418 C7.835954,2174.656250 4.589762,2177.144287 1.999992,2180.000000 z" />
-            </svg>
+    <div class="logo-stack">
+        
+        <svg class="drawing-mountain" viewBox="0 0 3086 2195" xmlns="http://www.w3.org/2000/svg">
+            <path class="mountain-path" 
+                  fill="transparent" 
+                  d="M 50 2145 L 1543 50 L 3036 2145 Z" />
+        </svg>
 
-            <img src="Gimp Logo.png" alt="Logo" class="real-logo-reveal">
-        </div>
+        <img src="Gimp Logo.png" alt="Logo" class="real-logo-reveal">
+    </div>
     </div>
 
     <div class="main-content">
