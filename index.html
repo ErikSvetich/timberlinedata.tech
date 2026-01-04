@@ -137,6 +137,9 @@
         h3 { font-family: 'Montserrat', sans-serif; font-size: 2.0rem; color: var(--primary-blue); line-height: 1.2; margin-bottom: 1rem; }
         .highlight { color: var(--accent-green); font-weight: 800; }
         
+        /* --- NEW: MOBILE BREAK LOGIC --- */
+        .mobile-break { display: block; }
+
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 10px; }
         
         .service-card { 
@@ -168,6 +171,8 @@
         @media (min-width: 1024px) {
             body::before { width: 100%; background-position: 50% 50%; background-size: cover; }
             .header-brand-text { font-size: 85px; }
+            /* --- Hides the break on desktop --- */
+            .mobile-break { display: none; }
         }
     </style>
 </head>
@@ -188,7 +193,7 @@
             <header>
                 <span class="header-brand-text">TIMBERLINE DATA</span>
                 <h1>Enterprise-grade Analytics for Portland Businesses</h1>
-                <h3><span class="highlight">Stop Guessing. Start Scaling.</span></h2>
+                <h3><span class="highlight">Stop Guessing.<br class="mobile-break"> Start Scaling.</span></h3>
             </header>
             
             <section>
@@ -198,7 +203,7 @@
                     <div class="service-card">
                         <div>
                             <h3>Automated KPI Dashboards</h3>
-                            <p>Replace manual spreadsheets with real-time visualization. We centralize data from your POS, CRM, and Inventory systems to give you instant clarity on business health.</p>
+                            <p>Eliminate the "Monday Morning Reporting" scramble. We replace fragile spreadsheets with automated, real-time dashboards that give you a single source of truth—zero manual entry required.</p>
                         </div>
                         <a href="mailto:inquiry@timberlinedata.tech" class="learn-more">See Examples</a>
                     </div>
@@ -206,7 +211,7 @@
                     <div class="service-card">
                         <div>
                             <h3>Inventory Optimization</h3>
-                            <p>Identify "dead stock" eating your cash flow. We analyze turnover rates to pinpoint exactly what to liquidate and what to restock to maximize margins.</p>
+                            <p>Free up working capital trapped in your warehouse. We analyze turnover velocity to tell you exactly what to liquidate, what to reorder, and how to increase your cash flow.</p>
                         </div>
                         <a href="mailto:inquiry@timberlinedata.tech" class="learn-more">Audit My Inventory</a>
                     </div>
@@ -214,7 +219,7 @@
                     <div class="service-card">
                         <div>
                             <h3>Sales Forecasting</h3>
-                            <p>Predict future revenue with precision. Use historical data to anticipate market trends, manage cash flow, and make confident hiring decisions.</p>
+                            <p>Plan inventory and labor with confidence. Our models use your historical data and seasonality to predict demand, preventing costly stockouts and overstaffing.</p>
                         </div>
                         <a href="mailto:inquiry@timberlinedata.tech" class="learn-more">Request Case Study</a>
                     </div>
@@ -234,7 +239,7 @@
                     <div class="service-card">
                         <div>
                             <h3>Customer Retention (Churn)</h3>
-                            <p>Identify "at-risk" clients before they leave. Our models pinpoint exactly who is likely to cancel, allowing you to intervene and protect recurring revenue.</p>
+                            <p>It costs 5x more to acquire a new customer than to keep one. We identify "at-risk" clients <em>before</em> they cancel, giving your team a daily list of who to save.</p>
                         </div>
                         <a href="mailto:inquiry@timberlinedata.tech" class="learn-more">Identify At-Risk Clients</a>
                     </div>
@@ -242,7 +247,7 @@
                     <div class="service-card">
                         <div>
                             <h3>Data Centralization (ETL)</h3>
-                            <p>Stop manually downloading CSVs. We build automated data pipelines that flow directly into your reports, ensuring you always have the latest numbers without the manual labor.</p>
+                            <p>Break down data silos. We build secure, automated pipelines that sync your POS, Shopify, and CRM data into one system, ensuring your reports match your bank account.</p>
                         </div>
                         <a href="mailto:inquiry@timberlinedata.tech" class="learn-more">View Automation Flow</a>
                     </div>
@@ -250,7 +255,7 @@
                     <div class="service-card">
                         <div>
                             <h3>LTV & Segmentation</h3>
-                            <p>Stop guessing your marketing ROI. We identify your most profitable customer segments so you can spend your budget on the leads that actually pay off.</p>
+                            <p>Not all customers are equal. We identify your "Whales"—the top 20% driving 80% of revenue—so you can focus your marketing budget where it actually generates profit.</p>
                         </div>
                         <a href="mailto:inquiry@timberlinedata.tech" class="learn-more">Analyze My Segments</a>
                     </div>
