@@ -137,7 +137,7 @@
         h3 { font-family: 'Montserrat', sans-serif; font-size: 2.0rem; color: var(--primary-blue); line-height: 1.2; margin-bottom: 1rem; }
         .highlight { color: var(--accent-green); font-weight: 800; }
         
-        /* --- NEW: MOBILE BREAK LOGIC --- */
+        /* Mobile Break Logic */
         .mobile-break { display: block; }
 
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 10px; }
@@ -159,33 +159,124 @@
         .service-card h3 { font-family: 'Montserrat', sans-serif; margin-top: 0; color: var(--primary-blue); font-size: 1.4rem; }
         .service-card p { margin-bottom: 10px; font-size: 0.95rem; }
         
-        .learn-more { font-weight: bold; color: var(--accent-green); font-size: 1rem; text-decoration: none; margin-top: auto; }
+        .learn-more { font-weight: bold; color: var(--accent-green); font-size: 1rem; text-decoration: none; margin-top: auto; cursor: pointer; }
         .learn-more:after { content: " →"; }
 
-        /* 1. Tighten the box (Reduced padding from 60px to 40px) */
+        /* CTA Section Styles */
         .cta-section { 
             text-align: center; 
             margin: 80px 0; 
-            padding: 40px 20px; /* UPDATED */
+            padding: 40px 20px; /* Reduced Padding */
             background: var(--primary-blue); 
             color: white; 
             border-radius: 12px; 
         }
-        /* 2. Fix the invisible text issue */
+        /* CTA Header Fix */
         .cta-section h3 {
-            color: #ffffff !important; /* Forces text to be white */
-            margin-top: 0; /* Removes extra top spacing */
-            margin-bottom: 15px; /* Tights space between header and paragraph */
+            color: #ffffff !important; 
+            margin-top: 0; 
+            margin-bottom: 15px; 
         }
+
         .cta-button { display: inline-block; background: var(--accent-green); color: white; padding: 15px 35px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1.2rem; transition: transform 0.2s; font-family: 'Montserrat', sans-serif; }
         .cta-button:hover { transform: scale(1.05); }
 
         footer { margin-top: 80px; padding-top: 20px; border-top: 1px solid #e2e8f0; font-size: 0.85rem; color: #718096; text-align: center; }
 
+        /* --- MODAL STYLES (NEW) --- */
+        .modal-overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 54, 93, 0.95); /* Dark Blue overlay */
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 1100px;
+            border-radius: 12px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            color: var(--primary-blue);
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal-header { text-align: center; margin-bottom: 30px; }
+        .modal-header h3 { margin-bottom: 5px; }
+
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-container { grid-template-columns: 1fr; }
+        }
+
+        .comparison-slide {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            background: #f7fafc;
+        }
+
+        .img-wrapper {
+            width: 100%;
+            height: 250px; /* Fixed height for consistency */
+            margin: 10px 0;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid #cbd5e0;
+        }
+
+        .img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures image fills the box nicely */
+            object-position: top center;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .tag-bad { background: #fed7d7; color: #c53030; }
+        .tag-good { background: #c6f6d5; color: #2f855a; }
+
+        .caption { font-size: 0.9rem; color: #4a5568; margin-bottom: 0; }
+
+
         @media (min-width: 1024px) {
             body::before { width: 100%; background-position: 50% 50%; background-size: cover; }
             .header-brand-text { font-size: 85px; }
-            /* --- Hides the break on desktop --- */
             .mobile-break { display: none; }
         }
     </style>
@@ -219,7 +310,7 @@
                             <h3>Automated KPI Dashboards</h3>
                             <p>Eliminate the "Monday Morning Reporting" scramble. We replace fragile spreadsheets with automated, real-time dashboards that give you a single source of truth—zero manual entry required.</p>
                         </div>
-                        <a href="mailto:inquiry@timberlinedata.tech" class="learn-more">See Examples</a>
+                        <a href="javascript:void(0);" onclick="openModal('kpi-modal')" class="learn-more">See Examples</a>
                     </div>
                 
                     <div class="service-card">
@@ -283,5 +374,54 @@
             </footer>
         </div>
     </div>
+
+    <div id="kpi-modal" class="modal-overlay" onclick="closeModal('kpi-modal')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeModal('kpi-modal')">&times;</span>
+            
+            <div class="modal-header">
+                <h3>The Transformation</h3>
+                <p>From static spreadsheets to automated insights.</p>
+            </div>
+
+            <div class="comparison-container">
+                <div class="comparison-slide">
+                    <span class="tag tag-bad">Before: Manual Excel Hell</span>
+                    <div class="img-wrapper">
+                        <img src="Messy Spreadsheet.jpg" alt="Messy Spreadsheet">
+                    </div>
+                    <p class="caption">Hours wasted weekly on manual entry. Data is stale by the time you see it.</p>
+                </div>
+
+                <div class="comparison-slide">
+                    <span class="tag tag-good">After: Timberline Automation</span>
+                    <div class="img-wrapper">
+                        <img src="Tableau Dashboard.jpg" alt="Clean Dashboard">
+                    </div>
+                    <p class="caption">Live data pipelines. Instant trends. Zero manual work.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="mailto:inquiry@timberlinedata.tech" class="cta-button">I want this for my business</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Open Modal
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+            // Prevent background scrolling
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        // Close Modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            // Restore background scrolling
+            document.body.style.overflow = 'auto'; 
+        }
+    </script>
 </body>
 </html>
