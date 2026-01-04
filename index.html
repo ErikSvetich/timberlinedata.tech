@@ -318,7 +318,7 @@
                             <h3>Inventory Optimization</h3>
                             <p>Free up working capital trapped in your warehouse. We analyze turnover velocity to tell you exactly what to liquidate, what to reorder, and how to increase your cash flow.</p>
                         </div>
-                        <a href="mailto:inquiry@timberlinedata.tech" class="learn-more">Audit My Inventory</a>
+                        <a href="javascript:void(0);" onclick="openModal('inventory-modal')" class="learn-more">Audit My Inventory</a>
                     </div>
 
                     <div class="service-card">
@@ -407,7 +407,42 @@
             </div>
         </div>
     </div>
+<div id="inventory-modal" class="modal-overlay" onclick="closeModal('inventory-modal')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="closeModal('inventory-modal')">&times;</span>
+        
+        <div class="modal-header">
+            <h3>Inventory Health Audit</h3>
+            <p>Stop letting "Dead Stock" eat your profits.</p>
+        </div>
 
+        <div class="comparison-container">
+            <div class="comparison-slide">
+                <span class="tag tag-bad">Analysis: The "Cash Trap"</span>
+                <div class="img-wrapper">
+                    <div style="width:100%; height:100%; background:#fed7d7; display:flex; align-items:center; justify-content:center; color:#c53030; font-weight:bold; padding:20px; text-align:center;">
+                        [IMAGE: Chart showing $50k in items aged >180 days]
+                    </div>
+                </div>
+                <p class="caption">We identify exactly how much capital is frozen in non-moving products.</p>
+            </div>
+
+            <div class="comparison-slide">
+                <span class="tag tag-good">Action: The Liquidation Plan</span>
+                <div class="img-wrapper">
+                    <div style="width:100%; height:100%; background:#c6f6d5; display:flex; align-items:center; justify-content:center; color:#2f855a; font-weight:bold; padding:20px; text-align:center;">
+                        [IMAGE: Prioritized List of SKUs to Liquidate vs. Reorder]
+                    </div>
+                </div>
+                <p class="caption">A clear roadmap: What to sell at a discount, and what to restock immediately.</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="mailto:inquiry@timberlinedata.tech" class="cta-button">Uncover My Hidden Cash</a>
+        </div>
+    </div>
+</div>
     <script>
         // Open Modal
         function openModal(modalId) {
