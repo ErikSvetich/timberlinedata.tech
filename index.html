@@ -334,7 +334,7 @@
                             <h3>Sales Forecasting</h3>
                             <p>Plan inventory and labor with confidence. Our models use your historical data and seasonality to predict demand, preventing costly stockouts and overstaffing.</p>
                         </div>
-                        <a href="mailto:inquiry@timberlinedata.tech" class="learn-more">Request Case Study</a>
+                        <a href="javascript:void(0);" onclick="openModal('sales-modal')" class="learn-more">Request Case Study</a>
                     </div>
                 </div>
             </section>
@@ -444,6 +444,38 @@
         
         <div style="text-align: center; margin-top: 20px;">
             <a href="mailto:inquiry@timberlinedata.tech" class="cta-button">Uncover My Hidden Cash</a>
+        </div>
+    </div>
+</div>
+    <div id="sales-modal" class="modal-overlay" onclick="closeModal('sales-modal')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="closeModal('sales-modal')">&times;</span>
+        
+        <div class="modal-header">
+            <h3>Demand Forecasting Engine</h3>
+            <p>Stop relying on "Last Year + 10%." Predict what's actually coming.</p>
+        </div>
+
+        <div class="comparison-container">
+           <div class="comparison-slide">
+                <span class="tag tag-bad">Current: The "Guesswork Gap"</span>
+                <div class="img-wrapper">
+                    <img src="Manual Forecast.png" alt="Manual Forecast Chart">
+                </div>
+                <p class="caption">Manual spreadsheets fail to catch seasonality. Result: You run out of stock right when demand peaks.</p>
+            </div>
+            
+            <div class="comparison-slide">
+                <span class="tag tag-good">Future: AI-Driven Precision</span>
+                <div class="img-wrapper">
+                    <img src="AI Forecast.png" alt="AI Forecast Chart">
+                </div>
+                <p class="caption">Our models account for seasonality, holidays, and trends to ensure you have inventory exactly when needed.</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="mailto:inquiry@timberlinedata.tech" class="cta-button">Predict My Demand</a>
         </div>
     </div>
 </div>
