@@ -22,7 +22,8 @@ color: var(--text-dark);
 margin: 0;
 padding: 0;
 background-color: var(--bg-light);
-overflow-x: hidden; /* Prevent horizontal scroll from ticker */
+overflow-x: hidden;
+position: relative;
 }
 
 /* Topographic Background */
@@ -40,7 +41,15 @@ background-position: center;
 opacity: 0.08;
 }
 
-/* --- 1. STICKY RIBBON NAV --- */
+/* --- 1. INTRO ANIMATION (RESTORED) --- */
+@keyframes fadeInContent { to { opacity: 1; } }
+
+.main-content {
+opacity: 0;
+animation: fadeInContent 1s ease-out 3.0s forwards;
+}
+
+/* --- 2. STICKY RIBBON NAV --- */
 .navbar {
 position: sticky;
 top: 0;
@@ -48,7 +57,7 @@ z-index: 1000;
 background: rgba(255, 255, 255, 0.95);
 backdrop-filter: blur(10px);
 box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-padding: 15px 5%;
+padding: 10px 5%; /* Slightly tighter padding */
 display: flex;
 justify-content: space-between;
 align-items: center;
@@ -61,15 +70,16 @@ align-items: center;
 gap: 15px;
 }
 
+/* UPDATED: Dramatically Shrunk Logo */
 .nav-logo {
-height: 40px;
+height: 28px; /* Reduced from 40px */
 width: auto;
 }
 
 .nav-brand {
 font-family: 'Montserrat', sans-serif;
 font-weight: 800;
-font-size: 1.2rem;
+font-size: 1.1rem;
 color: var(--primary-blue);
 text-transform: uppercase;
 letter-spacing: 0.5px;
@@ -83,8 +93,8 @@ gap: 15px;
 .nav-btn {
 font-family: 'Montserrat', sans-serif;
 font-weight: 600;
-font-size: 0.9rem;
-padding: 8px 20px;
+font-size: 0.85rem;
+padding: 6px 18px;
 border-radius: 4px;
 text-decoration: none;
 transition: all 0.2s;
@@ -113,62 +123,13 @@ background: #276749;
 border-color: #276749;
 }
 
-/* --- 2. HERO SECTION --- */
+/* --- 3. HERO SECTION --- */
 .hero-section {
 position: relative;
 width: 100%;
-/* Minimal styling here, content drives height */
 }
 
-.hero-img-container {
-position: relative;
-width: 100%;
-max-height: 80vh;
-overflow: hidden;
-display: flex;
-align-items: center;
-justify-content: center;
-}
-
-.hero-img {
-width: 100%;
-height: auto;
-min-height: 500px;
-object-fit: cover;
-display: block;
-}
-
-.hero-overlay-text {
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-text-align: center;
-width: 90%;
-z-index: 10;
-}
-
-.gradient-headline {
-font-family: 'Montserrat', sans-serif;
-font-weight: 800;
-font-size: 4rem;
-line-height: 1.1;
-text-transform: uppercase;
-background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
--webkit-background-clip: text;
-background-clip: text;
-color: transparent; /* Fallback */
 text-shadow: 0 10px 30px rgba(0,0,0,0.3);
-/* If the image is very light, switch these colors to dark blue/green */
-}
-
-/* Alternative for light images: Dark Gradient */
-.gradient-headline.dark-mode {
-background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-green) 100%);
--webkit-background-clip: text;
-background-clip: text;
-color: transparent;
-text-shadow: none;
 }
 
 .hero-subline {
@@ -180,177 +141,10 @@ margin-top: 15px;
 text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-/* --- 3. TECH TICKER --- */
-.ticker-wrap {
-width: 100%;
-background-color: var(--primary-blue);
-color: white;
-overflow: hidden;
-height: 60px;
-display: flex;
-align-items: center;
-}
-
-.ticker {
-display: flex;
-animation: ticker 30s linear infinite;
-white-space: nowrap;
-}
-
-.ticker-item {
-padding: 0 40px;
-font-family: 'Montserrat', sans-serif;
-font-weight: 700;
-font-size: 1.1rem;
-color: rgba(255,255,255,0.8);
-display: flex;
-align-items: center;
-}
-
-.ticker-item:after {
-content: "•";
-margin-left: 40px;
-color: var(--accent-green);
-}
-
-@keyframes ticker {
-0% { transform: translateX(0); }
-100% { transform: translateX(-50%); } /* Assumes duplication of content */
-}
-
-/* --- 4. PATHWAYS (3 OPTIONS) --- */
-.pathways-section {
-padding: 80px 20px;
-max-width: 1200px;
-margin: 0 auto;
-}
-
-.section-header {
-text-align: center;
-margin-bottom: 50px;
-}
-
-.section-header h2 {
-font-family: 'Montserrat', sans-serif;
-color: var(--primary-blue);
-font-size: 2.5rem;
-margin-bottom: 10px;
-}
-
-.pathways-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-gap: 30px;
-}
-
-.path-card {
-background: white;
-border-radius: 12px;
-overflow: hidden;
-box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-transition: transform 0.3s ease;
-text-align: center;
-border: 1px solid #edf2f7;
-}
-
-.path-card:hover {
-transform: translateY(-10px);
-box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-}
-
-.path-img-container {
-height: 200px;
-overflow: hidden;
-}
-
-.path-img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-transition: transform 0.5s ease;
-}
-
-.path-card:hover .path-img {
-transform: scale(1.05);
-}
-
-.path-content {
-padding: 30px;
-}
-
-.path-title {
-font-family: 'Montserrat', sans-serif;
-font-size: 1.5rem;
-color: var(--primary-blue);
-margin-bottom: 15px;
-font-weight: 700;
-}
-
-.path-desc {
-font-size: 0.95rem;
-color: #4a5568;
-margin-bottom: 20px;
-}
-
-.path-btn {
-display: inline-block;
-color: var(--accent-green);
-font-weight: 700;
-text-decoration: none;
-border-bottom: 2px solid transparent;
-transition: border 0.3s;
-}
-
-.path-btn:hover {
-border-bottom: 2px solid var(--accent-green);
-}
-
-/* --- 5. DETAILED SERVICES (Grouped) --- */
-.services-section {
-background: rgba(255,255,255,0.6);
-padding: 60px 20px;
-margin-top: 40px;
-}
-
-.service-category-header {
-font-family: 'Montserrat', sans-serif;
-font-size: 1.8rem;
-color: var(--primary-blue);
-border-left: 5px solid var(--accent-green);
-padding-left: 20px;
-margin: 60px 0 30px 0;
-max-width: 1000px;
-margin-left: auto;
-margin-right: auto;
-}
-
-.services-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-gap: 30px;
-max-width: 1000px;
-margin: 0 auto;
-}
-
-.service-card {
-background: white;
-padding: 30px;
-border-radius: 8px;
-box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-transition: transform 0.3s ease;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-border: 1px solid #e2e8f0;
-}
-
-.service-card:hover { transform: translateY(-5px); border-color: var(--accent-green); }
-.service-card h3 { font-family: 'Montserrat', sans-serif; margin-top: 0; color: var(--primary-blue); font-size: 1.3rem; }
-
-.learn-more { font-weight: bold; color: var(--accent-green); font-size: 0.9rem; text-decoration: none; margin-top: 15px; cursor: pointer; }
-.learn-more:after { content: " →"; }
-
-/* --- 6. VALUE PROPS (3 Columns) --- */
+/* --- 4. TECH TICKER --- */
+/* --- 5. PATHWAYS --- */
+/* --- 6. DETAILED SERVICES --- */
+/* --- 7. VALUE PROPS --- */
 .value-props-section {
 background: var(--primary-blue);
 color: white;
@@ -379,7 +173,7 @@ font-size: 1.1rem;
 opacity: 0.9;
 }
 
-/* --- 7. CTA --- */
+/* --- 8. CTA --- */
 .cta-section {
 text-align: center;
 padding: 100px 20px;
@@ -394,22 +188,15 @@ color: var(--primary-blue);
 margin-bottom: 20px;
 }
 
-/* --- UTILS --- */
+.cta-button { display: inline-block; background: var(--accent-green); color: white; padding: 15px 35px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1.2rem; transition: transform 0.2s; font-family: 'Montserrat', sans-serif; }
+.cta-button:hover { transform: scale(1.05); }
+
 footer {
 padding: 40px 20px;
 background: #e2e8f0;
 font-size: 0.85rem;
 color: #718096;
 text-align: center;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-.navbar { padding: 15px 20px; }
-.nav-brand { font-size: 1rem; }
-.nav-btn { font-size: 0.8rem; padding: 6px 12px; }
-.gradient-headline { font-size: 2.5rem; }
-.hero-subline { font-size: 1.1rem; }
 }
 
 /* --- MODAL STYLES --- */
@@ -438,7 +225,6 @@ max-height: 90vh;
 overflow-y: auto;
 }
 
-/* About Us Specific Modal Styling */
 .about-grid {
 display: grid;
 grid-template-columns: 1fr 2fr;
@@ -452,7 +238,11 @@ border-radius: 12px;
 box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-@media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) {
+.about-grid { grid-template-columns: 1fr; }
+.gradient-headline { font-size: 2.5rem; }
+
+}
 
 .comparison-container {
 display: grid;
@@ -490,7 +280,6 @@ color: var(--primary-blue);
 cursor: pointer;
 }
 
-/* Reusing Tags */
 .tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; }
 .tag-bad { background: #fed7d7; color: #c53030; }
 .tag-good { background: #c6f6d5; color: #2f855a; }
@@ -735,6 +524,101 @@ cursor: pointer;
 <p>I believe that data shouldn't be a black box. Whether you are a small business looking to automate inventory, or a medium enterprise scaling your cloud infrastructure, I build solutions that are transparent, effective, and profitable.</p>
 <p>When I'm not writing SQL, you can find me hiking Mt. Hood or exploring the PNW.</p>
 </div>
+</div>
+</div>
+</div>
+
+<div id="kpi-modal" class="modal-overlay" onclick="closeModal('kpi-modal')">
+<div class="modal-content" onclick="event.stopPropagation()">
+<span class="close-btn" onclick="closeModal('kpi-modal')">&times;</span>
+<div class="modal-header">
+<h3>The Transformation</h3>
+<p>From static spreadsheets to automated insights.</p>
+</div>
+<div class="comparison-container">
+<div class="comparison-slide">
+<span class="tag tag-bad">Before: Manual Excel Hell</span>
+<div class="img-wrapper">
+<img src="Messy Spreadsheet.jpg" alt="Messy Spreadsheet">
+</div>
+<p class="caption">Hours wasted weekly on manual entry. Data is stale by the time you see it.</p>
+</div>
+<div class="comparison-slide">
+<span class="tag tag-good">After: Timberline Automation</span>
+<div class="img-wrapper">
+<img src="Tableau Dashboard.jpg" alt="Clean Dashboard">
+</div>
+<p class="caption">Live data pipelines. Instant trends. Zero manual work.</p>
+</div>
+</div>
+<div style="text-align: center; margin-top: 20px;">
+<a href="mailto:inquiry@timberlinedata.tech" class="cta-button">I want this for my business</a>
+</div>
+</div>
+</div>
+
+<div id="inventory-modal" class="modal-overlay" onclick="closeModal('inventory-modal')">
+<div class="modal-content" onclick="event.stopPropagation()">
+<span class="close-btn" onclick="closeModal('inventory-modal')">&times;</span>
+<div class="modal-header">
+<h3>Inventory Health Audit</h3>
+<p>Stop letting "Dead Stock" eat your profits.</p>
+</div>
+<div class="comparison-container">
+<div class="comparison-slide">
+<span class="tag tag-bad">Analysis: The "Cash Trap"</span>
+<div class="img-wrapper">
+<img src="Aging Inventory.png" alt="Clean Dashboard">
+</div>
+<p class="caption">We identify exactly how much capital is frozen in non-moving products.</p>
+</div>
+<div class="comparison-slide">
+<span class="tag tag-good">Action: The Liquidation Plan</span>
+<div class="img-wrapper">
+<img src="Inventory Solution.png" alt="Clean Dashboard">
+</div>
+<p class="caption">A clear roadmap: What to sell at a discount, and what to restock immediately.</p>
+</div>
+</div>
+<div style="text-align: center; margin-top: 20px;">
+<a href="mailto:inquiry@timberlinedata.tech" class="cta-button">Uncover My Hidden Cash</a>
+</div>
+</div>
+</div>
+
+<div id="sales-modal" class="modal-overlay" onclick="closeModal('sales-modal')">
+<div class="modal-content" onclick="event.stopPropagation()">
+<span class="close-btn" onclick="closeModal('sales-modal')">&times;</span>
+<div class="modal-header">
+<h3>Demand Forecasting Engine</h3>
+<p>Stop relying on "Last Year + 10%." Predict what's actually coming.</p>
+</div>
+<div class="comparison-container">
+<div class="comparison-slide">
+<span class="tag tag-bad">Current: The "Guesswork Gap"</span>
+<div class="img-wrapper">
+<img src="Manual Forecast.jpg" alt="Manual Forecast Chart">
+</div>
+<p class="caption">Manual spreadsheets fail to catch seasonality. Result: You run out of stock right when demand peaks.</p>
+</div>
+<div class="comparison-slide">
+<span class="tag tag-good">Future: AI-Driven Precision</span>
+<div class="img-wrapper">
+<img src="AI Forecast.jpg" alt="AI Forecast Chart">
+</div>
+<p class="caption">Our models account for seasonality, holidays, and trends to ensure you have inventory exactly when needed.</p>
+</div>
+</div>
+<div style="text-align: center; margin-top: 20px;">
+<a href="mailto:inquiry@timberlinedata.tech" class="cta-button">Predict My Demand</a>
+</div>
+</div>
+</div>
+
+<script>
+// Open Modal
+function openModal(modalId) {
+document.getElementById(modalId).style.display = 'flex';
 document.body.style.overflow = 'hidden';
 }
 
