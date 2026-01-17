@@ -143,16 +143,9 @@ gap: 15px;
 
 /* FIXED: Dramatically Shrunk Logo */
 .nav-logo {
-height: 30px; /* Default for Mobile */
+height: 45px !important; /* Forced override */
 width: auto;
 object-fit: contain;
-transition: height 0.3 ease; /* smooth resizing if window changes */
-
-/* DESKTOP OVERRIDE */
-@media (min-width: 1024px) {
-    .nav-logo {
-      height: 50px; /* Increases size on large screens */ 
-    }
 }
 
 .nav-brand {
@@ -583,7 +576,7 @@ cursor: pointer;
 
 <nav class="navbar">
 <div class="nav-left">
-<img src="Gimp Logo.png" alt="Timberline Data Logo" class="nav-logo">
+<img src="Gimp Logo.png" alt="Timberline Data Logo" class="nav-logo" style="height: 30px;">
 <span class="nav-brand">Timberline Data</span>
 </div>
 <div class="nav-right">
