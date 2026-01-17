@@ -41,11 +41,82 @@ background-position: center;
 opacity: 0.08;
 }
 
-/* --- 1. INTRO ANIMATION (RESTORED) --- */
+/* --- 1. INTRO ANIMATION (FIXED) --- */
+#intro-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: #ffffff;
+z-index: 9999;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+animation: fadeOutOverlay 0.8s ease-in-out 2.4s forwards;
+pointer-events: none;
+}
+
+.logo-stack {
+position: relative;
+width: 400px;
+max-width: 80vw;
+aspect-ratio: 3100 / 2210;
+}
+
+.drawing-mountain {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 2;
+overflow: visible;
+}
+
+.mountain-path {
+fill: transparent;
+stroke: var(--primary-blue);
+stroke-width: 15;
+/* Exact match to original length */
+stroke-dasharray: 8448.4091796875;
+stroke-dashoffset: 8448.4091796875;
+stroke-linecap: square;
+stroke-linejoin: miter;
+animation: drawLine 2.0s ease-out forwards;
+}
+
+.real-logo-reveal {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: auto;
+z-index: 1;
+opacity: 0;
+animation: fadeInLogo 1s ease-out 1.5s forwards;
+}
+
+.intro-brand-text {
+font-family: 'Montserrat', sans-serif;
+font-weight: 800;
+font-size: 40px;
+text-transform: uppercase;
+color: var(--primary-blue);
+margin-top: 15px;
+opacity: 0;
+animation: fadeInLogo 1s ease-out 1.5s forwards;
+text-shadow: -2px -2px 1px rgba(255,255,255,0.3), 2px 2px 1px rgba(0,0,0,0.5);
+}
+
+@keyframes drawLine { to { stroke-dashoffset: 0; } }
+@keyframes fadeInLogo { to { opacity: 1; } }
+@keyframes fadeOutOverlay { to { opacity: 0; visibility: hidden; } }
 @keyframes fadeInContent { to { opacity: 1; } }
 
 .main-content {
-opacity: 0;https://github.com/ErikSvetich/timberlinedata.tech/blob/main/index.html
+opacity: 0;
 animation: fadeInContent 1s ease-out 3.0s forwards;
 }
 
@@ -57,7 +128,7 @@ z-index: 1000;
 background: rgba(255, 255, 255, 0.95);
 backdrop-filter: blur(10px);
 box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-padding: 10px 5%; /* Slightly tighter padding */
+padding: 10px 5%;
 display: flex;
 justify-content: space-between;
 align-items: center;
@@ -70,10 +141,11 @@ align-items: center;
 gap: 15px;
 }
 
-/* UPDATED: Dramatically Shrunk Logo */
+/* FIXED: Dramatically Shrunk Logo */
 .nav-logo {
-height: 28px; /* Reduced from 40px */
+height: 30px !important; /* Forced override */
 width: auto;
+object-fit: contain;
 }
 
 .nav-brand {
@@ -129,6 +201,44 @@ position: relative;
 width: 100%;
 }
 
+.hero-img-container {
+position: relative;
+width: 100%;
+max-height: 80vh;
+overflow: hidden;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.hero-img {
+width: 100%;
+height: auto;
+min-height: 500px;
+object-fit: cover;
+display: block;
+}
+
+.hero-overlay-text {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+text-align: center;
+width: 90%;
+z-index: 10;
+}
+
+.gradient-headline {
+font-family: 'Montserrat', sans-serif;
+font-weight: 800;
+font-size: 4rem;
+line-height: 1.1;
+text-transform: uppercase;
+background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
 text-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
@@ -142,8 +252,175 @@ text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 /* --- 4. TECH TICKER --- */
+.ticker-wrap {
+width: 100%;
+background-color: var(--primary-blue);
+color: white;
+overflow: hidden;
+height: 60px;
+display: flex;
+align-items: center;
+}
+
+.ticker {
+display: flex;
+animation: ticker 30s linear infinite;
+white-space: nowrap;
+}
+
+.ticker-item {
+padding: 0 40px;
+font-family: 'Montserrat', sans-serif;
+font-weight: 700;
+font-size: 1.1rem;
+color: rgba(255,255,255,0.8);
+display: flex;
+align-items: center;
+}
+
+.ticker-item:after {
+content: "•";
+margin-left: 40px;
+color: var(--accent-green);
+}
+
+@keyframes ticker {
+0% { transform: translateX(0); }
+100% { transform: translateX(-50%); }
+}
+
 /* --- 5. PATHWAYS --- */
+.pathways-section {
+padding: 80px 20px;
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.section-header {
+text-align: center;
+margin-bottom: 50px;
+}
+
+.section-header h2 {
+font-family: 'Montserrat', sans-serif;
+color: var(--primary-blue);
+font-size: 2.5rem;
+margin-bottom: 10px;
+}
+
+.pathways-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 30px;
+}
+
+.path-card {
+background: white;
+border-radius: 12px;
+overflow: hidden;
+box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+transition: transform 0.3s ease;
+text-align: center;
+border: 1px solid #edf2f7;
+}
+
+.path-card:hover {
+transform: translateY(-10px);
+box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.path-img-container {
+height: 200px;
+overflow: hidden;
+}
+
+.path-img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.5s ease;
+}
+
+.path-card:hover .path-img {
+transform: scale(1.05);
+}
+
+.path-content {
+padding: 30px;
+}
+
+.path-title {
+font-family: 'Montserrat', sans-serif;
+font-size: 1.5rem;
+color: var(--primary-blue);
+margin-bottom: 15px;
+font-weight: 700;
+}
+
+.path-desc {
+font-size: 0.95rem;
+color: #4a5568;
+margin-bottom: 20px;
+}
+
+.path-btn {
+display: inline-block;
+color: var(--accent-green);
+font-weight: 700;
+text-decoration: none;
+border-bottom: 2px solid transparent;
+transition: border 0.3s;
+}
+
+.path-btn:hover {
+border-bottom: 2px solid var(--accent-green);
+}
+
 /* --- 6. DETAILED SERVICES --- */
+.services-section {
+background: rgba(255,255,255,0.6);
+padding: 60px 20px;
+margin-top: 40px;
+}
+
+.service-category-header {
+font-family: 'Montserrat', sans-serif;
+font-size: 1.8rem;
+color: var(--primary-blue);
+border-left: 5px solid var(--accent-green);
+padding-left: 20px;
+margin: 60px 0 30px 0;
+max-width: 1000px;
+margin-left: auto;
+margin-right: auto;
+}
+
+.services-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 30px;
+max-width: 1000px;
+margin: 0 auto;
+}
+
+.service-card {
+background: white;
+padding: 30px;
+border-radius: 8px;
+box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+transition: transform 0.3s ease;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+border: 1px solid #e2e8f0;
+}
+
+.service-card:hover { transform: translateY(-5px); border-color: var(--accent-green); }
+.service-card h3 { font-family: 'Montserrat', sans-serif; margin-top: 0; color: var(--primary-blue); font-size: 1.3rem; }
+
+.learn-more { font-weight: bold; color: var(--accent-green); font-size: 0.9rem; text-decoration: none; margin-top: 15px; cursor: pointer; }
+.learn-more:after { content: " →"; }
+
 /* --- 7. VALUE PROPS --- */
 .value-props-section {
 background: var(--primary-blue);
@@ -241,7 +518,6 @@ box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 @media (max-width: 768px) {
 .about-grid { grid-template-columns: 1fr; }
 .gradient-headline { font-size: 2.5rem; }
-
 }
 
 .comparison-container {
@@ -300,7 +576,7 @@ cursor: pointer;
 
 <nav class="navbar">
 <div class="nav-left">
-<img src="Gimp Logo.png" alt="Timberline Data Logo" class="nav-logo" width="31" height="22">
+<img src="Gimp Logo.png" alt="Timberline Data Logo" class="nav-logo" style="height: 30px;">
 <span class="nav-brand">Timberline Data</span>
 </div>
 <div class="nav-right">
