@@ -165,7 +165,7 @@ body::before {
   border-radius: 4px;
   text-decoration: none;
   transition: all 0.2s;
-  white-space: nowrap;
+  white-space: nowrap; /* Prevents text wrapping inside buttons */
 }
 
 .btn-outline {
@@ -193,9 +193,9 @@ body::before {
 
 /* --- MOBILE FIX FOR NAVBAR --- */
 @media (max-width: 768px) {
-  .nav-brand { display: none; }
-  .nav-right { gap: 10px; }
-  .nav-btn { padding: 6px 12px; font-size: 0.8rem; }
+  .nav-brand { display: none; } /* Hide text name on mobile */
+  .nav-right { gap: 10px; } /* Reduce gap between buttons */
+  .nav-btn { padding: 6px 12px; font-size: 0.8rem; } /* Compact buttons */
 }
 
 /* --- 3. HERO SECTION --- */
@@ -254,7 +254,7 @@ body::before {
   text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-/* --- 4. TECH TICKER --- */
+/* --- 4. TECH TICKER (SPACING FIXED) --- */
 .ticker-wrap {
   width: 100%;
   background-color: var(--primary-blue);
@@ -272,7 +272,7 @@ body::before {
 }
 
 .ticker-item {
-  padding: 0;
+  padding: 0; /* Remove padding */
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: 1.1rem;
@@ -283,7 +283,7 @@ body::before {
 
 .ticker-item:after {
   content: "•";
-  margin: 0 30px;
+  margin: 0 30px; /* Symmetrical Margins */
   color: var(--accent-green);
 }
 
@@ -453,7 +453,7 @@ body::before {
   opacity: 0.9;
 }
 
-/* --- 8. CTA --- */
+/* --- 8. CTA (FIXED CENTER & PADDING) --- */
 .cta-section {
   text-align: center;
   padding: 60px 20px;
@@ -467,7 +467,7 @@ body::before {
 .cta-title {
   font-family: 'Montserrat', sans-serif;
   font-size: 2.5rem;
-  color: #ffffff;
+  color: #ffffff; /* White text for visibility */
   margin-bottom: 20px;
   line-height: 1.2;
 }
