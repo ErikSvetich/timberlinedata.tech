@@ -1,181 +1,1851 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timberline Data | Strategic Analytics</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Timberline Data | Strategic Analytics</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+
+
+<style>
+
+:root {
+
+--primary-blue: #1a365d;
+
+--accent-green: #2f855a;
+
+--bg-light: #f7fafc;
+
+--text-dark: #2d3748;
+
+--white: #ffffff;
+
+}
+
+
+
+body {
+
+font-family: 'Open Sans', sans-serif;
+
+line-height: 1.6;
+
+color: var(--text-dark);
+
+margin: 0;
+
+padding: 0;
+
+background-color: var(--bg-light);
+
+overflow-x: hidden;
+
+position: relative;
+
+}
+
+
+
+/* Topographic Background */
+
+body::before {
+
+content: "";
+
+position: fixed;
+
+top: 0;
+
+left: 0;
+
+width: 100%;
+
+height: 100%;
+
+z-index: -1;
+
+background-image: url('Topo map bg.png');
+
+background-size: cover;
+
+background-position: center;
+
+opacity: 0.08;
+
+}
+
+
+
+/* --- 1. INTRO ANIMATION --- */
+
+#intro-overlay {
+
+position: fixed;
+
+top: 0;
+
+left: 0;
+
+width: 100%;
+
+height: 100%;
+
+background: #ffffff;
+
+z-index: 9999;
+
+display: flex;
+
+flex-direction: column;
+
+justify-content: center;
+
+align-items: center;
+
+animation: fadeOutOverlay 0.8s ease-in-out 2.4s forwards;
+
+pointer-events: none;
+
+}
+
+
+
+.logo-stack {
+
+position: relative;
+
+width: 400px;
+
+max-width: 80vw;
+
+aspect-ratio: 3100 / 2210;
+
+}
+
+
+
+.drawing-mountain {
+
+position: absolute;
+
+top: 0;
+
+left: 0;
+
+width: 100%;
+
+height: 100%;
+
+z-index: 2;
+
+overflow: visible;
+
+}
+
+
+
+.mountain-path {
+
+fill: transparent;
+
+stroke: var(--primary-blue);
+
+stroke-width: 15;
+
+stroke-dasharray: 8448.4091796875;
+
+stroke-dashoffset: 8448.4091796875;
+
+stroke-linecap: square;
+
+stroke-linejoin: miter;
+
+animation: drawLine 2.0s ease-out forwards;
+
+}
+
+
+
+.real-logo-reveal {
+
+position: absolute;
+
+top: 0;
+
+left: 0;
+
+width: 100%;
+
+height: auto;
+
+z-index: 1;
+
+opacity: 0;
+
+animation: fadeInLogo 1s ease-out 1.5s forwards;
+
+}
+
+
+
+.intro-brand-text {
+
+font-family: 'Montserrat', sans-serif;
+
+font-weight: 800;
+
+font-size: 40px;
+
+text-transform: uppercase;
+
+color: var(--primary-blue);
+
+margin-top: 15px;
+
+opacity: 0;
+
+animation: fadeInLogo 1s ease-out 1.5s forwards;
+
+text-shadow: -2px -2px 1px rgba(255,255,255,0.3), 2px 2px 1px rgba(0,0,0,0.5);
+
+}
+
+
+
+@keyframes drawLine { to { stroke-dashoffset: 0; } }
+
+@keyframes fadeInLogo { to { opacity: 1; } }
+
+@keyframes fadeOutOverlay { to { opacity: 0; visibility: hidden; } }
+
+@keyframes fadeInContent { to { opacity: 1; } }
+
+
+
+.main-content {
+
+opacity: 0;
+
+animation: fadeInContent 1s ease-out 3.0s forwards;
+
+}
+
+
+
+/* --- 2. STICKY RIBBON NAV --- */
+
+.navbar {
+
+position: sticky;
+
+top: 0;
+
+z-index: 1000;
+
+background: rgba(255, 255, 255, 0.95);
+
+backdrop-filter: blur(10px);
+
+box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+
+padding: 10px 5%;
+
+display: flex;
+
+justify-content: space-between;
+
+align-items: center;
+
+transition: all 0.3s ease;
+
+}
+
+
+
+.nav-left {
+
+display: flex;
+
+align-items: center;
+
+gap: 15px;
+
+}
+
+
+
+/* Responsive Logo Sizing */
+
+.nav-logo {
+
+height: 30px;
+
+width: auto;
+
+object-fit: contain;
+
+transition: height 0.3s ease;
+
+}
+
+
+
+@media (min-width: 1024px) {
+
+.nav-logo { height: 50px; } /* Larger on Desktop */
+
+}
+
+
+
+.nav-brand {
+
+font-family: 'Montserrat', sans-serif;
+
+font-weight: 800;
+
+font-size: 1.1rem;
+
+color: var(--primary-blue);
+
+text-transform: uppercase;
+
+letter-spacing: 0.5px;
+
+}
+
+
+
+.nav-right {
+
+display: flex;
+
+gap: 15px;
+
+}
+
+
+
+.nav-btn {
+
+font-family: 'Montserrat', sans-serif;
+
+font-weight: 600;
+
+font-size: 0.85rem;
+
+padding: 6px 18px;
+
+border-radius: 4px;
+
+text-decoration: none;
+
+transition: all 0.2s;
+
+white-space: nowrap; /* Prevents text wrapping inside buttons */
+
+}
+
+
+
+.btn-outline {
+
+border: 2px solid var(--primary-blue);
+
+color: var(--primary-blue);
+
+cursor: pointer;
+
+background: transparent;
+
+}
+
+
+
+.btn-outline:hover {
+
+background: var(--primary-blue);
+
+color: white;
+
+}
+
+
+
+.btn-solid {
+
+background: var(--accent-green);
+
+color: white;
+
+border: 2px solid var(--accent-green);
+
+}
+
+
+
+.btn-solid:hover {
+
+background: #276749;
+
+border-color: #276749;
+
+}
+
+
+
+/* --- MOBILE FIX FOR NAVBAR --- */
+
+@media (max-width: 768px) {
+
+.nav-brand { display: none; } /* Hide text name on mobile */
+
+.nav-right { gap: 10px; } /* Reduce gap between buttons */
+
+.nav-btn { padding: 6px 12px; font-size: 0.8rem; } /* Compact buttons */
+
+}
+
+
+
+/* --- 3. HERO SECTION --- */
+
+.hero-section {
+
+position: relative;
+
+width: 100%;
+
+}
+
+
+
+.hero-img-container {
+
+position: relative;
+
+width: 100%;
+
+max-height: 80vh;
+
+overflow: hidden;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+}
+
+
+
+.hero-img {
+
+width: 100%;
+
+height: auto;
+
+min-height: 500px;
+
+object-fit: cover;
+
+display: block;
+
+}
+
+
+
+.hero-overlay-text {
+
+position: absolute;
+
+top: 50%;
+
+left: 50%;
+
+transform: translate(-50%, -50%);
+
+text-align: center;
+
+width: 90%;
+
+z-index: 10;
+
+}
+
+
+
+.gradient-headline {
+
+font-family: 'Montserrat', sans-serif;
+
+font-weight: 800;
+
+font-size: 4rem;
+
+line-height: 1.1;
+
+text-transform: uppercase;
+
+background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+
+-webkit-background-clip: text;
+
+background-clip: text;
+
+color: transparent;
+
+text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+
+}
+
+
+
+.hero-subline {
+
+font-family: 'Montserrat', sans-serif;
+
+font-size: 1.5rem;
+
+font-weight: 600;
+
+color: white;
+
+margin-top: 15px;
+
+text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+
+}
+
+
+
+/* --- 4. TECH TICKER (SPACING FIXED) --- */
+
+.ticker-wrap {
+
+width: 100%;
+
+background-color: var(--primary-blue);
+
+color: white;
+
+overflow: hidden;
+
+height: 60px;
+
+display: flex;
+
+align-items: center;
+
+}
+
+
+
+.ticker {
+
+display: flex;
+
+animation: ticker 30s linear infinite;
+
+white-space: nowrap;
+
+}
+
+
+
+.ticker-item {
+
+padding: 0; /* Remove padding */
+
+font-family: 'Montserrat', sans-serif;
+
+font-weight: 700;
+
+font-size: 1.1rem;
+
+color: rgba(255,255,255,0.8);
+
+display: flex;
+
+align-items: center;
+
+}
+
+
+
+.ticker-item:after {
+
+content: "•";
+
+margin: 0 30px; /* Symmetrical Margins */
+
+color: var(--accent-green);
+
+}
+
+
+
+@keyframes ticker {
+
+0% { transform: translateX(0); }
+
+100% { transform: translateX(-50%); }
+
+}
+
+
+
+/* --- 5. PATHWAYS --- */
+
+.pathways-section {
+
+padding: 80px 20px;
+
+max-width: 1200px;
+
+margin: 0 auto;
+
+}
+
+
+
+.section-header {
+
+text-align: center;
+
+margin-bottom: 50px;
+
+}
+
+
+
+.section-header h2 {
+
+font-family: 'Montserrat', sans-serif;
+
+color: var(--primary-blue);
+
+font-size: 2.5rem;
+
+margin-bottom: 10px;
+
+}
+
+
+
+.pathways-grid {
+
+display: grid;
+
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+gap: 30px;
+
+}
+
+
+
+.path-card {
+
+background: white;
+
+border-radius: 12px;
+
+overflow: hidden;
+
+box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+
+transition: transform 0.3s ease;
+
+text-align: center;
+
+border: 1px solid #edf2f7;
+
+}
+
+
+
+.path-card:hover {
+
+transform: translateY(-10px);
+
+box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+
+}
+
+
+
+.path-img-container {
+
+height: 200px;
+
+overflow: hidden;
+
+}
+
+
+
+.path-img {
+
+width: 100%;
+
+height: 100%;
+
+object-fit: cover;
+
+transition: transform 0.5s ease;
+
+}
+
+
+
+.path-card:hover .path-img {
+
+transform: scale(1.05);
+
+}
+
+
+
+.path-content {
+
+padding: 30px;
+
+}
+
+
+
+.path-title {
+
+font-family: 'Montserrat', sans-serif;
+
+font-size: 1.5rem;
+
+color: var(--primary-blue);
+
+margin-bottom: 15px;
+
+font-weight: 700;
+
+}
+
+
+
+.path-desc {
+
+font-size: 0.95rem;
+
+color: #4a5568;
+
+margin-bottom: 20px;
+
+}
+
+
+
+.path-btn {
+
+display: inline-block;
+
+color: var(--accent-green);
+
+font-weight: 700;
+
+text-decoration: none;
+
+border-bottom: 2px solid transparent;
+
+transition: border 0.3s;
+
+}
+
+
+
+.path-btn:hover {
+
+border-bottom: 2px solid var(--accent-green);
+
+}
+
+
+
+/* --- 6. DETAILED SERVICES --- */
+
+.services-section {
+
+background: rgba(255,255,255,0.6);
+
+padding: 60px 20px;
+
+margin-top: 40px;
+
+}
+
+
+
+.service-category-header {
+
+font-family: 'Montserrat', sans-serif;
+
+font-size: 1.8rem;
+
+color: var(--primary-blue);
+
+border-left: 5px solid var(--accent-green);
+
+padding-left: 20px;
+
+margin: 60px 0 30px 0;
+
+max-width: 1000px;
+
+margin-left: auto;
+
+margin-right: auto;
+
+}
+
+
+
+.services-grid {
+
+display: grid;
+
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+gap: 30px;
+
+max-width: 1000px;
+
+margin: 0 auto;
+
+}
+
+
+
+.service-card {
+
+background: white;
+
+padding: 30px;
+
+border-radius: 8px;
+
+box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+
+transition: transform 0.3s ease;
+
+display: flex;
+
+flex-direction: column;
+
+justify-content: space-between;
+
+border: 1px solid #e2e8f0;
+
+}
+
+
+
+.service-card:hover { transform: translateY(-5px); border-color: var(--accent-green); }
+
+.service-card h3 { font-family: 'Montserrat', sans-serif; margin-top: 0; color: var(--primary-blue); font-size: 1.3rem; }
+
+
+
+.learn-more { font-weight: bold; color: var(--accent-green); font-size: 0.9rem; text-decoration: none; margin-top: 15px; cursor: pointer; }
+
+.learn-more:after { content: " →"; }
+
+
+
+/* --- 7. VALUE PROPS --- */
+
+.value-props-section {
+
+background: var(--primary-blue);
+
+color: white;
+
+padding: 80px 20px;
+
+margin-top: 80px;
+
+}
+
+
+
+.value-grid {
+
+display: grid;
+
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+gap: 40px;
+
+max-width: 1100px;
+
+margin: 0 auto;
+
+text-align: center;
+
+}
+
+
+
+.value-item h4 {
+
+font-family: 'Montserrat', sans-serif;
+
+font-size: 1.5rem;
+
+margin-bottom: 15px;
+
+color: var(--accent-green);
+
+}
+
+
+
+.value-item p {
+
+font-size: 1.1rem;
+
+opacity: 0.9;
+
+}
+
+
+
+/* --- 8. CTA (FIXED CENTER & PADDING) --- */
+
+.cta-section {
+
+text-align: center;
+
+padding: 60px 20px;
+
+max-width: 800px;
+
+margin: 80px auto;
+
+background: var(--primary-blue);
+
+color: white;
+
+border-radius: 12px;
+
+}
+
+
+
+.cta-title {
+
+font-family: 'Montserrat', sans-serif;
+
+font-size: 2.5rem;
+
+color: #ffffff; /* White text for visibility */
+
+margin-bottom: 20px;
+
+line-height: 1.2;
+
+}
+
+
+
+.cta-button { display: inline-block; background: var(--accent-green); color: white; padding: 15px 35px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1.2rem; transition: transform 0.2s; font-family: 'Montserrat', sans-serif; }
+
+.cta-button:hover { transform: scale(1.05); }
+
+
+
+footer {
+
+padding: 40px 20px;
+
+background: #e2e8f0;
+
+font-size: 0.85rem;
+
+color: #718096;
+
+text-align: center;
+
+}
+
+
+
+/* --- MODAL STYLES --- */
+
+.modal-overlay {
+
+display: none;
+
+position: fixed;
+
+top: 0;
+
+left: 0;
+
+width: 100%;
+
+height: 100%;
+
+background: rgba(26, 54, 93, 0.95);
+
+z-index: 10000;
+
+justify-content: center;
+
+align-items: center;
+
+backdrop-filter: blur(5px);
+
+}
+
+
+
+.modal-content {
+
+background: white;
+
+width: 90%;
+
+max-width: 1000px;
+
+border-radius: 12px;
+
+padding: 40px;
+
+position: relative;
+
+max-height: 90vh;
+
+overflow-y: auto;
+
+}
+
+
+
+.about-grid {
+
+display: grid;
+
+grid-template-columns: 1fr 2fr;
+
+gap: 30px;
+
+align-items: center;
+
+}
+
+
+
+.about-img {
+
+width: 100%;
+
+border-radius: 12px;
+
+box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+
+}
+
+
+
+@media (max-width: 768px) {
+
+.about-grid { grid-template-columns: 1fr; }
+
+.gradient-headline { font-size: 2.5rem; }
+
+}
+
+
+
+.comparison-container {
+
+display: grid;
+
+grid-template-columns: 1fr 1fr;
+
+gap: 20px;
+
+}
+
+
+
+.img-wrapper {
+
+width: 100%;
+
+height: 300px;
+
+margin: 10px 0;
+
+border-radius: 4px;
+
+overflow: hidden;
+
+border: 1px solid #cbd5e0;
+
+background-color: #ffffff;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+}
+
+
+
+.img-wrapper img {
+
+width: 100%;
+
+height: 100%;
+
+object-fit: contain;
+
+object-position: center;
+
+}
+
+
+
+.close-btn {
+
+position: absolute;
+
+top: 20px;
+
+right: 25px;
+
+font-size: 30px;
+
+font-weight: bold;
+
+color: var(--primary-blue);
+
+cursor: pointer;
+
+}
+
+
+
+.tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; }
+
+.tag-bad { background: #fed7d7; color: #c53030; }
+
+.tag-good { background: #c6f6d5; color: #2f855a; }
+
+
+
+</style>
+
 </head>
+
 <body>
 
-    <div id="intro-overlay">
-        <div class="logo-stack">
-            <svg class="drawing-mountain" viewBox="0 0 3100 2210" xmlns="http://www.w3.org/2000/svg">
-                <path id="anim-path" class="mountain-path" fill="transparent" d="M 1045.00,828.00 C 1045.00,828.00 1058.70,803.00 1058.70,803.00 1058.70,803.00 1087.14,752.00 1087.14,752.00 1087.14,752.00 1170.14,603.00 1170.14,603.00 1170.14,603.00 1397.86,194.00 1397.86,194.00 1397.86,194.00 1480.86,45.00 1480.86,45.00 1480.86,45.00 1499.77,11.00 1499.77,11.00 1503.04,5.00 1506.00,-0.80 1514.00,0.23 1516.57,0.55 1518.87,1.66 1520.79,3.39 1523.85,6.14 1533.77,24.16 1536.58,29.00 1536.58,29.00 1587.42,117.00 1587.42,117.00 1587.42,117.00 1671.42,262.00 1671.42,262.00 1671.42,262.00 1692.85,299.00 1692.85,299.00 1698.48,308.82 1702.98,313.25 1703.00,325.00 1703.00,325.00 1703.00,414.00 1703.00,414.00 1703.00,414.00 1703.00,505.00 1703.00,505.00 1702.89,512.62 1699.84,518.91 1691.00,517.77 1684.17,516.90 1681.75,511.32 1678.72,506.00 1678.72,506.00 1661.40,477.00 1661.40,477.00 1661.40,477.00 1585.80,351.00 1585.80,351.00 1585.80,351.00 1539.20,273.00 1539.20,273.00 1539.20,273.00 1514.00,230.00 1514.00,230.00 1514.00,230.00 1498.70,257.00 1498.70,257.00 1498.70,257.00 1473.70,302.00 1473.70,302.00 1473.70,302.00 1403.70,428.00 1403.70,428.00 1403.70,428.00 1264.86,678.00 1264.86,678.00 1264.86,678.00 1170.58,848.00 1170.58,848.00 1170.58,848.00 1089.42,994.00 1089.42,994.00 1089.42,994.00 1071.23,1027.00 1071.23,1027.00 1067.96,1033.00 1065.00,1038.80 1057.00,1037.77 1049.68,1036.84 1045.80,1029.42 1041.85,1024.00 1041.85,1024.00 1013.71,985.00 1013.71,985.00 1013.71,985.00 934.58,875.00 934.58,875.00 934.58,875.00 908.58,839.00 908.58,839.00 904.43,833.20 898.12,825.07 895.00,819.00 895.00,819.00 870.58,862.00 870.58,862.00 870.58,862.00 819.14,953.00 819.14,953.00 819.14,953.00 706.14,1153.00 706.14,1153.00 706.14,1153.00 592.42,1354.00 592.42,1354.00 592.42,1354.00 375.42,1738.00 375.42,1738.00 375.42,1738.00 248.86,1962.00 248.86,1962.00 248.86,1962.00 200.85,2047.00 200.85,2047.00 200.85,2047.00 178.00,2087.00 178.00,2087.00 178.00,2087.00 744.00,2087.00 744.00,2087.00 744.00,2087.00 932.00,2087.00 932.00,2087.00 932.00,2087.00 1027.00,2087.00 1027.00,2087.00 1027.00,2087.00 1042.00,2086.00 1042.00,2086.00 1042.00,2086.00 1659.00,2086.00 1659.00,2086.00 1659.00,2086.00 2892.00,2086.00 2892.00,2086.00 2892.00,2086.00 2868.40,2046.00 2868.40,2046.00 2868.40,2046.00 2822.00,1969.00 2822.00,1969.00 2822.00,1969.00 2684.20,1740.00 2684.20,1740.00 2684.20,1740.00 2541.80,1503.00 2541.80,1503.00 2541.80,1503.00 2307.60,1114.00 2307.60,1114.00 2307.60,1114.00 2209.60,951.00 2209.60,951.00 2209.60,951.00 2184.40,909.00 2184.40,909.00 2181.27,903.79 2175.45,896.16 2176.23,890.00 2177.06,883.41 2187.10,872.49 2191.35,867.00 2191.35,867.00 2231.21,816.00 2231.21,816.00 2236.47,809.33 2243.38,796.99 2253.00,798.23 2261.21,799.28 2266.26,811.44 2270.20,818.00 2270.20,818.00 2307.40,880.00 2307.40,880.00 2307.40,880.00 2460.20,1135.00 2460.20,1135.00 2460.20,1135.00 2894.20,1859.00 2894.20,1859.00 2894.20,1859.00 3023.20,2074.00 3023.20,2074.00 3023.20,2074.00 3086.00,2179.00 3086.00,2179.00 3086.00,2179.00 3100.00,2210.00 3100.00,2210.00 3100.00,2210.00 0.00,2210.00 0.00,2210.00 0.00,2210.00 0.00,2195.00 0.00,2195.00 0.00,2195.00 7.00,2194.00 7.00,2194.00 -5.52,2189.48 2.06,2176.72 6.42,2169.00 6.42,2169.00 45.00,2100.00 45.00,2100.00 45.00,2100.00 121.86,1962.00 121.86,1962.00 121.86,1962.00 208.30,1807.00 208.30,1807.00 208.30,1807.00 302.14,1639.00 302.14,1639.00 302.14,1639.00 471.14,1336.00 471.14,1336.00 471.14,1336.00 645.14,1024.00 645.14,1024.00 645.14,1024.00 717.00,895.00 717.00,895.00 717.00,895.00 838.58,677.00 838.58,677.00 838.58,677.00 867.58,625.00 867.58,625.00 871.30,618.41 874.30,608.73 883.00,608.12 891.63,607.51 894.76,613.84 899.02,620.00 899.02,620.00 926.42,659.00 926.42,659.00 926.42,659.00 1045.00,828.00 1045.00,828.00 Z" />
-            </svg>
-            <img src="Gimp Logo.png" alt="Logo" class="real-logo-reveal">
-        </div>
-        <div class="intro-brand-text">TIMBERLINE DATA</div>
-    </div>
 
-    <nav class="navbar">
-        <div class="nav-left">
-            <img src="Gimp Logo.png" alt="Timberline Data Logo" class="nav-logo">
-            <span class="nav-brand">Timberline Data</span>
-        </div>
-        <div class="nav-right">
-            <button class="nav-btn btn-outline" onclick="openModal('about-modal')">About Us</button>
-            <a href="mailto:inquiry@timberlinedata.tech" class="nav-btn btn-solid">Book Now</a>
-        </div>
-    </nav>
 
-    <div class="main-content">
+<div id="intro-overlay">
 
-        <div class="hero-section">
-            <div class="hero-img-container">
-                <div class="hero-overlay-text">
-                    <h1 class="gradient-headline">Stop Guessing.<br>Start Scaling.</h1>
-                    <p class="hero-subline">Foundational to Advanced Analytics</p>
-                </div>
-                <img src="Mt Hood.png" alt="Mt Hood Landscape" class="hero-img">
-            </div>
+<div class="logo-stack">
 
-            <div class="ticker-wrap">
-                <div class="ticker">
-                    <div class="ticker-item">SQL</div>
-                    <div class="ticker-item">Python</div>
-                    <div class="ticker-item">Snowflake</div>
-                    <div class="ticker-item">Databricks</div>
-                    <div class="ticker-item">Excel</div>
-                    <div class="ticker-item">Tableau</div>
-                    <div class="ticker-item">PowerBI</div>
-                    <div class="ticker-item">R</div>
-                    <div class="ticker-item">Oracle</div>
-                    <div class="ticker-item">AWS</div>
-                    <div class="ticker-item">SQL</div>
-                    <div class="ticker-item">Python</div>
-                    <div class="ticker-item">Snowflake</div>
-                    <div class="ticker-item">Databricks</div>
-                    <div class="ticker-item">Excel</div>
-                    <div class="ticker-item">Tableau</div>
-                    <div class="ticker-item">PowerBI</div>
-                    <div class="ticker-item">R</div>
-                    <div class="ticker-item">Oracle</div>
-                    <div class="ticker-item">AWS</div>
-                </div>
-            </div>
-        </div>
+<svg class="drawing-mountain" viewBox="0 0 3100 2210" xmlns="http://www.w3.org/2000/svg">
 
-        <section class="pathways-section">
-            <div class="section-header">
-                <h2>Identify Your Needs</h2>
-                <p>Select the path that best describes your current challenge.</p>
-            </div>
+<path id="anim-path" class="mountain-path" fill="transparent" d="M 1045.00,828.00 C 1045.00,828.00 1058.70,803.00 1058.70,803.00 1058.70,803.00 1087.14,752.00 1087.14,752.00 1087.14,752.00 1170.14,603.00 1170.14,603.00 1170.14,603.00 1397.86,194.00 1397.86,194.00 1397.86,194.00 1480.86,45.00 1480.86,45.00 1480.86,45.00 1499.77,11.00 1499.77,11.00 1503.04,5.00 1506.00,-0.80 1514.00,0.23 1516.57,0.55 1518.87,1.66 1520.79,3.39 1523.85,6.14 1533.77,24.16 1536.58,29.00 1536.58,29.00 1587.42,117.00 1587.42,117.00 1587.42,117.00 1671.42,262.00 1671.42,262.00 1671.42,262.00 1692.85,299.00 1692.85,299.00 1698.48,308.82 1702.98,313.25 1703.00,325.00 1703.00,325.00 1703.00,414.00 1703.00,414.00 1703.00,414.00 1703.00,505.00 1703.00,505.00 1702.89,512.62 1699.84,518.91 1691.00,517.77 1684.17,516.90 1681.75,511.32 1678.72,506.00 1678.72,506.00 1661.40,477.00 1661.40,477.00 1661.40,477.00 1585.80,351.00 1585.80,351.00 1585.80,351.00 1539.20,273.00 1539.20,273.00 1539.20,273.00 1514.00,230.00 1514.00,230.00 1514.00,230.00 1498.70,257.00 1498.70,257.00 1498.70,257.00 1473.70,302.00 1473.70,302.00 1473.70,302.00 1403.70,428.00 1403.70,428.00 1403.70,428.00 1264.86,678.00 1264.86,678.00 1264.86,678.00 1170.58,848.00 1170.58,848.00 1170.58,848.00 1089.42,994.00 1089.42,994.00 1089.42,994.00 1071.23,1027.00 1071.23,1027.00 1067.96,1033.00 1065.00,1038.80 1057.00,1037.77 1049.68,1036.84 1045.80,1029.42 1041.85,1024.00 1041.85,1024.00 1013.71,985.00 1013.71,985.00 1013.71,985.00 934.58,875.00 934.58,875.00 934.58,875.00 908.58,839.00 908.58,839.00 904.43,833.20 898.12,825.07 895.00,819.00 895.00,819.00 870.58,862.00 870.58,862.00 870.58,862.00 819.14,953.00 819.14,953.00 819.14,953.00 706.14,1153.00 706.14,1153.00 706.14,1153.00 592.42,1354.00 592.42,1354.00 592.42,1354.00 375.42,1738.00 375.42,1738.00 375.42,1738.00 248.86,1962.00 248.86,1962.00 248.86,1962.00 200.85,2047.00 200.85,2047.00 200.85,2047.00 178.00,2087.00 178.00,2087.00 178.00,2087.00 744.00,2087.00 744.00,2087.00 744.00,2087.00 932.00,2087.00 932.00,2087.00 932.00,2087.00 1027.00,2087.00 1027.00,2087.00 1027.00,2087.00 1042.00,2086.00 1042.00,2086.00 1042.00,2086.00 1659.00,2086.00 1659.00,2086.00 1659.00,2086.00 2892.00,2086.00 2892.00,2086.00 2892.00,2086.00 2868.40,2046.00 2868.40,2046.00 2868.40,2046.00 2822.00,1969.00 2822.00,1969.00 2822.00,1969.00 2684.20,1740.00 2684.20,1740.00 2684.20,1740.00 2541.80,1503.00 2541.80,1503.00 2541.80,1503.00 2307.60,1114.00 2307.60,1114.00 2307.60,1114.00 2209.60,951.00 2209.60,951.00 2209.60,951.00 2184.40,909.00 2184.40,909.00 2181.27,903.79 2175.45,896.16 2176.23,890.00 2177.06,883.41 2187.10,872.49 2191.35,867.00 2191.35,867.00 2231.21,816.00 2231.21,816.00 2236.47,809.33 2243.38,796.99 2253.00,798.23 2261.21,799.28 2266.26,811.44 2270.20,818.00 2270.20,818.00 2307.40,880.00 2307.40,880.00 2307.40,880.00 2460.20,1135.00 2460.20,1135.00 2460.20,1135.00 2894.20,1859.00 2894.20,1859.00 2894.20,1859.00 3023.20,2074.00 3023.20,2074.00 3023.20,2074.00 3086.00,2179.00 3086.00,2179.00 3086.00,2179.00 3100.00,2210.00 3100.00,2210.00 3100.00,2210.00 0.00,2210.00 0.00,2210.00 0.00,2210.00 0.00,2195.00 0.00,2195.00 0.00,2195.00 7.00,2194.00 7.00,2194.00 -5.52,2189.48 2.06,2176.72 6.42,2169.00 6.42,2169.00 45.00,2100.00 45.00,2100.00 45.00,2100.00 121.86,1962.00 121.86,1962.00 121.86,1962.00 208.30,1807.00 208.30,1807.00 208.30,1807.00 302.14,1639.00 302.14,1639.00 302.14,1639.00 471.14,1336.00 471.14,1336.00 471.14,1336.00 645.14,1024.00 645.14,1024.00 645.14,1024.00 717.00,895.00 717.00,895.00 717.00,895.00 838.58,677.00 838.58,677.00 838.58,677.00 867.58,625.00 867.58,625.00 871.30,618.41 874.30,608.73 883.00,608.12 891.63,607.51 894.76,613.84 899.02,620.00 899.02,620.00 926.42,659.00 926.42,659.00 926.42,659.00 1045.00,828.00 1045.00,828.00 Z" />
 
-            <div class="pathways-grid">
-                
-                <div class="path-card">
-                    <div class="path-img-container">
-                        <img src="Overwhelmed.jpeg" alt="Data Overwhelm" class="path-img">
-                    </div>
-                    <div class="path-content">
-                        <h3 class="path-title">I have data...</h3>
-                        <p class="path-desc">But I'm not getting the most out of it. I need optimization and better insights from what exists.</p>
-                        <a href="optimization.html" class="path-btn">Explore Optimization</a>
-                    </div>
-                </div>
+</svg>
 
-                <div class="path-card">
-                    <div class="path-img-container">
-                        <img src="Adventure.jpeg" alt="Adventure Ahead" class="path-img">
-                    </div>
-                    <div class="path-content">
-                        <h3 class="path-title">I need data...</h3>
-                        <p class="path-desc">To make critical business decisions. I need market analysis and acquisition strategy.</p>
-                        <a href="acquisition.html" class="path-btn">Explore Strategy</a>
-                    </div>
-                </div>
+<img src="Gimp Logo.png" alt="Logo" class="real-logo-reveal">
 
-                <div class="path-card">
-                    <div class="path-img-container">
-                        <img src="Belay.jpeg" alt="Belaying / Training" class="path-img">
-                    </div>
-                    <div class="path-content">
-                        <h3 class="path-title">I need training...</h3>
-                        <p class="path-desc">I am looking to upskill my team or myself in modern data tools.</p>
-                        <a href="training.html" class="path-btn">Explore Training</a>
-                    </div>
-                </div>
+</div>
 
-            </div>
-        </section>
+<div class="intro-brand-text">TIMBERLINE DATA</div>
 
-        <section class="cta-section">
-            <h2 class="cta-title">Ready to take action?</h2>
-            <p style="margin-bottom:30px;">I apply the same data rigor I brought to <strong>Nike</strong> to help your business thrive.</p>
-            <a href="mailto:inquiry@timberlinedata.tech" class="cta-button">Book a Discovery Call</a>
-        </section>
+</div>
 
-        <section class="value-props-section">
-            <div class="value-grid">
-                <div class="value-item">
-                    <h4>Improved Savings</h4>
-                    <p>Reduce waste in inventory and marketing spend.</p>
-                </div>
-                <div class="value-item">
-                    <h4>Faster Insights</h4>
-                    <p>Stop waiting for reports. Get data in real-time.</p>
-                </div>
-                <div class="value-item">
-                    <h4>Scalable Architecture</h4>
-                    <p>Built to grow with your business, not break.</p>
-                </div>
-            </div>
-        </section>
 
-        <section style="text-align: center; padding: 60px; background: white;">
-            <a href="mailto:inquiry@timberlinedata.tech" class="cta-button">Book Now</a>
-        </section>
 
-        <footer>
-            <p>&copy; 2026 Timberline Data, LLC. | Portland, Oregon</p>
-            <p><em>Disclaimer: Analytics and predictive models are decision-support tools. Final business decisions remain the responsibility of the client.</em></p>
-        </footer>
-    </div>
+<nav class="navbar">
 
-    <div id="about-modal" class="modal-overlay" onclick="closeModal('about-modal')">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="closeModal('about-modal')">&times;</span>
-            <div class="modal-header">
-                <h3>About Timberline Data</h3>
-            </div>
-            <div class="about-grid">
-                <div>
-                    <img src="Erik.jpg" alt="Erik" class="about-img" style="background:#ddd; min-height:200px;">
-                </div>
-                <div>
-                    <h4 style="margin-top:0; color:var(--primary-blue);">Erik Svetich - Principal Consultant</h4>
-                    <p>With years of experience at industry giants like Nike, I founded Timberline Data to bring enterprise-grade analytics to the greater Portland area.</p>
-                    <p>I believe that data shouldn't be a black box. Whether you are a small business looking to automate inventory, or a medium enterprise scaling your cloud infrastructure, I build solutions that are transparent, effective, and profitable.</p>
-                    <p>When I'm not writing SQL, you can find me hiking Mt. Hood or exploring the PNW.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="nav-left">
 
-    <script>
-        // Open Modal
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
+<img src="Gimp Logo.png" alt="Timberline Data Logo" class="nav-logo">
 
-        // Close Modal
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-    </script>
+<span class="nav-brand">Timberline Data</span>
+
+</div>
+
+<div class="nav-right">
+
+<button class="nav-btn btn-outline" onclick="openModal('about-modal')">About Us</button>
+
+<a href="mailto:inquiry@timberlinedata.tech" class="nav-btn btn-solid">Book Now</a>
+
+</div>
+
+</nav>
+
+
+
+<div class="main-content">
+
+
+
+<div class="hero-section">
+
+<div class="hero-img-container">
+
+<div class="hero-overlay-text">
+
+<h1 class="gradient-headline">Stop Guessing.<br>Start Scaling.</h1>
+
+<p class="hero-subline">Foundational to Advanced Analytics</p>
+
+</div>
+
+<img src="Mt Hood.png" alt="Mt Hood Landscape" class="hero-img">
+
+</div>
+
+
+
+<div class="ticker-wrap">
+
+<div class="ticker">
+
+<div class="ticker-item">SQL</div>
+
+<div class="ticker-item">Python</div>
+
+<div class="ticker-item">Snowflake</div>
+
+<div class="ticker-item">Databricks</div>
+
+<div class="ticker-item">Excel</div>
+
+<div class="ticker-item">Tableau</div>
+
+<div class="ticker-item">PowerBI</div>
+
+<div class="ticker-item">R</div>
+
+<div class="ticker-item">Oracle</div>
+
+<div class="ticker-item">AWS</div>
+
+<div class="ticker-item">SQL</div>
+
+<div class="ticker-item">Python</div>
+
+<div class="ticker-item">Snowflake</div>
+
+<div class="ticker-item">Databricks</div>
+
+<div class="ticker-item">Excel</div>
+
+<div class="ticker-item">Tableau</div>
+
+<div class="ticker-item">PowerBI</div>
+
+<div class="ticker-item">R</div>
+
+<div class="ticker-item">Oracle</div>
+
+<div class="ticker-item">AWS</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<section class="pathways-section">
+
+<div class="section-header">
+
+<h2>Identify Your Needs</h2>
+
+<p>Select the path that best describes your current challenge.</p>
+
+</div>
+
+
+
+<div class="pathways-grid">
+
+
+
+<div class="path-card">
+
+<div class="path-img-container">
+
+<img src="Overwhelmed.jpeg" alt="Data Overwhelm" class="path-img">
+
+</div>
+
+<div class="path-content">
+
+<h3 class="path-title">I have data...</h3>
+
+<p class="path-desc">But I'm not getting the most out of it. I need optimization and better insights from what exists.</p>
+
+<a href="#services-optimization" class="path-btn">Explore Optimization</a>
+
+</div>
+
+</div>
+
+
+
+<div class="path-card">
+
+<div class="path-img-container">
+
+<img src="Adventure.jpeg" alt="Adventure Ahead" class="path-img">
+
+</div>
+
+<div class="path-content">
+
+<h3 class="path-title">I need data...</h3>
+
+<p class="path-desc">To make critical business decisions. I need market analysis and acquisition strategy.</p>
+
+<a href="#services-acquisition" class="path-btn">Explore Strategy</a>
+
+</div>
+
+</div>
+
+
+
+<div class="path-card">
+
+<div class="path-img-container">
+
+<img src="Belay.jpeg" alt="Belaying / Training" class="path-img">
+
+</div>
+
+<div class="path-content">
+
+<h3 class="path-title">I need training...</h3>
+
+<p class="path-desc">I am looking to upskill my team or myself in modern data tools.</p>
+
+<a href="#services-training" class="path-btn">Explore Training</a>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+</section>
+
+
+
+<section class="cta-section">
+
+<h2 class="cta-title">Ready to take action?</h2>
+
+<p style="margin-bottom:30px;">I apply the same data rigor I brought to <strong>Nike</strong> to help your business thrive.</p>
+
+<a href="mailto:inquiry@timberlinedata.tech" class="cta-button">Book a Discovery Call</a>
+
+</section>
+
+
+
+<section class="value-props-section">
+
+<div class="value-grid">
+
+<div class="value-item">
+
+<h4>Improved Savings</h4>
+
+<p>Reduce waste in inventory and marketing spend.</p>
+
+</div>
+
+<div class="value-item">
+
+<h4>Faster Insights</h4>
+
+<p>Stop waiting for reports. Get data in real-time.</p>
+
+</div>
+
+<div class="value-item">
+
+<h4>Scalable Architecture</h4>
+
+<p>Built to grow with your business, not break.</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section style="text-align: center; padding: 60px; background: white;">
+
+<a href="mailto:inquiry@timberlinedata.tech" class="cta-button">Book Now</a>
+
+</section>
+
+
+
+
+
+<div class="services-section">
+
+
+
+<div id="services-optimization">
+
+<h3 class="service-category-header">Data Optimization & Insights</h3>
+
+<div class="services-grid">
+
+<div class="service-card">
+
+<div>
+
+<h3>Automated KPI Dashboards</h3>
+
+<p>Eliminate the "Monday Morning Reporting" scramble. We replace fragile spreadsheets with automated, real-time dashboards.</p>
+
+</div>
+
+<a href="javascript:void(0);" onclick="openModal('kpi-modal')" class="learn-more">See Examples</a>
+
+</div>
+
+<div class="service-card">
+
+<div>
+
+<h3>Sales Forecasting</h3>
+
+<p>Plan inventory and labor with confidence. Our models use historical data to predict demand.</p>
+
+</div>
+
+<a href="javascript:void(0);" onclick="openModal('sales-modal')" class="learn-more">Request Case Study</a>
+
+</div>
+
+<div class="service-card">
+
+<div>
+
+<h3>Customer Retention (Churn)</h3>
+
+<p>Identify "at-risk" clients before they cancel, giving your team a daily list of who to save.</p>
+
+</div>
+
+<a href="mailto:inquiry@timberlinedata.tech" class="learn-more">Identify At-Risk Clients</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div id="services-acquisition">
+
+<h3 class="service-category-header">Strategic Acquisition & Architecture</h3>
+
+<div class="services-grid">
+
+<div class="service-card">
+
+<div>
+
+<h3>Inventory Optimization</h3>
+
+<p>Free up working capital trapped in your warehouse. We analyze turnover velocity.</p>
+
+</div>
+
+<a href="javascript:void(0);" onclick="openModal('inventory-modal')" class="learn-more">Audit My Inventory</a>
+
+</div>
+
+<div class="service-card">
+
+<div>
+
+<h3>Data Centralization (ETL)</h3>
+
+<p>Break down data silos. We build secure, automated pipelines that sync your POS, Shopify, and CRM.</p>
+
+</div>
+
+<a href="mailto:inquiry@timberlinedata.tech" class="learn-more">View Automation Flow</a>
+
+</div>
+
+<div class="service-card">
+
+<div>
+
+<h3>LTV & Segmentation</h3>
+
+<p>Identify your "Whales"—the top 20% driving 80% of revenue.</p>
+
+</div>
+
+<a href="mailto:inquiry@timberlinedata.tech" class="learn-more">Analyze My Segments</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div id="services-training">
+
+<h3 class="service-category-header">Education & Training</h3>
+
+<div class="services-grid">
+
+<div class="service-card">
+
+<div>
+
+<h3>SQL Training</h3>
+
+<p>From basics to advanced window functions. Learn how to query your own data.</p>
+
+</div>
+
+<a href="mailto:inquiry@timberlinedata.tech" class="learn-more">Syllabus & Rates</a>
+
+</div>
+
+<div class="service-card">
+
+<div>
+
+<h3>Python for Data</h3>
+
+<p>Automate boring stuff and build models. Practical scripts for business use cases.</p>
+
+</div>
+
+<a href="mailto:inquiry@timberlinedata.tech" class="learn-more">Syllabus & Rates</a>
+
+</div>
+
+<div class="service-card">
+
+<div>
+
+<h3>Databricks / Snowflake</h3>
+
+<p>Learn to navigate modern cloud data warehouses efficiently.</p>
+
+</div>
+
+<a href="mailto:inquiry@timberlinedata.tech" class="learn-more">Syllabus & Rates</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<footer>
+
+<p>&copy; 2026 Timberline Data, LLC. | Portland, Oregon</p>
+
+<p><em>Disclaimer: Analytics and predictive models are decision-support tools. Final business decisions remain the responsibility of the client.</em></p>
+
+</footer>
+
+</div>
+
+
+
+<div id="about-modal" class="modal-overlay" onclick="closeModal('about-modal')">
+
+<div class="modal-content" onclick="event.stopPropagation()">
+
+<span class="close-btn" onclick="closeModal('about-modal')">&times;</span>
+
+<div class="modal-header">
+
+<h3>About Timberline Data</h3>
+
+</div>
+
+<div class="about-grid">
+
+<div>
+
+<img src="Erik.jpg" alt="Erik" class="about-img" style="background:#ddd; min-height:200px;">
+
+</div>
+
+<div>
+
+<h4 style="margin-top:0; color:var(--primary-blue);">Erik Svetich - Principal Consultant</h4>
+
+<p>With years of experience at industry giants like Nike, I founded Timberline Data to bring enterprise-grade analytics to the greater Portland area.</p>
+
+<p>I believe that data shouldn't be a black box. Whether you are a small business looking to automate inventory, or a medium enterprise scaling your cloud infrastructure, I build solutions that are transparent, effective, and profitable.</p>
+
+<p>When I'm not writing SQL, you can find me hiking Mt. Hood or exploring the PNW.</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div id="kpi-modal" class="modal-overlay" onclick="closeModal('kpi-modal')">
+
+<div class="modal-content" onclick="event.stopPropagation()">
+
+<span class="close-btn" onclick="closeModal('kpi-modal')">&times;</span>
+
+<div class="modal-header">
+
+<h3>The Transformation</h3>
+
+<p>From static spreadsheets to automated insights.</p>
+
+</div>
+
+<div class="comparison-container">
+
+<div class="comparison-slide">
+
+<span class="tag tag-bad">Before: Manual Excel Hell</span>
+
+<div class="img-wrapper">
+
+<img src="Messy Spreadsheet.jpg" alt="Messy Spreadsheet">
+
+</div>
+
+<p class="caption">Hours wasted weekly on manual entry. Data is stale by the time you see it.</p>
+
+</div>
+
+<div class="comparison-slide">
+
+<span class="tag tag-good">After: Timberline Automation</span>
+
+<div class="img-wrapper">
+
+<img src="Tableau Dashboard.jpg" alt="Clean Dashboard">
+
+</div>
+
+<p class="caption">Live data pipelines. Instant trends. Zero manual work.</p>
+
+</div>
+
+</div>
+
+<div style="text-align: center; margin-top: 20px;">
+
+<a href="mailto:inquiry@timberlinedata.tech" class="cta-button">I want this for my business</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div id="inventory-modal" class="modal-overlay" onclick="closeModal('inventory-modal')">
+
+<div class="modal-content" onclick="event.stopPropagation()">
+
+<span class="close-btn" onclick="closeModal('inventory-modal')">&times;</span>
+
+<div class="modal-header">
+
+<h3>Inventory Health Audit</h3>
+
+<p>Stop letting "Dead Stock" eat your profits.</p>
+
+</div>
+
+<div class="comparison-container">
+
+<div class="comparison-slide">
+
+<span class="tag tag-bad">Analysis: The "Cash Trap"</span>
+
+<div class="img-wrapper">
+
+<img src="Aging Inventory.png" alt="Clean Dashboard">
+
+</div>
+
+<p class="caption">We identify exactly how much capital is frozen in non-moving products.</p>
+
+</div>
+
+<div class="comparison-slide">
+
+<span class="tag tag-good">Action: The Liquidation Plan</span>
+
+<div class="img-wrapper">
+
+<img src="Inventory Solution.png" alt="Clean Dashboard">
+
+</div>
+
+<p class="caption">A clear roadmap: What to sell at a discount, and what to restock immediately.</p>
+
+</div>
+
+</div>
+
+<div style="text-align: center; margin-top: 20px;">
+
+<a href="mailto:inquiry@timberlinedata.tech" class="cta-button">Uncover My Hidden Cash</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div id="sales-modal" class="modal-overlay" onclick="closeModal('sales-modal')">
+
+<div class="modal-content" onclick="event.stopPropagation()">
+
+<span class="close-btn" onclick="closeModal('sales-modal')">&times;</span>
+
+<div class="modal-header">
+
+<h3>Demand Forecasting Engine</h3>
+
+<p>Stop relying on "Last Year + 10%." Predict what's actually coming.</p>
+
+</div>
+
+<div class="comparison-container">
+
+<div class="comparison-slide">
+
+<span class="tag tag-bad">Current: The "Guesswork Gap"</span>
+
+<div class="img-wrapper">
+
+<img src="Manual Forecast.jpg" alt="Manual Forecast Chart">
+
+</div>
+
+<p class="caption">Manual spreadsheets fail to catch seasonality. Result: You run out of stock right when demand peaks.</p>
+
+</div>
+
+<div class="comparison-slide">
+
+<span class="tag tag-good">Future: AI-Driven Precision</span>
+
+<div class="img-wrapper">
+
+<img src="AI Forecast.jpg" alt="AI Forecast Chart">
+
+</div>
+
+<p class="caption">Our models account for seasonality, holidays, and trends to ensure you have inventory exactly when needed.</p>
+
+</div>
+
+</div>
+
+<div style="text-align: center; margin-top: 20px;">
+
+<a href="mailto:inquiry@timberlinedata.tech" class="cta-button">Predict My Demand</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+// Open Modal
+
+function openModal(modalId) {
+
+document.getElementById(modalId).style.display = 'flex';
+
+document.body.style.overflow = 'hidden';
+
+}
+
+
+
+// Close Modal
+
+function closeModal(modalId) {
+
+document.getElementById(modalId).style.display = 'none';
+
+document.body.style.overflow = 'auto';
+
+}
+
+</script>
+
 </body>
+
 </html>
