@@ -467,20 +467,22 @@ body::before {
 /* Typography Updates */
 .value-item h4 {
   font-family: 'Montserrat', sans-serif;
-  font-size: 2.5rem; /* Large size */
+  font-size: 2.8rem; /* Slight bump for readability */
   margin-bottom: 20px;
   
-  /* Text Color */
-  color: #ffffff; /* Pure White Fill */
-  
-  /* Green Outline */
-  -webkit-text-stroke: 1.5px var(--accent-green); /* Slightly thicker outline */
-  
-  font-weight: 800; /* Extra Bold */
+  /* 1. The Fill */
+  color: #ffffff; 
+  font-weight: 800;
   letter-spacing: -1px;
   
-  /* subtle drop shadow to separate text from background */
-  filter: drop-shadow(0 4px 4px rgba(0,0,0,0.2)); 
+  /* 2. The Outline (Thicker now that it sits behind) */
+  -webkit-text-stroke: 3px var(--accent-green);
+  
+  /* 3. THE FIX: This forces the green outline to sit BEHIND the white text */
+  paint-order: stroke fill;
+  
+  /* 4. Remove the 'filter' property which was causing the blur/glitch */
+  text-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Standard shadow instead */
 }
 
 .value-item p {
