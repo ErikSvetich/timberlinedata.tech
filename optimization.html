@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimization | Timberline Data</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="index.html" style="text-decoration:none; display:flex; align-items:center;">
+                <img src="Gimp Logo.png" alt="Timberline Data Logo" class="nav-logo">
+                <span class="nav-brand">Timberline Data</span>
+            </a>
+        </div>
+        <div class="nav-right">
+            <button class="nav-btn btn-outline" onclick="openModal('about-modal')">About Us</button>
+            <a href="mailto:inquiry@timberlinedata.tech" class="nav-btn btn-solid">Book Now</a>
+        </div>
+    </nav>
+
+    <div class="main-content" style="opacity: 1; animation: none; padding-top: 40px;">
+        
+        <h1 style="text-align: center; font-family: 'Montserrat', sans-serif; color: var(--primary-blue);">Data Optimization & Insights</h1>
+        <p style="text-align: center; max-width: 600px; margin: 0 auto 40px auto; color: #4a5568;">Maximize the value of the data you already have.</p>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div>
+                    <h3>Automated KPI Dashboards</h3>
+                    <p>Eliminate the "Monday Morning Reporting" scramble. We replace fragile spreadsheets with automated, real-time dashboards.</p>
+                </div>
+                <a href="kpi-dashboard.html" class="learn-more">See Examples</a>
+            </div>
+
+            <div class="service-card">
+                <div>
+                    <h3>Sales Forecasting</h3>
+                    <p>Plan inventory and labor with confidence. Our models use historical data to predict demand.</p>
+                </div>
+                <a href="sales-forecasting.html" class="learn-more">Request Case Study</a>
+            </div>
+
+            <div class="service-card">
+                <div>
+                    <h3>Customer Retention (Churn)</h3>
+                    <p>Identify "at-risk" clients before they cancel, giving your team a daily list of who to save.</p>
+                </div>
+                <a href="churn-retention.html" class="learn-more">Identify At-Risk Clients</a>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Timberline Data, LLC. | Portland, Oregon</p>
+        </footer>
+    </div>
+
+    <div id="about-modal" class="modal-overlay" onclick="closeModal('about-modal')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeModal('about-modal')">&times;</span>
+            <div class="modal-header"><h3>About Timberline Data</h3></div>
+            <div class="about-grid">
+                <div><img src="Erik.jpg" alt="Erik" class="about-img" style="background:#ddd; min-height:200px;"></div>
+                <div>
+                    <h4 style="margin-top:0; color:var(--primary-blue);">Erik Svetich - Principal Consultant</h4>
+                    <p>Bringing enterprise-grade analytics to the greater Portland area.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; document.body.style.overflow = 'auto'; }
+    </script>
+</body>
+</html>
