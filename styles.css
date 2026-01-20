@@ -467,11 +467,21 @@ body::before {
 /* Typography Updates */
 .value-item h4 {
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.6rem; /* Slightly larger */
+  /* Increased size for better impact */
+  font-size: 2.5rem; 
   margin-bottom: 20px;
-  color: #ffffff; /* PURE WHITE for pop */
-  font-weight: 700;
-  letter-spacing: -0.5px; /* Tighter, modern letter spacing */
+  
+  /* White Fill */
+  color: #ffffff; 
+  font-weight: 800; /* Extra Bold looks better with outlines */
+  
+  /* Green Outline */
+  -webkit-text-stroke: 1px var(--accent-green);
+  
+  /* Optional: A subtle shadow helps it stand out from the blue background */
+  text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  
+  letter-spacing: -0.5px;
 }
 
 .value-item p {
