@@ -425,33 +425,63 @@ body::before {
 .learn-more { font-weight: bold; color: var(--accent-green); font-size: 0.9rem; text-decoration: none; margin-top: 15px; cursor: pointer; }
 .learn-more:after { content: " →"; }
 
-/* --- 7. VALUE PROPS --- */
+/* --- 7. VALUE PROPS (Clean Columns) --- */
 .value-props-section {
   background: var(--primary-blue);
   color: white;
   padding: 80px 20px;
-  margin-top: 80px;
+  border-top: 4px solid var(--accent-green); /* Top accent bar for pop */
 }
 
 .value-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex; /* Use Flexbox for easy column dividers */
+  flex-direction: column; /* Mobile first (stack them) */
   gap: 40px;
   max-width: 1100px;
   margin: 0 auto;
   text-align: center;
 }
 
+/* Tablet & Desktop: Switch to Row */
+@media (min-width: 768px) {
+  .value-grid {
+    flex-direction: row;
+    gap: 0; /* Remove gap, use padding instead so borders touch */
+    align-items: flex-start;
+  }
+}
+
+.value-item {
+  flex: 1; /* Equal width columns */
+  padding: 0 30px; /* Internal spacing */
+  position: relative;
+}
+
+/* Vertical Dividers (Desktop Only) */
+@media (min-width: 768px) {
+  .value-item:not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white divider */
+  }
+}
+
+/* Typography Updates */
 .value-item h4 {
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  color: var(--accent-green);
+  font-size: 1.6rem; /* Slightly larger */
+  margin-bottom: 20px;
+  color: #ffffff; /* PURE WHITE for pop */
+  font-weight: 700;
+  letter-spacing: -0.5px; /* Tighter, modern letter spacing */
 }
 
 .value-item p {
+  font-family: 'Open Sans', sans-serif;
   font-size: 1.1rem;
-  opacity: 0.9;
+  color: #e2e8f0; /* Off-white for readability, softer than pure white */
+  line-height: 1.7;
+  font-weight: 400;
+  max-width: 300px; /* Prevents text from getting too wide/hard to read */
+  margin: 0 auto;
 }
 
 /* --- 8. CTA (FIXED CENTER & PADDING) --- */
