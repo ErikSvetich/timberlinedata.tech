@@ -467,21 +467,20 @@ body::before {
 /* Typography Updates */
 .value-item h4 {
   font-family: 'Montserrat', sans-serif;
-  /* Increased size for better impact */
-  font-size: 2.5rem; 
+  font-size: 2.5rem; /* Large size */
   margin-bottom: 20px;
   
-  /* White Fill */
-  color: #ffffff; 
-  font-weight: 800; /* Extra Bold looks better with outlines */
+  /* Text Color */
+  color: #ffffff; /* Pure White Fill */
   
   /* Green Outline */
-  -webkit-text-stroke: 1px var(--accent-green);
+  -webkit-text-stroke: 1.5px var(--accent-green); /* Slightly thicker outline */
   
-  /* Optional: A subtle shadow helps it stand out from the blue background */
-  text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  font-weight: 800; /* Extra Bold */
+  letter-spacing: -1px;
   
-  letter-spacing: -0.5px;
+  /* subtle drop shadow to separate text from background */
+  filter: drop-shadow(0 4px 4px rgba(0,0,0,0.2)); 
 }
 
 .value-item p {
