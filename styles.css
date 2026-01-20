@@ -294,7 +294,8 @@ body::before {
 
 /* --- 5. PATHWAYS --- */
 .pathways-section {
-  padding: 80px 20px;
+  /* Top: 80px, Sides: 20px, Bottom: 10px */
+  padding: 80px 20px 10px 20px; 
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -458,7 +459,7 @@ body::before {
   text-align: center;
   padding: 60px 20px;
   max-width: 800px;
-  margin: 80px auto;
+  margin: 30px 80px auto;
   background: var(--primary-blue);
   color: white;
   border-radius: 12px;
