@@ -640,3 +640,21 @@ footer {
 .tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; }
 .tag-bad { background: #fed7d7; color: #c53030; }
 .tag-good { background: #c6f6d5; color: #2f855a; }
+
+/* --- MOBILE FIX FOR COMPARISON IMAGES --- */
+@media (max-width: 768px) {
+  .comparison-container {
+    /* Switch to single column stack */
+    grid-template-columns: 1fr; 
+    gap: 30px; /* Add breathing room between the stacked images */
+  }
+
+  .comparison-slide {
+    margin-bottom: 20px;
+  }
+
+  .img-wrapper {
+    /* Optional: Slightly reduce height on mobile so they don't take up too much vertical space */
+    height: 250px; 
+  }
+}
