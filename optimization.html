@@ -22,12 +22,13 @@
         </div>
     </nav>
 
-    <div class="main-content" style="opacity: 1; animation: none; padding-top: 40px;">
+    <div class="main-content" style="opacity: 1; animation: none; padding: 60px 20px; max-width: 1000px; margin: 0 auto;">
         
         <h1 style="text-align: center; font-family: 'Montserrat', sans-serif; color: var(--primary-blue);">Data Optimization & Insights</h1>
-        <p style="text-align: center; max-width: 600px; margin: 0 auto 40px auto; color: #4a5568;">Maximize the value of the data you already have.</p>
+        <p style="text-align: center; max-width: 600px; margin: 0 auto 40px auto; color: #4a5568;">Maximize the value of the assets you already own.</p>
 
         <div class="services-grid">
+            
             <div class="service-card">
                 <div>
                     <h3>Automated KPI Dashboards</h3>
@@ -46,35 +47,39 @@
 
             <div class="service-card">
                 <div>
+                    <h3>Inventory Optimization</h3>
+                    <p>Free up working capital trapped in your warehouse. We analyze turnover velocity to find dead stock.</p>
+                </div>
+                <a href="inventory-audit.html" class="learn-more">Audit My Inventory</a>
+            </div>
+
+            <div class="service-card">
+                <div>
+                    <h3>Automated Data Integration</h3>
+                    <p>Stop manual data entry. We build secure pipelines that automatically sync your POS, Shopify, and CRM.</p>
+                </div>
+                <a href="data-centralization.html" class="learn-more">View Automation Flow</a>
+            </div>
+
+            <div class="service-card">
+                <div>
                     <h3>Customer Retention (Churn)</h3>
                     <p>Identify "at-risk" clients before they cancel, giving your team a daily list of who to save.</p>
                 </div>
                 <a href="churn-retention.html" class="learn-more">Identify At-Risk Clients</a>
             </div>
-        </div>
 
-        <footer>
-            <p>&copy; 2026 Timberline Data, LLC. | Portland, Oregon</p>
-        </footer>
-    </div>
-
-    <div id="about-modal" class="modal-overlay" onclick="closeModal('about-modal')">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="closeModal('about-modal')">&times;</span>
-            <div class="modal-header"><h3>About Timberline Data</h3></div>
-            <div class="about-grid">
-                <div><img src="Erik.jpg" alt="Erik" class="about-img" style="background:#ddd; min-height:200px;"></div>
+            <div class="service-card">
                 <div>
-                    <h4 style="margin-top:0; color:var(--primary-blue);">Erik Svetich - Principal Consultant</h4>
-                    <p>Bringing enterprise-grade analytics to the greater Portland area.</p>
+                    <h3>LTV & Segmentation</h3>
+                    <p>Identify your "Whales"—the top 20% driving 80% of revenue—and find more people just like them.</p>
                 </div>
+                <a href="ltv-segmentation.html" class="learn-more">Analyze My Segments</a>
             </div>
-        </div>
-    </div>
 
-    <script>
-        function openModal(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
-        function closeModal(id) { document.getElementById(id).style.display = 'none'; document.body.style.overflow = 'auto'; }
-    </script>
+        </div>
+
+        <footer><p>&copy; 2026 Timberline Data, LLC. | Portland, Oregon</p></footer>
+    </div>
 </body>
 </html>
