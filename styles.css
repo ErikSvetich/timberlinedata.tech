@@ -581,15 +581,24 @@ footer {
   align-items: center;
 }
 
+/* --- FIXED ABOUT IMAGE --- */
 .about-img {
-  width: 100%;
+  width: 100%; /* Fills the width of its column */
+  height: 450px; /* Sets a nice tall portrait height */
+  
+  /* THE CRITICAL FIXES: */
+  object-fit: cover; /* Ensures no squishing. Crops edges if needed. */
+  object-position: center top; /* Anchors focus near the top (faces) so heads aren't cropped off */
+  
   border-radius: 12px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15); /* Polished deep shadow */
 }
 
+/* Optional: On smaller tablets/phones, make it not quite as tall so it doesn't dominate the screen */
 @media (max-width: 768px) {
-  .about-grid { grid-template-columns: 1fr; }
-  .gradient-headline { font-size: 2.5rem; }
+  .about-img {
+    height: 350px;
+  }
 }
 
 .comparison-container {
