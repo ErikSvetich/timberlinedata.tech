@@ -125,7 +125,7 @@ body::before {
   padding: 12px 30px;
   
   /* GLASSMORPHISM EFFECT */
-  background: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
+  background: rgba(255, 255, 255, 0.6); /* Semi-transparent white */
   backdrop-filter: blur(12px); /* The "Frosted" Blur */
   -webkit-backdrop-filter: blur(12px); /* Safari support */
   
