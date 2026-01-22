@@ -658,3 +658,38 @@ footer {
     height: 250px; 
   }
 }
+
+
+/* --- MOBILE NAVBAR FIX --- */
+@media (max-width: 768px) {
+  .navbar {
+    /* 1. Force Full Width */
+    width: 100%;
+    max-width: 100%;
+    
+    /* 2. Stick to the very top */
+    top: 0;
+    margin: 0;
+    
+    /* 3. Remove "Card" Styling */
+    border-radius: 0; /* Square corners */
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    
+    /* 4. Adjust Spacing for small screens */
+    padding: 12px 15px; /* Tighter horizontal padding */
+    box-sizing: border-box; /* Ensures padding doesn't break width */
+  }
+
+  /* 5. Tighter Button Spacing on Mobile */
+  .nav-right {
+    gap: 8px; 
+  }
+
+  /* 6. Slightly Smaller Buttons on Mobile */
+  .nav-btn {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+}
