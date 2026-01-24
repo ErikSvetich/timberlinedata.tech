@@ -26,7 +26,7 @@ body::before {
   width: 100%;
   height: 100%;
   z-index: -1;
-  background-image: url('Topo map bg.png');
+  background-image: url('images/bg.png');
   background-size: cover;
   background-position: center;
   opacity: 0.08;
