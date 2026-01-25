@@ -423,12 +423,10 @@ body::before {
 
 .services-grid {
   display: grid;
-  /* Auto-fit creates as many columns as fit, but drops to 1 column on mobile */
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
   max-width: 1000px;
   margin: 0 auto;
-  /* align-items: stretch; <--- (Hidden default) This ensures equal height cards */
 }
 
 .service-card {
@@ -437,47 +435,17 @@ body::before {
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
   transition: transform 0.3s ease;
-  
-  /* Flexbox Settings */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid #e2e8f0;
-  
-  /* FORCE EQUAL HEIGHT */
-  height: 100%; 
 }
 
-/* NEW RULE: This forces the text block to grow, pushing the button down */
-.service-card div {
-  flex-grow: 1;
-}
+.service-card:hover { transform: translateY(-5px); border-color: var(--accent-green); }
+.service-card h3 { font-family: 'Montserrat', sans-serif; margin-top: 0; color: var(--primary-blue); font-size: 1.3rem; }
 
-.service-card:hover { 
-  transform: translateY(-5px); 
-  border-color: var(--accent-green); 
-}
-
-.service-card h3 { 
-  font-family: 'Montserrat', sans-serif; 
-  margin-top: 0; 
-  color: var(--primary-blue); 
-  font-size: 1.3rem; 
-}
-
-.learn-more { 
-  font-weight: bold; 
-  color: var(--accent-green); 
-  font-size: 0.9rem; 
-  text-decoration: none; 
-  margin-top: 20px; /* Increased slightly for visual breathing room */
-  cursor: pointer; 
-  align-self: flex-start; /* Ensures button stays aligned left */
-}
-
-.learn-more:after { 
-  content: " →"; 
-}
+.learn-more { font-weight: bold; color: var(--accent-green); font-size: 0.9rem; text-decoration: none; margin-top: 15px; cursor: pointer; }
+.learn-more:after { content: " →"; }
 
 /* --- 7. VALUE PROPS (Clean Columns) --- */
 .value-props-section {
