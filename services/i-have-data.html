@@ -3,9 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Optimization | Timberline Data</title>
+    <title>Unlock Your Data | Timberline Data</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Salesman Polish: Add hover effects to make these feel like clickable solutions, not just text */
+        .service-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        /* Make the H3s punchier */
+        .service-card h3 {
+            color: var(--primary-blue);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        /* Highlight the 'pain' words */
+        .pain-point {
+            font-weight: 600;
+            color: #2d3748;
+        }
+    </style>
 </head>
 <body>
 
@@ -24,59 +49,68 @@
 
     <div class="main-content" style="opacity: 1; animation: none; padding: 60px 20px; max-width: 1000px; margin: 0 auto;">
         
-        <h1 style="text-align: center; font-family: 'Montserrat', sans-serif; color: var(--primary-blue);">Data Optimization & Insights</h1>
-        <p style="text-align: center; max-width: 600px; margin: 0 auto 40px auto; color: #4a5568;">Maximize the value of the assets you already own.</p>
+        <h1 style="text-align: center; font-family: 'Montserrat', sans-serif; color: var(--primary-blue); font-size: 2.5rem; margin-bottom: 10px;">Turn Your Spreadsheet Chaos into Cash</h1>
+        
+        <p style="text-align: center; max-width: 700px; margin: 0 auto 50px auto; color: #4a5568; font-size: 1.1rem; line-height: 1.6;">
+            You already have the answers—they’re just buried in your systems. We extract the insights you own so you can stop guessing and start growing.
+        </p>
 
         <div class="services-grid">
             
             <div class="service-card">
                 <div>
-                    <h3>Automated KPI Dashboards</h3>
-                    <p>Eliminate the "Monday Morning Reporting" scramble. We replace fragile spreadsheets with automated, real-time dashboards.</p>
+                    <h3>Executive Dashboards</h3>
+                    <p>Stop wasting Monday mornings gluing spreadsheets together. We build <span class="pain-point">live, automated command centers</span> that tell you exactly where your business stands—instantly.</p>
                 </div>
-                <a href="../services/i-have-data/kpi-dashboard.html" class="learn-more">See Examples</a>
+                <a href="../services/i-have-data/kpi-dashboard.html" class="learn-more">See Real-Time Examples</a>
             </div>
 
             <div class="service-card">
                 <div>
-                    <h3>Sales Forecasting</h3>
-                    <p>Plan inventory and labor with confidence. Our models use historical data to predict demand.</p>
+                    <h3>Demand Forecasting</h3>
+                    <p>Will next month be slow or slammed? Stop scheduling based on a hunch. Our models use your history to <span class="pain-point">predict future sales</span>, so you never over-staff or run out of stock.</p>
                 </div>
-                <a href="../services/i-have-data/sales-forecasting.html" class="learn-more">Request Case Study</a>
+                <a href="../services/i-have-data/sales-forecasting.html" class="learn-more">Predict My Revenue</a>
             </div>
 
             <div class="service-card">
                 <div>
-                    <h3>Inventory Optimization</h3>
-                    <p>Free up working capital trapped in your warehouse. We analyze turnover velocity to find dead stock.</p>
+                    <h3>Inventory Audit</h3>
+                    <p>You have cash trapping dust on your shelves. We analyze turnover velocity to identify dead stock and high-performers, freeing up <span class="pain-point">working capital</span> you can actually use.</p>
                 </div>
-                <a href="../services/i-have-data/inventory-audit.html" class="learn-more">Audit My Inventory</a>
+                <a href="../services/i-have-data/inventory-audit.html" class="learn-more">Find My Dead Stock</a>
             </div>
 
             <div class="service-card">
                 <div>
-                    <h3>Automated Data Integration</h3>
-                    <p>Stop manual data entry. We build secure pipelines that automatically sync your POS, Shopify, and CRM.</p>
+                    <h3>Pipeline Automation</h3>
+                    <p>Your POS, CRM, and accounting software should talk to each other. We build secure pipelines that <span class="pain-point">kill manual data entry</span> and eliminate human error forever.</p>
                 </div>
-                <a href="../services/i-have-data/data-centralization.html" class="learn-more">View Automation Flow</a>
+                <a href="../services/i-have-data/data-centralization.html" class="learn-more">Automate My Workflows</a>
             </div>
 
             <div class="service-card">
                 <div>
-                    <h3>Customer Retention (Churn)</h3>
-                    <p>Identify "at-risk" clients before they cancel, giving your team a daily list of who to save.</p>
+                    <h3>Churn Prevention</h3>
+                    <p>It costs 5x more to get a new client than to keep one. We identify "at-risk" customers <em>before</em> they cancel, giving you a daily hit-list of <span class="pain-point">relationships to save</span>.</p>
                 </div>
-                <a href="../services/i-have-data/churn-retention.html" class="learn-more">Identify At-Risk Clients</a>
+                <a href="../services/i-have-data/churn-retention.html" class="learn-more">Stop The Leaks</a>
             </div>
 
             <div class="service-card">
                 <div>
-                    <h3>LTV & Segmentation</h3>
-                    <p>Identify your "Whales"—the top 20% driving 80% of revenue—and find more people just like them.</p>
+                    <h3>High-Value Segmentation</h3>
+                    <p>Who are your "Whales"? We analyze your customer base to find the top 20% driving 80% of your profit—so you can <span class="pain-point">clone your best customers</span>.</p>
                 </div>
-                <a href="../services/i-have-data/ltv-segmentation.html" class="learn-more">Analyze My Segments</a>
+                <a href="../services/i-have-data/ltv-segmentation.html" class="learn-more">Identify My VIPs</a>
             </div>
 
+        </div>
+
+        <div style="text-align: center; margin-top: 60px; padding: 40px; background-color: #f7fafc; border-radius: 8px;">
+            <h2 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue); margin-bottom: 15px;">Unsure where to start?</h2>
+            <p style="margin-bottom: 25px; color: #4a5568;">Most businesses are sitting on a goldmine without knowing it. Let's do a 15-minute discovery call.</p>
+            <a href="mailto:inquiry@timberlinedata.tech" class="nav-btn btn-solid" style="display: inline-block; padding: 12px 30px;">Book a Free Audit</a>
         </div>
 
         <footer><p>&copy; 2026 Timberline Data, LLC. | Portland, Oregon</p></footer>
