@@ -3,9 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acquisition | Timberline Data</title>
+    <title>Get New Data | Timberline Data</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Consistent Sales Polish: Hover effects and tactile feel */
+        .service-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .service-card h3 {
+            color: var(--primary-blue);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        /* Highlight the 'gain' words */
+        .gain-point {
+            font-weight: 600;
+            color: #2d3748;
+        }
+    </style>
 </head>
 <body>
 
@@ -24,43 +48,52 @@
 
     <div class="main-content" style="opacity: 1; animation: none; padding: 60px 20px; max-width: 1000px; margin: 0 auto;">
         
-        <h1 style="text-align: center; font-family: 'Montserrat', sans-serif; color: var(--primary-blue);">Strategic Acquisition</h1>
-        <p style="text-align: center; max-width: 600px; margin: 0 auto 40px auto; color: #4a5568;">We generate the external data you need to grow.</p>
+        <h1 style="text-align: center; font-family: 'Montserrat', sans-serif; color: var(--primary-blue); font-size: 2.5rem; margin-bottom: 10px;">Get The Data Your Competitors Hide</h1>
+        
+        <p style="text-align: center; max-width: 700px; margin: 0 auto 50px auto; color: #4a5568; font-size: 1.1rem; line-height: 1.6;">
+            Stop guessing where the opportunities are. We hunt down the external intelligence you need to dominate your market.
+        </p>
 
         <div class="services-grid">
             
             <div class="service-card">
                 <div>
-                    <h3>Market Analysis & Intelligence</h3>
-                    <p>Don't enter a new market blind. We scrape competitor pricing, analyze reviews, and map total addressable market (TAM).</p>
+                    <h3>Competitor Intelligence</h3>
+                    <p>Don't fly blind. We track your competitors' pricing, monitor their reviews, and analyze their gaps. Know exactly <span class="gain-point">how to beat them</span> before you even make an offer.</p>
                 </div>
-                <a href="../services/i-want-data/market-analysis.html" class="learn-more">Get Market Intel</a>
+                <a href="../services/i-want-data/market-analysis.html" class="learn-more">Analyze My Competition</a>
             </div>
 
             <div class="service-card">
                 <div>
-                    <h3>Customer Data Enrichment</h3>
-                    <p>Turn a simple email list into a full profile. We use third-party APIs to append demographics, job titles, and firmographics.</p>
+                    <h3>Lead Enrichment</h3>
+                    <p>Stop cold calling with just a name and an email. We flesh out your lead lists with job titles, company size, and location, giving your sales team <span class="gain-point">the full picture</span> before they dial.</p>
                 </div>
-                <a href="../services/i-want-data/data-enrichment.html" class="learn-more">Enrich My Data</a>
+                <a href="../services/i-want-data/data-enrichment.html" class="learn-more">Upgrade My Leads</a>
             </div>
 
             <div class="service-card">
                 <div>
-                    <h3>Custom Data Harvesting</h3>
-                    <p>Need data from a site without an API? We build custom bots to ethically scrape and structure web data for you.</p>
+                    <h3>Custom Web Pipelines</h3>
+                    <p>Need data from a website that doesn't have a "Download" button? We build custom tools to ethically gather pricing, listings, or directories from the web and <span class="gain-point">turn them into spreadsheets</span>.</p>
                 </div>
-                <a href="../services/i-want-data/web-scraping.html" class="learn-more">Start Harvesting</a>
+                <a href="../services/i-want-data/web-scraping.html" class="learn-more">Get Impossible Data</a>
             </div>
 
             <div class="service-card">
                 <div>
                     <h3>Location Intelligence</h3>
-                    <p>Combine your sales data with public Census and traffic studies to pinpoint exactly where your next customer lives.</p>
+                    <p>Don't open your next location on a hunch. We combine your sales data with public Census and traffic models to show you exactly <span class="gain-point">where your best customers live</span>.</p>
                 </div>
-                <a href="../services/i-want-data/location-intelligence.html" class="learn-more">Map My Market</a>
+                <a href="../services/i-want-data/location-intelligence.html" class="learn-more">Map My Growth</a>
             </div>
 
+        </div>
+
+        <div style="text-align: center; margin-top: 60px; padding: 40px; background-color: #f7fafc; border-radius: 8px;">
+            <h2 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue); margin-bottom: 15px;">Need something specific?</h2>
+            <p style="margin-bottom: 25px; color: #4a5568;">If you can see it on the web, we can likely collect it. Let's discuss your target.</p>
+            <a href="mailto:inquiry@timberlinedata.tech" class="nav-btn btn-solid" style="display: inline-block; padding: 12px 30px;">Request Feasibility Check</a>
         </div>
 
         <footer><p>&copy; 2026 Timberline Data, LLC. | Portland, Oregon</p></footer>
