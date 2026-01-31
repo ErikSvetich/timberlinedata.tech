@@ -3,9 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KPI Dashboards | Timberline Data</title>
+    <title>Executive Dashboards | Timberline Data</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../styles.css">
+    <style>
+        /* PAGE-SPECIFIC STYLES (Add these to styles.css later if you want) */
+        
+        .breadcrumb {
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .breadcrumb:hover { color: var(--primary-blue); text-decoration: underline; }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+            text-align: left;
+            display: inline-block;
+        }
+        .feature-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.1rem;
+            color: #4a5568;
+        }
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+            text-align: left;
+        }
+        .use-case-card {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-blue);
+        }
+        .use-case-card h4 { margin: 0 0 10px 0; color: var(--primary-blue); }
+        .use-case-card p { margin: 0; font-size: 0.95rem; }
+
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -21,37 +72,76 @@
         </div>
     </nav>
 
-    <div class="main-content" style="opacity: 1; animation: none; padding: 60px 20px; max-width: 1000px; margin: 0 auto;">
-        <div style="text-align: center; margin-bottom: 40px;">
-            <h1 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue);">Automated KPI Dashboards</h1>
-            <p style="font-size: 1.2rem;">From static spreadsheets to automated insights.</p>
+    <div class="main-content" style="opacity: 1; animation: none; padding: 40px 20px; max-width: 900px; margin: 0 auto;">
+        
+        <a href="../i-have-data.html" class="breadcrumb">← Back to Services</a>
+
+        <div style="text-align: center; margin-bottom: 50px;">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="var(--primary-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 20px;">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+            </svg>
+            
+            <h1 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue); font-size: 2.5rem; margin-bottom: 15px;">Executive Command Centers</h1>
+            <p style="font-size: 1.2rem; color: #4a5568; max-width: 700px; margin: 0 auto;">Stop managing your business through the rearview mirror. Get a live, automated view of your performance.</p>
         </div>
 
         <div class="comparison-container">
             <div class="comparison-slide">
-                <span class="tag tag-bad">Before: Manual Excel Hell</span>
+                <span class="tag tag-bad">The Problem: "Excel Hell"</span>
                 <div class="img-wrapper">
-                    <img src="../../images/Messy_Spreadsheet.jpg" alt="Messy Spreadsheet">
+                    <img src="../../images/Messy_Spreadsheet.jpg" alt="Messy Spreadsheet showing manual data entry errors">
                 </div>
-                <p class="caption">Hours wasted weekly on manual entry. Data is stale by the time you see it.</p>
+                <p class="caption"><strong>The Monday Morning Scramble:</strong> Hours spent copy-pasting CSVs, fixing broken formulas, and arguing over whose numbers are right.</p>
             </div>
             <div class="comparison-slide">
-                <span class="tag tag-good">After: Timberline Automation</span>
+                <span class="tag tag-good">The Solution: Live Automation</span>
                 <div class="img-wrapper">
-                    <img src="../../images/Tableau_Dashboard.jpg" alt="Clean Dashboard">
+                    <img src="../../images/Tableau_Dashboard.jpg" alt="Clean Timberline Dashboard">
                 </div>
-                <p class="caption">Live data pipelines. Instant trends. Zero manual work.</p>
+                <p class="caption"><strong>The Morning Coffee Check:</strong> You open your phone. The data is already there. It's accurate. You make a decision and move on.</p>
             </div>
         </div>
 
-        <div style="text-align: center; margin-top: 50px;">
-            <a href="mailto:inquiry@timberlinedata.tech?subject=Inquiry:%20Automated%20KPI%20Dashboards&body=Hi%20Timberline Data,%20I'm%20interested%20in%20automating%20my%20reporting..." class="cta-button">I want this for my business</a>
+        <div style="margin-top: 60px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: center;">
+            <div>
+                <h2 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue);">Why automate?</h2>
+                <p style="color: #4a5568; line-height: 1.6;">
+                    Static reports die the moment you print them. Our dashboards connect directly to your data sources (POS, CRM, ERP) to provide a living view of your business.
+                </p>
+                <ul class="feature-list">
+                    <li><strong>100% Automated:</strong> No human hands touch the data.</li>
+                    <li><strong>Mobile Ready:</strong> Check sales from the golf course or the couch.</li>
+                    <li><strong>Single Source of Truth:</strong> Everyone looks at the same numbers.</li>
+                    <li><strong>Alerts & Flags:</strong> Get notified instantly when metrics dip.</li>
+                </ul>
+            </div>
+            
+            <div>
+                <div class="use-case-card" style="margin-bottom: 20px;">
+                    <h4>For Retail & Hospitality</h4>
+                    <p>Track labor costs vs. sales in real-time. Cut staff hours <em>before</em> you blow the daily budget, not after.</p>
+                </div>
+                <div class="use-case-card">
+                    <h4>For Service Businesses</h4>
+                    <p>Visualize your pipeline. See exactly which leads are stuck, what your close rate is this week, and where cash flow will be next month.</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 80px; background: #f7fafc; padding: 40px; border-radius: 12px;">
+            <h2 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue); margin-bottom: 10px;">Ready to stop guessing?</h2>
+            <p style="color: #4a5568; margin-bottom: 30px;">We can build your first proof-of-concept dashboard in under 2 weeks.</p>
+            
+            <a href="mailto:inquiry@timberlinedata.tech?subject=Dashboard%20Inquiry&body=Hi%20Timberline,%20I'm%20tired%20of%20manual%20reporting.%20I%20use%20(System%20Name)%20and%20want%20to%20see..." class="cta-button" style="background-color: var(--accent-green); color: white; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 1.1rem; display: inline-block; transition: transform 0.2s;">Build My Dashboard</a>
+            
+            <p style="font-size: 0.9rem; color: #718096; margin-top: 20px;">Systems we integrate with: Shopify, Square, QuickBooks, Salesforce, HubSpot, and 100+ others.</p>
         </div>
         
-        <footer><p>&copy; 2026 Timberline Data, LLC. | Portland, Oregon</p></footer>
+        <footer style="margin-top: 60px; text-align: center; color: #718096; font-size: 0.9rem;">
+            <p>&copy; 2026 Timberline Data, LLC. | Portland, Oregon</p>
+        </footer>
     </div>
-
-    <div id="about-modal" class="modal-overlay" onclick="closeModal('about-modal')"><div class="modal-content" onclick="event.stopPropagation()"><span class="close-btn" onclick="closeModal('about-modal')">&times;</span><div class="modal-header"><h3>About Timberline Data</h3></div><div class="about-grid"><div><img src="../images/Erik.jpg" alt="Erik" class="about-img" style="background:#ddd; min-height:200px;"></div><div><h4 style="margin-top:0; color:var(--primary-blue);">Erik Svetich - Principal Consultant</h4><p>Bringing enterprise-grade analytics to the greater Portland area.</p></div></div></div></div>
-    <script>function openModal(id){document.getElementById(id).style.display='flex';document.body.style.overflow='hidden';}function closeModal(id){document.getElementById(id).style.display='none';document.body.style.overflow='auto';}</script>
 </body>
 </html>
