@@ -7,27 +7,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
     <style>
-        /* Consistent Sales Polish: Hover effects and tactile feel */
-        .service-card {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
+        /* CRITICAL FIX: Defines the grid layout to prevent overlap */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Creates flexible columns */
+            gap: 2rem; /* Adds safe space between rows and columns */
+            margin-top: 40px;
         }
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        .service-card h3 {
-            color: var(--primary-blue);
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-        /* Highlight the 'gain' words */
-        .gain-point {
+
+        
+        /* Link styling for the "Action" buttons */
+        .learn-more {
+            text-decoration: none;
+            color: var(--primary-blue, #0056b3);
             font-weight: 600;
-            color: #2d3748;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .learn-more:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -58,6 +57,10 @@
             
             <div class="service-card">
                 <div>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 15px;">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
                     <h3>Competitor Intelligence</h3>
                     <p>Don't fly blind. We track your competitors' pricing, monitor their reviews, and analyze their gaps. Know exactly <span class="gain-point">how to beat them</span> before you even make an offer.</p>
                 </div>
@@ -66,6 +69,9 @@
 
             <div class="service-card">
                 <div>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 15px;">
+                         <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                    </svg>
                     <h3>Lead Enrichment</h3>
                     <p>Stop cold calling with just a name and an email. We flesh out your lead lists with job titles, company size, and location, giving your sales team <span class="gain-point">the full picture</span> before they dial.</p>
                 </div>
@@ -74,6 +80,11 @@
 
             <div class="service-card">
                 <div>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 15px;">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
                     <h3>Custom Web Pipelines</h3>
                     <p>Need data from a website that doesn't have a "Download" button? We build custom tools to ethically gather pricing, listings, or directories from the web and <span class="gain-point">turn them into spreadsheets</span>.</p>
                 </div>
@@ -82,6 +93,10 @@
 
             <div class="service-card">
                 <div>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 15px;">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
                     <h3>Location Intelligence</h3>
                     <p>Don't open your next location on a hunch. We combine your sales data with public Census and traffic models to show you exactly <span class="gain-point">where your best customers live</span>.</p>
                 </div>
