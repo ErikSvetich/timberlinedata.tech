@@ -7,28 +7,60 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
     <style>
-        /* Salesman Polish: Add hover effects to make these feel like clickable solutions, not just text */
+        /* CRITICAL FIX: Defines the grid layout to prevent overlap */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Creates flexible columns */
+            gap: 2rem; /* Adds safe space between rows and columns */
+            margin-top: 40px;
+        }
+
+        /* Salesman Polish: Card Styling */
         .service-card {
+            background-color: #fff; /* Ensures content doesn't show through */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Subtle depth */
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            height: 100%;
+            height: 100%; /* Forces all cards in a row to be the same height */
         }
+        
         .service-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-        /* Make the H3s punchier */
+        
         .service-card h3 {
-            color: var(--primary-blue);
+            color: var(--primary-blue, #0056b3); /* Fallback blue if variable missing */
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
         }
-        /* Highlight the 'pain' words */
+        
+        .service-card p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
         .pain-point {
             font-weight: 600;
             color: #2d3748;
+        }
+
+        /* Link styling for the "Action" buttons */
+        .learn-more {
+            text-decoration: none;
+            color: var(--primary-blue, #0056b3);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .learn-more:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
