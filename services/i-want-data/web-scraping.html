@@ -6,6 +6,55 @@
     <title>Web Scraping | Timberline Data</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../styles.css">
+    <style>
+        /* PAGE-SPECIFIC STYLES (Matches Master Template) */
+        .breadcrumb {
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .breadcrumb:hover { color: var(--primary-blue); text-decoration: underline; }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+            text-align: left;
+            display: inline-block;
+        }
+        .feature-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.1rem;
+            color: #4a5568;
+        }
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+            text-align: left;
+        }
+        .use-case-card {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-blue);
+        }
+        .use-case-card h4 { margin: 0 0 10px 0; color: var(--primary-blue); }
+        .use-case-card p { margin: 0; font-size: 0.95rem; }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -21,25 +70,71 @@
         </div>
     </nav>
 
-    <div class="main-content" style="opacity: 1; animation: none; padding: 60px 20px; max-width: 800px; margin: 0 auto; text-align: center;">
-        <h1 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue);">Custom Data Harvesting</h1>
-        <p style="font-size: 1.2rem; margin-bottom: 40px; color: #4a5568;">If it's on the web, we can structure it.</p>
+    <div class="main-content" style="opacity: 1; animation: none; padding: 40px 20px; max-width: 900px; margin: 0 auto;">
+        
+        <a href="../i-want-data.html" class="breadcrumb">← Back to Services</a>
 
-        <div style="background: white; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: left;">
-            <h3 style="color: var(--primary-blue);">Beyond APIs</h3>
-            <p>Sometimes the data you need doesn't have a "Download" button. We build custom Python bots to ethically harvest public data for your analysis.</p>
-            <ul>
-                <li><strong>Supplier Monitoring:</strong> Monitor partner websites for stock levels or price changes.</li>
-                <li><strong>Regulatory Tracking:</strong> Scrape government sites for new filings or permits in your region.</li>
-                <li><strong>Aggregated Feeds:</strong> Combine news, reviews, and forum discussions into a single dashboard.</li>
-            </ul>
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h1 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue); font-size: 2.5rem; margin-bottom: 15px;">Turn the Web into Your Database</h1>
+            <p style="font-size: 1.2rem; color: #4a5568; max-width: 700px; margin: 0 auto;">No API? No download button? No problem. If you can see it in a browser, we can turn it into a spreadsheet.</p>
         </div>
 
-        <div style="margin-top: 50px;">
-            <a href="mailto:inquiry@timberlinedata.tech?subject=Inquiry:%20Web%20Scraping&body=Hi%20Erik,%20I%20need%20to%20gather%20data%20from..." class="cta-button">Start Harvesting</a>
+        <div class="comparison-container">
+            <div class="comparison-slide">
+                <span class="tag tag-bad">The Problem: "The Copy-Paste Intern"</span>
+                <div class="img-wrapper">
+                    <img src="../../images/Messy_Spreadsheet.jpg" alt="Manual data entry">
+                </div>
+                <p class="caption"><strong>Slow & Error-Prone:</strong> Paying a human to manually copy listings or prices from a website is expensive, boring, and leads to typos.</p>
+            </div>
+            <div class="comparison-slide">
+                <span class="tag tag-good">The Solution: "The 24/7 Bot"</span>
+                <div class="img-wrapper">
+                    <img src="../../images/Tableau_Dashboard.jpg" alt="Clean structured feed">
+                </div>
+                <p class="caption"><strong>Automated Scale:</strong> Our custom bots run hourly, scanning thousands of pages in minutes and delivering clean, structured CSVs.</p>
+            </div>
         </div>
 
-        <footer><p>&copy; 2026 Timberline Data, LLC. | Portland, Oregon</p></footer>
+        <div style="margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: center; border-top: 1px solid #edf2f7; padding-top: 40px;">
+            <div>
+                <h2 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue);">Get impossible data</h2>
+                <p style="color: #4a5568; line-height: 1.6;">
+                    We build ethical, robust data pipelines that navigate login screens, search filters, and pagination to gather the public intelligence you need.
+                </p>
+                <ul class="feature-list">
+                    <li><strong>Supplier Monitoring:</strong> Check partner websites for stock levels every hour.</li>
+                    <li><strong>Regulatory Tracking:</strong> Scrape government sites for new permits in your region.</li>
+                    <li><strong>Lead Generation:</strong> Aggregate directory listings from niche industry sites.</li>
+                    <li><strong>Structured Output:</strong> We deliver data in Excel, SQL, or JSON formats.</li>
+                </ul>
+            </div>
+            
+            <div>
+                <div class="use-case-card" style="margin-bottom: 20px;">
+                    <h4>For Real Estate</h4>
+                    <p>Scrape county foreclosure sites or zoning permit applications daily to find deals before they hit Zillow.</p>
+                </div>
+                <div class="use-case-card">
+                    <h4>For Recruitment</h4>
+                    <p>Aggregate job postings from 50 different niche job boards into a single "Candidate Demand" dashboard.</p>
+                </div>
+                <p style="margin-top: 20px; font-size: 0.9rem;"><a href="mailto:inquiry@timberlinedata.tech" style="color: var(--primary-blue); font-weight: 600; text-decoration: none;">Is it legal? Read our Ethics Policy &rarr;</a></p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; background: #f7fafc; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0;">
+            <h2 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue); margin-bottom: 10px;">What do you need to track?</h2>
+            <p style="color: #4a5568; margin-bottom: 30px;">Send us the URL. We'll tell you if we can scrape it.</p>
+            
+            <a href="mailto:inquiry@timberlinedata.tech?subject=Web%20Scraping%20Feasibility&body=Hi%20Timberline,%20I%20want%20to%20gather%20data%20from%20(Insert%20URL)..." class="cta-button" style="background-color: var(--accent-green); color: white; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 1.1rem; display: inline-block; transition: transform 0.2s;">Check Feasibility</a>
+            
+            <p style="font-size: 0.9rem; color: #718096; margin-top: 20px;">We use Python (BeautifulSoup/Selenium) and rotating proxies.</p>
+        </div>
+        
+        <footer style="margin-top: 60px; text-align: center; color: #718096; font-size: 0.9rem;">
+            <p>&copy; 2026 Timberline Data, LLC. | Portland, Oregon</p>
+        </footer>
     </div>
 </body>
 </html>

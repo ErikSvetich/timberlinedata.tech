@@ -3,9 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Enrichment | Timberline Data</title>
+    <title>Lead Enrichment | Timberline Data</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../styles.css">
+    <style>
+        /* PAGE-SPECIFIC STYLES (Matches Master Template) */
+        .breadcrumb {
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .breadcrumb:hover { color: var(--primary-blue); text-decoration: underline; }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+            text-align: left;
+            display: inline-block;
+        }
+        .feature-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.1rem;
+            color: #4a5568;
+        }
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+            text-align: left;
+        }
+        .use-case-card {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-blue);
+        }
+        .use-case-card h4 { margin: 0 0 10px 0; color: var(--primary-blue); }
+        .use-case-card p { margin: 0; font-size: 0.95rem; }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -21,26 +70,71 @@
         </div>
     </nav>
 
-    <div class="main-content" style="opacity: 1; animation: none; padding: 60px 20px; max-width: 800px; margin: 0 auto; text-align: center;">
-        <h1 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue);">Customer Data Enrichment</h1>
-        <p style="font-size: 1.2rem; margin-bottom: 40px; color: #4a5568;">Don't just know <em>who</em> bought. Know <em>why</em>.</p>
+    <div class="main-content" style="opacity: 1; animation: none; padding: 40px 20px; max-width: 900px; margin: 0 auto;">
+        
+        <a href="../i-want-data.html" class="breadcrumb">← Back to Services</a>
 
-        <div style="background: white; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: left;">
-            <h3 style="color: var(--primary-blue);">The "Blank Field" Problem</h3>
-            <p>You have thousands of emails in your CRM, but 80% of the "Company Size" or "Industry" fields are empty. You can't segment if you don't know who they are.</p>
-            <p>We use enterprise APIs to fill in the blanks automatically.</p>
-            <ul>
-                <li><strong>Demographics:</strong> Append age, income bracket, and location to consumer lists.</li>
-                <li><strong>Firmographics:</strong> Append revenue, employee count, and tech stack to B2B lists.</li>
-                <li><strong>Lead Scoring:</strong> Prioritize leads based on the new data we uncover.</li>
-            </ul>
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h1 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue); font-size: 2.5rem; margin-bottom: 15px;">Turn Email Lists into Gold</h1>
+            <p style="font-size: 1.2rem; color: #4a5568; max-width: 700px; margin: 0 auto;">Don't just know <em>who</em> they are. Know what they do, how much they make, and what software they use—before you ever dial.</p>
         </div>
 
-        <div style="margin-top: 50px;">
-            <a href="mailto:inquiry@timberlinedata.tech?subject=Inquiry:%20Data%20Enrichment&body=Hi%20Erik,%20I%20have%20a%20customer%20list%20that%20needs%20enrichment..." class="cta-button">Enrich My Data</a>
+        <div class="comparison-container">
+            <div class="comparison-slide">
+                <span class="tag tag-bad">The Problem: "The Black Box"</span>
+                <div class="img-wrapper">
+                    <img src="../../images/Messy_Spreadsheet.jpg" alt="List with missing data">
+                </div>
+                <p class="caption"><strong>Flying Blind:</strong> You have a list of emails, but 80% of the "Company Size" or "Industry" fields are empty. You treat the CEO the same as the Intern.</p>
+            </div>
+            <div class="comparison-slide">
+                <span class="tag tag-good">The Solution: "The Full Profile"</span>
+                <div class="img-wrapper">
+                    <img src="../../images/Tableau_Dashboard.jpg" alt="Enriched user profiles">
+                </div>
+                <p class="caption"><strong>Weaponized Context:</strong> We automatically append Job Titles, Revenue, and Tech Stack to your leads. Your sales team knows exactly who can afford you.</p>
+            </div>
         </div>
 
-        <footer><p>&copy; 2026 Timberline Data, LLC. | Portland, Oregon</p></footer>
+        <div style="margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: center; border-top: 1px solid #edf2f7; padding-top: 40px;">
+            <div>
+                <h2 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue);">Fill in the blanks</h2>
+                <p style="color: #4a5568; line-height: 1.6;">
+                    We use enterprise APIs to match your email list against global databases, filling in the missing pieces of the puzzle instantly.
+                </p>
+                <ul class="feature-list">
+                    <li><strong>Firmographics:</strong> Append Revenue, Employee Count, and Industry.</li>
+                    <li><strong>Tech Stack Detection:</strong> See if they use Shopify, Salesforce, or Klaviyo.</li>
+                    <li><strong>Demographics:</strong> Append Location, Age, and Income Bracket (B2C).</li>
+                    <li><strong>Lead Scoring:</strong> Automatically filter out leads that are too small to service.</li>
+                </ul>
+            </div>
+            
+            <div>
+                <div class="use-case-card" style="margin-bottom: 20px;">
+                    <h4>For Sales Teams</h4>
+                    <p>Stop wasting time on small fish. Filter your list to only show companies with $1M+ in revenue and a marketing team size of 5+.</p>
+                </div>
+                <div class="use-case-card">
+                    <h4>For Personalized Marketing</h4>
+                    <p>Send different emails to CTOs vs. Marketing Managers. Mention their specific software stack in the subject line to double open rates.</p>
+                </div>
+                <p style="margin-top: 20px; font-size: 0.9rem;"><a href="mailto:inquiry@timberlinedata.tech" style="color: var(--primary-blue); font-weight: 600; text-decoration: none;">Have a specific question? Email us &rarr;</a></p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; background: #f7fafc; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0;">
+            <h2 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue); margin-bottom: 10px;">Upgrade your leads</h2>
+            <p style="color: #4a5568; margin-bottom: 30px;">Send us a sample list. We'll show you what we can find.</p>
+            
+            <a href="mailto:inquiry@timberlinedata.tech?subject=Enrichment%20Inquiry&body=Hi%20Timberline,%20I%20have%20a%20list%20of%20leads%20that%20needs%20enrichment..." class="cta-button" style="background-color: var(--accent-green); color: white; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 1.1rem; display: inline-block; transition: transform 0.2s;">Enrich My Data</a>
+            
+            <p style="font-size: 0.9rem; color: #718096; margin-top: 20px;">We follow strict GDPR and CCPA compliance.</p>
+        </div>
+        
+        <footer style="margin-top: 60px; text-align: center; color: #718096; font-size: 0.9rem;">
+            <p>&copy; 2026 Timberline Data, LLC. | Portland, Oregon</p>
+        </footer>
     </div>
 </body>
 </html>

@@ -3,9 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SQL Training | Timberline Data</title>
+    <title>SQL Bootcamp | Timberline Data</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../styles.css">
+    <style>
+        /* PAGE-SPECIFIC STYLES (Matches Master Template) */
+        .breadcrumb {
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .breadcrumb:hover { color: var(--primary-blue); text-decoration: underline; }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+            text-align: left;
+            display: inline-block;
+        }
+        .feature-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.1rem;
+            color: #4a5568;
+        }
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+            text-align: left;
+        }
+        .use-case-card {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-blue);
+        }
+        .use-case-card h4 { margin: 0 0 10px 0; color: var(--primary-blue); }
+        .use-case-card p { margin: 0; font-size: 0.95rem; }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -21,28 +70,71 @@
         </div>
     </nav>
 
-    <div class="main-content" style="opacity: 1; animation: none; padding: 60px 20px; max-width: 800px; margin: 0 auto; text-align: center;">
-        <h1 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue);">SQL Training for Business</h1>
-        <p style="font-size: 1.2rem; margin-bottom: 40px; color: #4a5568;">Empower your team to query their own data.</p>
+    <div class="main-content" style="opacity: 1; animation: none; padding: 40px 20px; max-width: 900px; margin: 0 auto;">
+        
+        <a href="../i-want-training.html" class="breadcrumb">← Back to Services</a>
 
-        <div style="background: white; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: left;">
-            <h3 style="color: var(--primary-blue);">Curriculum Overview</h3>
-            <p>We don't teach abstract theory. We teach your team how to query <em>your</em> specific database.</p>
-            <ul>
-                <li><strong>Module 1:</strong> Select statements, Filtering, and Sorting.</li>
-                <li><strong>Module 2:</strong> Aggregations (GROUP BY) and Joins.</li>
-                <li><strong>Module 3:</strong> Advanced Window Functions and Date Logic.</li>
-            </ul>
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h1 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue); font-size: 2.5rem; margin-bottom: 15px;">Stop Waiting on IT Tickets</h1>
+            <p style="font-size: 1.2rem; color: #4a5568; max-width: 700px; margin: 0 auto;">Empower your business teams to answer their own questions. We teach them to query your data directly and safely.</p>
         </div>
 
-        <div style="margin-top: 50px;">
-            <a href="mailto:inquiry@timberlinedata.tech?subject=Inquiry:%20SQL%20Training&body=Hi%20Timberline Data,%20I'm%20looking%20to%20train%20my%20team%20on%20SQL..." class="cta-button">Request Syllabus & Rates</a>
+        <div class="comparison-container">
+            <div class="comparison-slide">
+                <span class="tag tag-bad">The Problem: "The Data Bottleneck"</span>
+                <div class="img-wrapper">
+                    <img src="../../images/Messy_Spreadsheet.jpg" alt="Backlog of tickets">
+                </div>
+                <p class="caption"><strong>The Queue:</strong> Marketing needs a list. Sales needs a number. They file a ticket. IT takes 2 weeks to respond. Opportunity lost.</p>
+            </div>
+            <div class="comparison-slide">
+                <span class="tag tag-good">The Solution: "Data Democracy"</span>
+                <div class="img-wrapper">
+                    <img src="../../images/Tableau_Dashboard.jpg" alt="Writing SQL queries">
+                </div>
+                <p class="caption"><strong>Self-Sufficiency:</strong> Your team writes a simple `SELECT` statement and gets the data in 3 minutes. No tickets. No waiting.</p>
+            </div>
         </div>
 
-        <footer><p>&copy; 2026 Timberline Data, LLC. | Portland, Oregon</p></footer>
+        <div style="margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: center; border-top: 1px solid #edf2f7; padding-top: 40px;">
+            <div>
+                <h2 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue);">Learn on YOUR data</h2>
+                <p style="color: #4a5568; line-height: 1.6;">
+                    We don't teach abstract theory using a "Movie Store" database. We connect to your sandbox and teach your team how to query <em>your</em> actual tables.
+                </p>
+                <ul class="feature-list">
+                    <li><strong>Zero to Hero:</strong> From `SELECT *` to complex Joins in 3 days.</li>
+                    <li><strong>Safety First:</strong> We teach read-only best practices so nobody drops a table.</li>
+                    <li><strong>CTE Mastery:</strong> How to organize complex logic into readable chunks.</li>
+                    <li><strong>Window Functions:</strong> Calculating running totals and moving averages.</li>
+                </ul>
+            </div>
+            
+            <div>
+                <div class="use-case-card" style="margin-bottom: 20px;">
+                    <h4>For Marketing Ops</h4>
+                    <p>Pull custom email lists based on complex purchase behavior without begging the engineering team for an export.</p>
+                </div>
+                <div class="use-case-card">
+                    <h4>For Finance</h4>
+                    <p>Reconcile payments against bank records by joining tables directly, instead of crashing Excel with VLOOKUPS.</p>
+                </div>
+                <p style="margin-top: 20px; font-size: 0.9rem;"><a href="mailto:inquiry@timberlinedata.tech" style="color: var(--primary-blue); font-weight: 600; text-decoration: none;">Have a specific database? Email us &rarr;</a></p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; background: #f7fafc; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0;">
+            <h2 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue); margin-bottom: 10px;">Unblock your team</h2>
+            <p style="color: #4a5568; margin-bottom: 30px;">We offer on-site or remote workshops tailored to your skill level.</p>
+            
+            <a href="mailto:inquiry@timberlinedata.tech?subject=SQL%20Training%20Inquiry&body=Hi%20Timberline,%20I%20want%20to%20train%20my%20team%20on%20SQL..." class="cta-button" style="background-color: var(--accent-green); color: white; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 1.1rem; display: inline-block; transition: transform 0.2s;">Request Syllabus</a>
+            
+            <p style="font-size: 0.9rem; color: #718096; margin-top: 20px;">We teach Standard SQL, T-SQL, PostgreSQL, and Snowflake SQL.</p>
+        </div>
+        
+        <footer style="margin-top: 60px; text-align: center; color: #718096; font-size: 0.9rem;">
+            <p>&copy; 2026 Timberline Data, LLC. | Portland, Oregon</p>
+        </footer>
     </div>
-    
-    <div id="about-modal" class="modal-overlay" onclick="closeModal('about-modal')"><div class="modal-content" onclick="event.stopPropagation()"><span class="close-btn" onclick="closeModal('about-modal')">&times;</span><div class="modal-header"><h3>About Timberline Data</h3></div><div class="about-grid"><div><img src="Erik.jpg" alt="Erik" class="about-img" style="background:#ddd; min-height:200px;"></div><div><h4 style="margin-top:0; color:var(--primary-blue);">Erik Svetich - Principal Consultant</h4><p>Bringing enterprise-grade analytics to the greater Portland area.</p></div></div></div></div>
-    <script>function openModal(id){document.getElementById(id).style.display='flex';document.body.style.overflow='hidden';}function closeModal(id){document.getElementById(id).style.display='none';document.body.style.overflow='auto';}</script>
 </body>
 </html>

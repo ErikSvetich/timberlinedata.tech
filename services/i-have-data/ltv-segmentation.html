@@ -3,9 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LTV & Segmentation | Timberline Data</title>
+    <title>LTV Segmentation | Timberline Data</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../styles.css">
+    <style>
+        /* PAGE-SPECIFIC STYLES (Matches Master Template) */
+        .breadcrumb {
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .breadcrumb:hover { color: var(--primary-blue); text-decoration: underline; }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+            text-align: left;
+            display: inline-block;
+        }
+        .feature-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.1rem;
+            color: #4a5568;
+        }
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+            text-align: left;
+        }
+        .use-case-card {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-blue);
+        }
+        .use-case-card h4 { margin: 0 0 10px 0; color: var(--primary-blue); }
+        .use-case-card p { margin: 0; font-size: 0.95rem; }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -21,29 +70,71 @@
         </div>
     </nav>
 
-    <div class="main-content" style="opacity: 1; animation: none; padding: 60px 20px; max-width: 800px; margin: 0 auto; text-align: center;">
-        <h1 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue);">LTV & Customer Segmentation</h1>
-        <p style="font-size: 1.2rem; margin-bottom: 40px; color: #4a5568;">Not all customers are created equal.</p>
+    <div class="main-content" style="opacity: 1; animation: none; padding: 40px 20px; max-width: 900px; margin: 0 auto;">
+        
+        <a href="../i-have-data.html" class="breadcrumb">← Back to Services</a>
 
-        <div style="background: white; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: left;">
-            <h3 style="color: var(--primary-blue);">Find Your "Whales"</h3>
-            <p>Typically, 20% of your customers drive 80% of your profit. Do you know who they are?</p>
-            <p>We segment your database to help you spend your marketing budget where it counts.</p>
-            <ul>
-                <li><strong>Lifetime Value Calculation:</strong> Understand the true value of a user over 3-5 years.</li>
-                <li><strong>RFM Analysis:</strong> Segment by Recency, Frequency, and Monetary value.</li>
-                <li><strong>Targeted Marketing:</strong> Create lookalike audiences based on your best clients.</li>
-            </ul>
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h1 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue); font-size: 2.5rem; margin-bottom: 15px;">Identify & Clone Your VIPs</h1>
+            <p style="font-size: 1.2rem; color: #4a5568; max-width: 700px; margin: 0 auto;">Stop marketing to everyone. Focus 80% of your budget on the 20% of customers who actually drive your profit.</p>
         </div>
 
-        <div style="margin-top: 50px;">
-            <a href="mailto:inquiry@timberlinedata.tech?subject=Inquiry:%20Customer%20Segmentation&body=Hi%20Timberline Data,%20I%20want%20to%20identify%20my%20top%20customers..." class="cta-button">Analyze My Segments</a>
+        <div class="comparison-container">
+            <div class="comparison-slide">
+                <span class="tag tag-bad">The Problem: "Spray & Pray"</span>
+                <div class="img-wrapper">
+                    <img src="../../images/Messy_Spreadsheet.jpg" alt="Generic customer list">
+                </div>
+                <p class="caption"><strong>Wasted Budget:</strong> You are sending the same 10% discount coupon to your best customer (who would pay full price) and your worst customer (who only buys on sale).</p>
+            </div>
+            <div class="comparison-slide">
+                <span class="tag tag-good">The Solution: "Precision Targeting"</span>
+                <div class="img-wrapper">
+                    <img src="../../images/Tableau_Dashboard.jpg" alt="Segmented customer clusters">
+                </div>
+                <p class="caption"><strong>Higher ROI:</strong> We divide your database into clear personas. You send "Early Access" to VIPs and "Win-Back" offers to lapsed users.</p>
+            </div>
         </div>
 
-        <footer><p>&copy; 2026 Timberline Data, LLC. | Portland, Oregon</p></footer>
+        <div style="margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: center; border-top: 1px solid #edf2f7; padding-top: 40px;">
+            <div>
+                <h2 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue);">The 80/20 Rule is Real</h2>
+                <p style="color: #4a5568; line-height: 1.6;">
+                    Not all revenue is created equal. We analyze your transaction history to separate the "Whales" from the "Minnows."
+                </p>
+                <ul class="feature-list">
+                    <li><strong>RFM Analysis:</strong> We score every user on Recency, Frequency, and Monetary value.</li>
+                    <li><strong>LTV Prediction:</strong> Calculate exactly how much a new lead is worth over 3 years.</li>
+                    <li><strong>Cohort Analysis:</strong> See if your customers from 2024 are better than 2023.</li>
+                    <li><strong>Lookalike Models:</strong> Export your VIP list to Facebook/Google to find more people just like them.</li>
+                </ul>
+            </div>
+            
+            <div>
+                <div class="use-case-card" style="margin-bottom: 20px;">
+                    <h4>For Retail & Hospitality</h4>
+                    <p>Identify your "Big Spenders." Invite them to exclusive tasting events or pre-sales to lock in their loyalty forever.</p>
+                </div>
+                <div class="use-case-card">
+                    <h4>For B2B & SaaS</h4>
+                    <p>Find clients who use your product daily but are on a low-tier plan. These are your easiest upsell targets.</p>
+                </div>
+                <p style="margin-top: 20px; font-size: 0.9rem;"><a href="mailto:inquiry@timberlinedata.tech" style="color: var(--primary-blue); font-weight: 600; text-decoration: none;">Have a specific question? Email us &rarr;</a></p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; background: #f7fafc; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0;">
+            <h2 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue); margin-bottom: 10px;">Find your whales</h2>
+            <p style="color: #4a5568; margin-bottom: 30px;">Give us your transaction logs. We'll give you a map to higher profits.</p>
+            
+            <a href="mailto:inquiry@timberlinedata.tech?subject=Segmentation%20Inquiry&body=Hi%20Timberline,%20I%20want%20to%20know%20who%20my%20best%20customers%20are..." class="cta-button" style="background-color: var(--accent-green); color: white; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 1.1rem; display: inline-block; transition: transform 0.2s;">Analyze My Segments</a>
+            
+            <p style="font-size: 0.9rem; color: #718096; margin-top: 20px;">We handle data anonymization to protect PII.</p>
+        </div>
+        
+        <footer style="margin-top: 60px; text-align: center; color: #718096; font-size: 0.9rem;">
+            <p>&copy; 2026 Timberline Data, LLC. | Portland, Oregon</p>
+        </footer>
     </div>
-    
-    <div id="about-modal" class="modal-overlay" onclick="closeModal('about-modal')"><div class="modal-content" onclick="event.stopPropagation()"><span class="close-btn" onclick="closeModal('about-modal')">&times;</span><div class="modal-header"><h3>About Timberline Data</h3></div><div class="about-grid"><div><img src="../images/Erik.jpg" alt="Erik" class="about-img" style="background:#ddd; min-height:200px;"></div><div><h4 style="margin-top:0; color:var(--primary-blue);">Erik Svetich - Principal Consultant</h4><p>Bringing enterprise-grade analytics to the greater Portland area.</p></div></div></div></div>
-    <script>function openModal(id){document.getElementById(id).style.display='flex';document.body.style.overflow='hidden';}function closeModal(id){document.getElementById(id).style.display='none';document.body.style.overflow='auto';}</script>
 </body>
 </html>
