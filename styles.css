@@ -421,12 +421,21 @@ body::before {
   margin-right: auto;
 }
 
+/* --- THE GRID FIX --- */
 .services-grid {
   display: grid;
+  /* Columns: Auto-fit, minimum 300px wide, 1 fraction of space otherwise */
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  
+  /* Spacing: 40px gap between all cards */
+  gap: 40px;
+  
+  /* Rows: This forces all cards in the same row to match the height of the tallest one */
+  grid-auto-rows: 1fr;
+  
   max-width: 1000px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .service-card {
@@ -434,18 +443,71 @@ body::before {
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  /* Flexbox Layout: Ensures the button always sticks to the bottom */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  
+  /* Height: Fills the grid row completely */
+  height: 100%;
+  
   border: 1px solid #e2e8f0;
 }
 
-.service-card:hover { transform: translateY(-5px); border-color: var(--accent-green); }
-.service-card h3 { font-family: 'Montserrat', sans-serif; margin-top: 0; color: var(--primary-blue); font-size: 1.3rem; }
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  border-color: var(--accent-green);
+}
 
-.learn-more { font-weight: bold; color: var(--accent-green); font-size: 0.9rem; text-decoration: none; margin-top: 15px; cursor: pointer; }
-.learn-more:after { content: " →"; }
+.service-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 0;
+  color: var(--primary-blue);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.service-card p {
+  color: #4a5568;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+/* Sales Polish Styles */
+.pain-point, .gain-point {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+/* Link/Button Styling */
+.learn-more {
+  font-weight: 700;
+  color: var(--primary-blue);
+  font-size: 0.95rem;
+  text-decoration: none;
+  margin-top: auto; /* Push to bottom */
+  display: inline-flex;
+  align-items: center;
+}
+
+.learn-more:hover {
+  text-decoration: underline;
+  color: var(--accent-green);
+}
+
+.learn-more:after {
+  content: " →";
+  margin-left: 5px;
+  transition: margin 0.2s;
+}
+
+.learn-more:hover:after {
+  margin-left: 10px;
+}
 
 /* --- 7. VALUE PROPS (Clean Columns) --- */
 .value-props-section {
