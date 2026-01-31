@@ -421,12 +421,17 @@ body::before {
   margin-right: auto;
 }
 
+/* THE GRID FIX */
 .services-grid {
   display: grid;
+  /* 1. Flexible columns that never get smaller than 300px */
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  /* 2. Consistent spacing */
+  gap: 40px;
   max-width: 1000px;
   margin: 0 auto;
+  /* 3. Safety: Ensures rows grow to fit text, preventing overlap */
+  grid-auto-rows: auto;
 }
 
 .service-card {
@@ -434,18 +439,68 @@ body::before {
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  /* Flexbox handles the internal layout */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  
   border: 1px solid #e2e8f0;
+  height: 100%; /* Forces cards to fill the row height */
 }
 
-.service-card:hover { transform: translateY(-5px); border-color: var(--accent-green); }
-.service-card h3 { font-family: 'Montserrat', sans-serif; margin-top: 0; color: var(--primary-blue); font-size: 1.3rem; }
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  border-color: var(--accent-green);
+}
 
-.learn-more { font-weight: bold; color: var(--accent-green); font-size: 0.9rem; text-decoration: none; margin-top: 15px; cursor: pointer; }
-.learn-more:after { content: " →"; }
+.service-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 0;
+  color: var(--primary-blue);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.service-card p {
+  color: #4a5568;
+  margin-bottom: 20px;
+}
+
+/* NEW: Sales Highlights */
+.pain-point, .gain-point {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+/* UPDATED: Action Links */
+.learn-more {
+  font-weight: 700;
+  color: var(--primary-blue);
+  font-size: 0.95rem;
+  text-decoration: none;
+  margin-top: auto; /* Pushes button to bottom */
+  display: inline-flex;
+  align-items: center;
+}
+
+.learn-more:hover {
+  text-decoration: underline;
+  color: var(--accent-green);
+}
+
+.learn-more:after {
+  content: " →";
+  margin-left: 5px;
+  transition: margin 0.2s;
+}
+
+.learn-more:hover:after {
+  margin-left: 10px;
+}
 
 /* --- 7. VALUE PROPS (Clean Columns) --- */
 .value-props-section {
