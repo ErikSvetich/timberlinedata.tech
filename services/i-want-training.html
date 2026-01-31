@@ -6,6 +6,28 @@
     <title>Training | Timberline Data</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* CRITICAL FIX: Defines the grid layout to prevent overlap */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Creates flexible columns */
+            gap: 2rem; /* Adds safe space between rows and columns */
+            margin-top: 40px;
+        }
+        
+        /* Link styling for the "Action" buttons */
+        .learn-more {
+            text-decoration: none;
+            color: var(--primary-blue, #0056b3);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .learn-more:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
 
@@ -22,35 +44,59 @@
         </div>
     </nav>
 
-    <div class="main-content" style="opacity: 1; animation: none; padding-top: 40px;">
+    <div class="main-content" style="opacity: 1; animation: none; padding: 60px 20px; max-width: 1000px; margin: 0 auto;">
         
-        <h1 style="text-align: center; font-family: 'Montserrat', sans-serif; color: var(--primary-blue);">Education & Training</h1>
-        <p style="text-align: center; max-width: 600px; margin: 0 auto 40px auto; color: #4a5568;">Upskill your team with practical, business-focused data training.</p>
+        <h1 style="text-align: center; font-family: 'Montserrat', sans-serif; color: var(--primary-blue); font-size: 2.5rem; margin-bottom: 10px;">Stop Renting Your Answers</h1>
+        
+        <p style="text-align: center; max-width: 700px; margin: 0 auto 50px auto; color: #4a5568; font-size: 1.1rem; line-height: 1.6;">
+            The best data team is the one you already have. We transform your staff into capable analysts who can answer their own questions.
+        </p>
 
         <div class="services-grid">
+            
             <div class="service-card">
                 <div>
-                    <h3>SQL Training</h3>
-                    <p>From basics to advanced window functions. Learn how to query your own data.</p>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 15px;">
+                        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                    </svg>
+                    <h3>SQL Bootcamp</h3>
+                    <p>Stop waiting on IT tickets just to get a data pull. We teach your team to query databases directly, enabling them to get answers in <span class="pain-point">minutes, not weeks</span>.</p>
                 </div>
-                <a href="../services/i-want-training/sql-training.html" class="learn-more">Syllabus & Rates</a>
+                <a href="../services/i-want-training/sql-training.html" class="learn-more">View Syllabus</a>
             </div>
 
             <div class="service-card">
                 <div>
-                    <h3>Tableau Training</h3>
-                    <p>Move beyond basic bar charts. Master LOD expressions, parameters, and interactive dashboard design.</p>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 15px;">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="3" y1="9" x2="21" y2="9"></line>
+                        <path d="M9 21V9"></path>
+                    </svg>
+                    <h3>Tableau Mastery</h3>
+                    <p>Excel spreadsheets put people to sleep. We teach your team to build interactive, persuasive dashboards that actually <span class="pain-point">drive executive action</span>.</p>
                 </div>
-                <a href="../services/i-want-training/tableau-training.html" class="learn-more">Syllabus & Rates</a>
+                <a href="../services/i-want-training/tableau-training.html" class="learn-more">See Dashboard Examples</a>
             </div>
 
             <div class="service-card">
                 <div>
-                    <h3>Databricks / Snowflake</h3>
-                    <p>Learn to navigate modern cloud data warehouses efficiently.</p>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 15px;">
+                        <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+                    </svg>
+                    <h3>Databricks & Snowflake</h3>
+                    <p>You pay for powerful cloud tools, but do you know how to use them? We turn expensive software subscriptions into a genuine <span class="pain-point">competitive advantage</span>.</p>
                 </div>
-                <a href="../services/i-want-training/cloud-training.html" class="learn-more">Syllabus & Rates</a>
+                <a href="../services/i-want-training/cloud-training.html" class="learn-more">Master The Cloud</a>
             </div>
+            
+        </div>
+
+        <div style="text-align: center; margin-top: 60px; padding: 40px; background-color: #f7fafc; border-radius: 8px;">
+            <h2 style="font-family: 'Montserrat', sans-serif; color: var(--primary-blue); margin-bottom: 15px;">Custom Corporate Training</h2>
+            <p style="margin-bottom: 25px; color: #4a5568;">We have trained analytics teams at Fortune 500 companies like Nike. We can tailor a curriculum for you.</p>
+            <a href="mailto:inquiry@timberlinedata.tech" class="nav-btn btn-solid" style="display: inline-block; padding: 12px 30px;">Discuss Team Training</a>
         </div>
 
         <footer>
