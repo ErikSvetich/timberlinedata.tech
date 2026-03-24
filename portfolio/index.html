@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive portfolio samples by Timberline Data. KPI dashboards, predictive models, and AI-driven analyses for Portland businesses — all explorable with live data.">
+    <meta property="og:title" content="Portfolio | Timberline Data">
+    <meta property="og:description" content="Interactive portfolio samples by Timberline Data. KPI dashboards, predictive models, and AI-driven analyses for Portland businesses — all explorable with live data.">
+    <meta property="og:type" content="website">
+    <title>Portfolio | Timberline Data</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../images/Logo.png">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .portfolio-header {
+            text-align: center;
+            padding: 20px 20px 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .portfolio-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-blue);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .portfolio-header p {
+            color: #4a5568;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 25px auto 50px;
+            padding: 0 20px;
+        }
+        .portfolio-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .card-preview {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .card-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .portfolio-card:hover .card-preview img {
+            transform: scale(1.05);
+        }
+        .preview-label {
+            position: absolute;
+            bottom: 15px;
+            left: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.5);
+        }
+        .card-body {
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-body h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-blue);
+            font-size: 1.3rem;
+            margin: 0 0 10px 0;
+        }
+        .card-body p {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0 0 20px 0;
+            flex: 1;
+        }
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .card-tag {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            background: #edf2f7;
+            color: #4a5568;
+        }
+        .card-cta {
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--accent-green);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .card-cta::after { content: " →"; }
+        .card-cta:hover { color: #276749; }
+        .portfolio-note {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            padding: 30px 20px;
+            background: #f7fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        .portfolio-note p {
+            color: #718096;
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.6;
+        }
+        .section-label {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .section-label h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            margin: 0 0 6px 0;
+        }
+        .section-label p {
+            color: #718096;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        .section-label-bar {
+            width: 40px;
+            height: 4px;
+            background: var(--accent-green);
+            border-radius: 2px;
+            margin-bottom: 12px;
+        }
+        .portfolio-grid { margin-top: 25px; }
+        .portfolio-grid + .section-label { margin-top: 60px; }
+        @media (max-width: 768px) {
+            .portfolio-header h1 { font-size: 2rem; }
+            .portfolio-grid { gap: 20px; }
+            .section-label h2 { font-size: 1.3rem; }
+            .portfolio-grid + .section-label { margin-top: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="../index.html" style="text-decoration:none; display:flex; align-items:center;">
+                <img src="../images/Logo.png" alt="Timberline Data Logo" class="nav-logo">
+                <span class="nav-brand">Timberline Data</span>
+            </a>
+        </div>
+        <div class="nav-right">
+            <a href="index.html" class="nav-btn btn-outline">Portfolio</a>
+            <a href="../about.html" class="nav-btn btn-outline">About Us</a>
+            <a href="../contact.html" class="nav-btn btn-solid">Contact Us</a>
+        </div>
+    </nav>
+
+    <div class="main-content" style="opacity: 1; animation: none;">
+        <div class="portfolio-header">
+            <h1>See Our Work</h1>
+            <p>Every sample below is fully interactive — hover, filter, and explore. Dashboards, predictive models, and forecasts built with the same tools and rigor we bring to client engagements.</p>
+        </div>
+
+        <div class="section-label">
+            <div class="section-label-bar"></div>
+            <h2>Know Where You Stand</h2>
+            <p>Live dashboards that show you exactly what's happening in your business right now.</p>
+        </div>
+
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div class="card-preview">
+                    <img src="../images/portfolio-executive-kpi.png" alt="Executive KPI Dashboard preview">
+                    <span class="preview-label">Executive View</span>
+                </div>
+                <div class="card-body">
+                    <h3>Executive KPI Dashboard</h3>
+                    <p>The view a CEO checks every Monday. Revenue trends, customer segmentation, and quarterly performance against targets — all in one screen.</p>
+                    <div class="card-tags">
+                        <span class="card-tag">Revenue</span>
+                        <span class="card-tag">Growth</span>
+                        <span class="card-tag">Segmentation</span>
+                    </div>
+                    <a href="executive-dashboard.html" class="card-cta">Explore Dashboard</a>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="card-preview">
+                    <img src="../images/portfolio-sales-marketing.png" alt="Sales & Marketing Dashboard preview">
+                    <span class="preview-label">Growth View</span>
+                </div>
+                <div class="card-body">
+                    <h3>Sales & Marketing Dashboard</h3>
+                    <p>Pipeline health at a glance. Track lead flow by channel, measure campaign ROI, and watch conversion rates trend over time.</p>
+                    <div class="card-tags">
+                        <span class="card-tag">Leads</span>
+                        <span class="card-tag">Conversion</span>
+                        <span class="card-tag">Campaign ROI</span>
+                    </div>
+                    <a href="sales-marketing-dashboard.html" class="card-cta">Explore Dashboard</a>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="card-preview">
+                    <img src="../images/portfolio-operations.png" alt="Operations Dashboard preview">
+                    <span class="preview-label">Operations View</span>
+                </div>
+                <div class="card-body">
+                    <h3>Operations Dashboard</h3>
+                    <p>Fulfillment rates, staffing efficiency, and department performance. The ops manager's daily command center for spotting bottlenecks.</p>
+                    <div class="card-tags">
+                        <span class="card-tag">Fulfillment</span>
+                        <span class="card-tag">Staffing</span>
+                        <span class="card-tag">Efficiency</span>
+                    </div>
+                    <a href="operations-dashboard.html" class="card-cta">Explore Dashboard</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-label">
+            <div class="section-label-bar"></div>
+            <h2>Know What's Coming</h2>
+            <p>Predictive models that tell you what will happen next — so you can act before your competitors do.</p>
+        </div>
+
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div class="card-preview">
+                    <img src="../images/portfolio-churn-prediction.png" alt="Churn Prediction Scorecard preview">
+                    <span class="preview-label">Predictive Model</span>
+                </div>
+                <div class="card-body">
+                    <h3>Churn Prediction Scorecard</h3>
+                    <p>See which customers are about to leave before they do. Risk scores, churn drivers, and the projected revenue you can save with early intervention.</p>
+                    <div class="card-tags">
+                        <span class="card-tag">ML Model</span>
+                        <span class="card-tag">Risk Scoring</span>
+                        <span class="card-tag">Retention</span>
+                    </div>
+                    <a href="churn-scorecard.html" class="card-cta">Explore Scorecard</a>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="card-preview">
+                    <img src="../images/portfolio-demand-forecast.png" alt="Demand Forecast preview">
+                    <span class="preview-label">Forecast Model</span>
+                </div>
+                <div class="card-body">
+                    <h3>Demand Forecast</h3>
+                    <p>Historical trends meet statistical modeling. See 90-day revenue projections with confidence bands, seasonal decomposition, and product-level breakdowns.</p>
+                    <div class="card-tags">
+                        <span class="card-tag">Time Series</span>
+                        <span class="card-tag">Forecasting</span>
+                        <span class="card-tag">Seasonality</span>
+                    </div>
+                    <a href="demand-forecast.html" class="card-cta">Explore Forecast</a>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="card-preview">
+                    <img src="../images/portfolio-customer-segmentation.png" alt="Customer Segmentation preview">
+                    <span class="preview-label">Cluster Analysis</span>
+                </div>
+                <div class="card-body">
+                    <h3>Customer Segmentation</h3>
+                    <p>Find out which 20% of your customers drive 80% of your profit. We cluster your transaction data to reveal Champions, Loyalists, and At-Risk groups.</p>
+                    <div class="card-tags">
+                        <span class="card-tag">Clustering</span>
+                        <span class="card-tag">LTV</span>
+                        <span class="card-tag">Targeting</span>
+                    </div>
+                    <a href="customer-segmentation.html" class="card-cta">Explore Segments</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio-note">
+            <p>All data shown is simulated for demonstration purposes. Client dashboards are built on your live data sources and tailored to your specific KPIs.</p>
+        </div>
+
+        <section class="cta-section">
+            <h2 class="cta-title">Want insights like these for your business?</h2>
+            <p style="margin-bottom:30px;">Tell us what decisions keep you up at night. We'll build the dashboards and models that answer them.</p>
+            <a href="../contact.html" class="cta-button">Start a Conversation</a>
+        </section>
+
+        <footer><p>&copy; 2026 Timberline Data, LLC. | Portland, Oregon</p></footer>
+    </div>
+<script>
+document.querySelectorAll('.portfolio-card').forEach(card => {
+    card.addEventListener('click', e => {
+        if (e.target.closest('a')) return;
+        const link = card.querySelector('.card-cta');
+        if (link) window.location.href = link.href;
+    });
+});
+</script>
+</body>
+</html>

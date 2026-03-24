@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive operations dashboard sample by Timberline Data. Fulfillment tracking, staffing optimization, and department efficiency.">
+    <title>Operations Dashboard | Timberline Data</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../images/Logo.png">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .dash-shell { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+        .dash-header {
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 15px; margin-bottom: 25px;
+        }
+        .dash-title-group h1 { font-family: 'Montserrat', sans-serif; font-size: 1.6rem; color: var(--primary-blue); margin: 0 0 4px 0; }
+        .dash-title-group p { font-size: 0.85rem; color: #718096; margin: 0; }
+        .dash-filters { display: flex; gap: 10px; flex-wrap: wrap; }
+        .dash-select {
+            font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 600;
+            padding: 8px 16px; border: 1px solid #e2e8f0; border-radius: 8px;
+            background: white; color: var(--primary-blue); cursor: pointer; transition: border-color 0.2s;
+        }
+        .dash-select:focus { outline: none; border-color: var(--accent-green); box-shadow: 0 0 0 3px rgba(47,133,90,0.15); }
+        .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 25px; }
+        .kpi-card {
+            background: var(--primary-blue); border-radius: 12px; padding: 24px;
+            color: white; position: relative; overflow: hidden;
+        }
+        .kpi-card::after { content: ''; position: absolute; top: -20px; right: -20px; width: 80px; height: 80px; border-radius: 50%; background: rgba(255,255,255,0.06); }
+        .kpi-label { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.6); margin-bottom: 8px; }
+        .kpi-value { font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 800; line-height: 1; margin-bottom: 8px; }
+        .kpi-delta { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 600; }
+        .kpi-delta.up { color: #68d391; }
+        .kpi-delta.down { color: #fc8181; }
+        .chart-row { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 25px; }
+        .chart-row-equal { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px; }
+        .chart-card {
+            background: white; border: 1px solid #e2e8f0; border-radius: 12px;
+            padding: 24px; box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+        }
+        .chart-card h3 { font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: var(--primary-blue); margin: 0 0 20px 0; }
+        .chart-wrap { position: relative; width: 100%; }
+        .chart-wrap canvas { width: 100% !important; }
+        .back-link { display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 600; color: #718096; text-decoration: none; margin-bottom: 20px; }
+        .back-link:hover { color: var(--primary-blue); }
+        .dash-footer { text-align: center; padding: 30px 20px; margin-top: 40px; border-top: 1px solid #e2e8f0; }
+        .dash-footer p { color: #718096; font-size: 0.8rem; margin: 0; }
+        .dash-badge { display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 4px 10px; border-radius: 4px; background: #c6f6d5; color: #22543d; margin-bottom: 15px; }
+        .status-row {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 25px;
+        }
+        .status-card {
+            background: white; border: 1px solid #e2e8f0; border-radius: 12px;
+            padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.04); text-align: center;
+        }
+        .status-card h4 {
+            font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.5px; color: #718096; margin: 0 0 10px 0;
+        }
+        .status-bar-bg {
+            width: 100%; height: 10px; background: #edf2f7; border-radius: 5px; overflow: hidden; margin-bottom: 8px;
+        }
+        .status-bar-fill { height: 100%; border-radius: 5px; transition: width 0.8s ease; }
+        .status-bar-fill.green { background: #48bb78; }
+        .status-bar-fill.yellow { background: #ecc94b; }
+        .status-bar-fill.red { background: #fc8181; }
+        .status-pct {
+            font-family: 'Montserrat', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--primary-blue);
+        }
+        @media (max-width: 900px) {
+            .kpi-row { grid-template-columns: repeat(2, 1fr); }
+            .chart-row, .chart-row-equal { grid-template-columns: 1fr; }
+            .status-row { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .kpi-row { grid-template-columns: 1fr; }
+            .dash-header { flex-direction: column; align-items: flex-start; }
+            .dash-filters { width: 100%; }
+            .dash-select { width: 100%; }
+            .kpi-value { font-size: 1.6rem; }
+            .dash-title-group h1 { font-size: 1.3rem; }
+            .status-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="../index.html" style="text-decoration:none; display:flex; align-items:center;">
+                <img src="../images/Logo.png" alt="Timberline Data Logo" class="nav-logo">
+                <span class="nav-brand">Timberline Data</span>
+            </a>
+        </div>
+        <div class="nav-right">
+            <a href="index.html" class="nav-btn btn-outline">Portfolio</a>
+            <a href="../about.html" class="nav-btn btn-outline">About Us</a>
+            <a href="../contact.html" class="nav-btn btn-solid">Contact Us</a>
+        </div>
+    </nav>
+
+    <div class="main-content" style="opacity:1; animation:none;">
+        <div class="dash-shell">
+            <a href="index.html" class="back-link">← Back to Samples</a>
+            <span class="dash-badge">Sample Dashboard</span>
+
+            <div class="dash-header">
+                <div class="dash-title-group">
+                    <h1>Operations Dashboard</h1>
+                    <p>Bridge City Logistics — Portland, OR (Demo Data)</p>
+                </div>
+                <div class="dash-filters">
+                    <select class="dash-select" aria-label="Filter by department" id="deptFilter">
+                        <option value="all">All Departments</option>
+                        <option value="warehouse">Warehouse</option>
+                        <option value="shipping">Shipping</option>
+                        <option value="returns">Returns</option>
+                    </select>
+                    <select class="dash-select" aria-label="Filter by week" id="weekFilter">
+                        <option value="current">This Week</option>
+                        <option value="prior">Last Week</option>
+                        <option value="month">Last 30 Days</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="kpi-row">
+                <div class="kpi-card">
+                    <div class="kpi-label">Orders Today</div>
+                    <div class="kpi-value" id="kpiOrders">342</div>
+                    <div class="kpi-delta up" id="kpiOrdersDelta">▲ 8.2% vs avg</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Fulfillment Rate</div>
+                    <div class="kpi-value" id="kpiFulfill">96.8%</div>
+                    <div class="kpi-delta up" id="kpiFulfillDelta">▲ 1.4pp vs prior week</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Avg Ship Time</div>
+                    <div class="kpi-value" id="kpiShip">1.2d</div>
+                    <div class="kpi-delta up" id="kpiShipDelta">▼ 0.3d vs prior week</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Inventory Turnover</div>
+                    <div class="kpi-value" id="kpiTurnover">8.4x</div>
+                    <div class="kpi-delta up" id="kpiTurnDelta">▲ 0.6x vs prior month</div>
+                </div>
+            </div>
+
+            <div class="status-row">
+                <div class="status-card">
+                    <h4>Warehouse Capacity</h4>
+                    <div class="status-bar-bg"><div class="status-bar-fill green" id="barWarehouse" style="width:72%"></div></div>
+                    <span class="status-pct" id="pctWarehouse">72%</span>
+                </div>
+                <div class="status-card">
+                    <h4>Shipping Queue</h4>
+                    <div class="status-bar-bg"><div class="status-bar-fill yellow" id="barShipping" style="width:58%"></div></div>
+                    <span class="status-pct" id="pctShipping">58%</span>
+                </div>
+                <div class="status-card">
+                    <h4>Returns Processing</h4>
+                    <div class="status-bar-bg"><div class="status-bar-fill green" id="barReturns" style="width:89%"></div></div>
+                    <span class="status-pct" id="pctReturns">89%</span>
+                </div>
+            </div>
+
+            <div class="chart-row">
+                <div class="chart-card">
+                    <h3>Daily Orders vs Fulfillment Capacity</h3>
+                    <div class="chart-wrap"><canvas id="ordersChart"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Department Efficiency</h3>
+                    <div class="chart-wrap"><canvas id="radarChart"></canvas></div>
+                </div>
+            </div>
+
+            <div class="chart-row-equal">
+                <div class="chart-card">
+                    <h3>Staffing Hours vs Demand</h3>
+                    <div class="chart-wrap"><canvas id="staffingChart"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Issue Resolution Time (hours)</h3>
+                    <div class="chart-wrap"><canvas id="issueChart"></canvas></div>
+                </div>
+            </div>
+
+            <div class="dash-footer">
+                <p>Data is simulated for demonstration. Built by Timberline Data using Chart.js.</p>
+            </div>
+        </div>
+
+        <section class="cta-section">
+            <h2 class="cta-title">Running operations on gut feel?</h2>
+            <p style="margin-bottom:30px;">We build live dashboards that connect to your order management, WMS, and HRIS systems.</p>
+            <a href="../contact.html" class="cta-button">Start a Conversation</a>
+        </section>
+
+        <footer><p>&copy; 2026 Timberline Data, LLC. | Portland, Oregon</p></footer>
+    </div>
+
+<script>
+const COLORS = {
+    green: '#48bb78', greenLight: 'rgba(72,187,120,0.15)',
+    blue: '#4299e1', blueLight: 'rgba(66,153,225,0.15)',
+    navy: '#1a365d', orange: '#ed8936', orangeLight: 'rgba(237,137,54,0.15)',
+    purple: '#9f7aea', gray: '#a0aec0', grayLight: 'rgba(160,174,192,0.2)',
+    red: '#fc8181', redLight: 'rgba(252,129,129,0.15)', teal: '#38b2ac'
+};
+
+const DAYS_7 = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+const DAYS_30 = Array.from({length: 30}, (_, i) => 'Day ' + (i + 1));
+
+const WEEK_DATA = {
+    current: {
+        orders:   [310,342,365,338,290,185,142],
+        capacity: [350,350,350,350,350,220,180],
+        staffHrs: [128,136,140,134,120,72,56],
+        demand:   [118,130,138,128,110,70,54],
+        kpis: { orders:'342', ordersD:'▲ 8.2% vs avg', fulfill:'96.8%', fulfillD:'▲ 1.4pp vs prior week', ship:'1.2d', shipD:'▼ 0.3d vs prior week', turnover:'8.4x', turnoverD:'▲ 0.6x vs prior month' },
+        status: { warehouse: 72, shipping: 58, returns: 89 }
+    },
+    prior: {
+        orders:   [295,318,340,325,278,172,130],
+        capacity: [350,350,350,350,350,220,180],
+        staffHrs: [124,130,136,128,118,68,52],
+        demand:   [112,122,130,124,106,66,50],
+        kpis: { orders:'318', ordersD:'▲ 3.1% vs avg', fulfill:'95.4%', fulfillD:'▼ 0.2pp vs prior week', ship:'1.5d', shipD:'▲ 0.1d vs prior week', turnover:'7.8x', turnoverD:'▲ 0.3x vs prior month' },
+        status: { warehouse: 78, shipping: 65, returns: 84 }
+    },
+    month: {
+        orders: [290,305,310,342,365,338,290,185,142,308,325,340,355,348,295,190,148,320,338,358,370,345,288,178,138,315,330,352,362,340],
+        capacity: Array(30).fill(null).map((_, i) => [5,6].includes(i % 7) ? ([5].includes(i % 7) ? 220 : 180) : 350),
+        staffHrs: [120,128,130,136,140,134,120,72,56,126,132,138,142,136,122,74,58,130,134,140,144,138,118,70,54,128,132,140,144,136],
+        demand:   [110,118,120,130,138,128,110,70,54,118,124,132,136,130,114,68,52,122,128,134,138,132,108,66,50,120,126,134,138,130],
+        kpis: { orders:'9,432', ordersD:'▲ 6.8% vs prior month', fulfill:'96.1%', fulfillD:'▲ 0.9pp vs prior month', ship:'1.3d', shipD:'▼ 0.2d vs prior month', turnover:'8.4x', turnoverD:'▲ 0.6x vs prior month' },
+        status: { warehouse: 75, shipping: 61, returns: 87 }
+    }
+};
+
+const DEPT_DATA = {
+    all: {
+        radar: { labels: ['Speed','Accuracy','Utilization','Quality','Cost Eff.'], values: [88,94,82,91,78] },
+        issues: { labels: ['Mispick','Damage','Late Ship','Wrong Address','Stock Out'], values: [2.1,4.5,1.8,0.9,3.2] }
+    },
+    warehouse: {
+        radar: { labels: ['Speed','Accuracy','Utilization','Quality','Cost Eff.'], values: [85,96,78,93,75] },
+        issues: { labels: ['Mispick','Damage','Stock Out','Miscount','Overflow'], values: [2.1,3.8,3.2,1.5,0.8] }
+    },
+    shipping: {
+        radar: { labels: ['Speed','Accuracy','Utilization','Quality','Cost Eff.'], values: [90,92,86,88,80] },
+        issues: { labels: ['Late Ship','Wrong Address','Label Error','Carrier Delay','Damage'], values: [1.8,0.9,1.2,2.8,1.5] }
+    },
+    returns: {
+        radar: { labels: ['Speed','Accuracy','Utilization','Quality','Cost Eff.'], values: [82,90,72,95,84] },
+        issues: { labels: ['Slow Process','Wrong Refund','Lost Item','Restock Delay','Dispute'], values: [3.5,1.2,2.8,2.1,0.6] }
+    }
+};
+
+let charts = {};
+
+function setStatusBar(id, pctId, value) {
+    const bar = document.getElementById(id);
+    const pct = document.getElementById(pctId);
+    bar.style.width = value + '%';
+    pct.textContent = value + '%';
+    bar.className = 'status-bar-fill ' + (value >= 80 ? 'green' : value >= 50 ? 'yellow' : 'red');
+}
+
+function buildCharts(dept, week) {
+    Object.values(charts).forEach(c => c.destroy());
+    charts = {};
+
+    const wd = WEEK_DATA[week];
+    const dd = DEPT_DATA[dept];
+
+    document.getElementById('kpiOrders').textContent = wd.kpis.orders;
+    document.getElementById('kpiOrdersDelta').textContent = wd.kpis.ordersD;
+    document.getElementById('kpiFulfill').textContent = wd.kpis.fulfill;
+    document.getElementById('kpiFulfillDelta').textContent = wd.kpis.fulfillD;
+    document.getElementById('kpiShip').textContent = wd.kpis.ship;
+    document.getElementById('kpiShipDelta').textContent = wd.kpis.shipD;
+    document.getElementById('kpiTurnover').textContent = wd.kpis.turnover;
+    document.getElementById('kpiTurnDelta').textContent = wd.kpis.turnoverD;
+
+    setStatusBar('barWarehouse', 'pctWarehouse', wd.status.warehouse);
+    setStatusBar('barShipping', 'pctShipping', wd.status.shipping);
+    setStatusBar('barReturns', 'pctReturns', wd.status.returns);
+
+    const tooltipStyle = {
+        backgroundColor: '#1a365d',
+        titleFont: { family: 'Montserrat', weight: '700' },
+        bodyFont: { family: 'Open Sans' },
+        padding: 12, cornerRadius: 8
+    };
+
+    const labels = week === 'month' ? DAYS_30 : DAYS_7;
+
+    charts.orders = new Chart(document.getElementById('ordersChart'), {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Orders',
+                    data: wd.orders,
+                    borderColor: COLORS.blue,
+                    backgroundColor: COLORS.blueLight,
+                    fill: true, tension: 0.35,
+                    pointRadius: week === 'month' ? 2 : 4,
+                    pointHoverRadius: 6, borderWidth: 2.5
+                },
+                {
+                    label: 'Capacity',
+                    data: wd.capacity,
+                    borderColor: COLORS.red,
+                    backgroundColor: 'transparent',
+                    borderDash: [6, 4],
+                    tension: 0,
+                    pointRadius: 0, pointHoverRadius: 4,
+                    borderWidth: 2
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                tooltip: tooltipStyle,
+                legend: { labels: { font: { family: 'Montserrat', size: 11 }, usePointStyle: true, pointStyle: 'circle' } }
+            },
+            scales: {
+                y: { beginAtZero: false, ticks: { font: { family: 'Open Sans', size: 11 }, color: '#718096' }, grid: { color: 'rgba(0,0,0,0.04)' } },
+                x: { ticks: { font: { family: 'Open Sans', size: 11 }, color: '#718096', maxRotation: week === 'month' ? 45 : 0 }, grid: { display: false } }
+            }
+        }
+    });
+
+    charts.radar = new Chart(document.getElementById('radarChart'), {
+        type: 'radar',
+        data: {
+            labels: dd.radar.labels,
+            datasets: [{
+                label: dept === 'all' ? 'All Departments' : dept.charAt(0).toUpperCase() + dept.slice(1),
+                data: dd.radar.values,
+                borderColor: COLORS.green,
+                backgroundColor: COLORS.greenLight,
+                borderWidth: 2.5,
+                pointBackgroundColor: COLORS.green,
+                pointRadius: 4,
+                pointHoverRadius: 7
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                tooltip: tooltipStyle,
+                legend: { display: false }
+            },
+            scales: {
+                r: {
+                    beginAtZero: true, min: 0, max: 100,
+                    ticks: { stepSize: 20, font: { family: 'Open Sans', size: 10 }, color: '#718096', backdropColor: 'transparent' },
+                    pointLabels: { font: { family: 'Montserrat', size: 11, weight: '600' }, color: '#4a5568' },
+                    grid: { color: 'rgba(0,0,0,0.06)' },
+                    angleLines: { color: 'rgba(0,0,0,0.06)' }
+                }
+            }
+        }
+    });
+
+    const staffLabels = week === 'month' ? DAYS_30 : DAYS_7;
+
+    charts.staffing = new Chart(document.getElementById('staffingChart'), {
+        type: 'bar',
+        data: {
+            labels: staffLabels,
+            datasets: [
+                {
+                    label: 'Scheduled Hours',
+                    data: wd.staffHrs,
+                    backgroundColor: COLORS.blue,
+                    borderRadius: 4, barPercentage: 0.7
+                },
+                {
+                    label: 'Actual Demand',
+                    data: wd.demand,
+                    backgroundColor: COLORS.orangeLight,
+                    borderColor: COLORS.orange,
+                    borderWidth: 1.5,
+                    borderRadius: 4, barPercentage: 0.7
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                tooltip: { ...tooltipStyle, callbacks: { label: ctx => ' ' + ctx.parsed.y + ' hrs' } },
+                legend: { labels: { font: { family: 'Montserrat', size: 11 }, usePointStyle: true, pointStyle: 'circle' } }
+            },
+            scales: {
+                y: { beginAtZero: true, ticks: { callback: v => v + 'h', font: { family: 'Open Sans', size: 11 }, color: '#718096' }, grid: { color: 'rgba(0,0,0,0.04)' } },
+                x: { ticks: { font: { family: 'Open Sans', size: 11 }, color: '#718096', maxRotation: week === 'month' ? 45 : 0 }, grid: { display: false } }
+            }
+        }
+    });
+
+    const issueColors = [COLORS.orange, COLORS.red, COLORS.blue, COLORS.purple, COLORS.teal];
+
+    charts.issues = new Chart(document.getElementById('issueChart'), {
+        type: 'bar',
+        data: {
+            labels: dd.issues.labels,
+            datasets: [{
+                data: dd.issues.values,
+                backgroundColor: issueColors,
+                borderRadius: 6,
+                barPercentage: 0.6
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            plugins: {
+                tooltip: { ...tooltipStyle, callbacks: { label: ctx => ' ' + ctx.parsed.x + ' hours avg' } },
+                legend: { display: false }
+            },
+            scales: {
+                x: { beginAtZero: true, ticks: { callback: v => v + 'h', font: { family: 'Open Sans', size: 11 }, color: '#718096' }, grid: { color: 'rgba(0,0,0,0.04)' } },
+                y: { ticks: { font: { family: 'Montserrat', size: 11, weight: '600' }, color: '#4a5568' }, grid: { display: false } }
+            }
+        }
+    });
+}
+
+document.getElementById('deptFilter').addEventListener('change', () => {
+    buildCharts(document.getElementById('deptFilter').value, document.getElementById('weekFilter').value);
+});
+document.getElementById('weekFilter').addEventListener('change', () => {
+    buildCharts(document.getElementById('deptFilter').value, document.getElementById('weekFilter').value);
+});
+
+buildCharts('all', 'current');
+</script>
+</body>
+</html>
